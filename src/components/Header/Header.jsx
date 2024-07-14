@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { selectIsLoggedIn, selectUser } from "../../redux/auth/selectors";
-import s from "./Header.module.css";
+import s from "./Header.module.scss";
 import { logoutThunk } from "../../redux/auth/operations";
 
 const Header = () => {
