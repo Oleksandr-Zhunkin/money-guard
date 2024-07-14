@@ -5,16 +5,15 @@ import { logoutThunk } from "../../redux/auth/operations";
 import useRespons from "../../hooks/useRespons";
 import { useState } from "react";
 
-const Logout = () => {
+const Logout = ({ modalIsOpen, handleModalClose }) => {
   const dispatch = useDispatch();
   const { mobileUser } = useRespons();
-  const [modalIsOpen, setModalIsOpen] = useState(true);
 
   return (
     <ModalWindow
       isOpen={modalIsOpen}
       onClose={() => {
-        setModalIsOpen(false);
+        handleModalClose();
       }}
     >
       <div className={s.box}>
@@ -40,7 +39,7 @@ const Logout = () => {
         </button>
         <button
           onClick={() => {
-            setModalIsOpen(false);
+            handleModalClose();
           }}
           className={s.cancel}
         >
