@@ -30,12 +30,12 @@ const AddTransactionForm = () => {
     dispatch(
       addTransactionsThunk({
         transactionDate: values.datepicker,
-        type: isIncome ? "INCOME" : "EXPENCE",
+        type: isIncome ? "INCOME" : "EXPENSE",
         categoryId: isIncome
           ? category.find((elem) => elem.name == "Income").id
           : category.find((elem) => elem.name == values.category).id,
         comment: values.comment,
-        amount: values.sum,
+        amount: -values.sum,
       })
     );
     actions.resetForm();

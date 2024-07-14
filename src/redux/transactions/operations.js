@@ -29,8 +29,8 @@ export const updateTransactionsThunk = createAsyncThunk(
   async (transaction, thunkApi) => {
     try {
       const { data } = await guardApi.patch(
-        `/api/transactions${transaction.id}`,
-        transaction
+        `/api/transactions/${transaction.id}`,
+        transaction.data
       );
       console.log(data);
     } catch (error) {
