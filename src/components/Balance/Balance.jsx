@@ -1,10 +1,16 @@
-import PropTypes from "prop-types";
+import { useSelector } from "react-redux";
+
+import { selectUserBalance } from "../../redux/auth/selectors";
+
 import s from "./Balance.module.css";
 
-const Balance = ({ userBalance }) => {
+const Balance = () => {
+  const userBalance = useSelector(selectUserBalance);
+
   const formattedBalance = userBalance
-    ? userBalance.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ")
-    : "0.00";
+    .toFixed(2)
+    .replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+
   return (
     <div className={s.balanceContainer}>
       <p className={s.balanceTitle}>YOUR BALANCE</p>
@@ -13,10 +19,6 @@ const Balance = ({ userBalance }) => {
       </p>
     </div>
   );
-};
-
-Balance.propTypes = {
-  userBalance: PropTypes.number,
 };
 
 export default Balance;
