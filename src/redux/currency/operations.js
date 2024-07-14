@@ -4,7 +4,7 @@ import { monoApi } from "../../config/monoApi";
 export const monoThunk = createAsyncThunk("mono", async (_, thunkApi) => {
   try {
     const { data } = await monoApi.get();
-    console.log(data);
+    return data;
   } catch (error) {
     return thunkApi.rejectWithValue(error.message);
   }
