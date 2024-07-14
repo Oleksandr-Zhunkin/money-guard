@@ -1,11 +1,11 @@
 import { useState } from "react";
 import clsx from "clsx";
 import { useDispatch, useSelector } from "react-redux";
-import { Icon } from "../../images/icons/icon-edit.svg";
+import iconEdit from "../../images/icons/icon-edit.svg";
 import useRespons from "../../hooks/useRespons.js";
 import EditTransactionForm from "../EditTransactionForm/EditTransactionForm";
-import { selectCategories } from "../../redux/transactions/selectors";
-import { deleteTransactionThunk } from "../../redux/transactions/operations";
+import { selectCategories } from "../../redux/categories/selectors.js";
+import { deleteTransactionsThunk } from "../../redux/transactions/operations";
 import s from "./TransactionsItem.module.css";
 import ModalWindow from "../ModalWindow/ModalWindow";
 
@@ -56,12 +56,12 @@ const TransactionsItem = ({ transaction }) => {
             onClick={openModal}
             aria-label="edit button"
           >
-            <Icon id="icon-edit" height={14} width={14} />
+            <img src={iconEdit} alt="Edit" height={14} width={14} />
           </button>
           <button
             className={s.button}
             type="button"
-            onClick={() => dispatch(deleteTransactionThunk(transaction.id))}
+            onClick={() => dispatch(deleteTransactionsThunk(transaction.id))}
             aria-label="delete button"
           >
             Delete
@@ -112,7 +112,7 @@ const TransactionsItem = ({ transaction }) => {
         <button
           className={s.button}
           type="button"
-          onClick={() => dispatch(deleteTransactionThunk(transaction.id))}
+          onClick={() => dispatch(deleteTransactionsThunk(transaction.id))}
           aria-label="delete button"
         >
           Delete
@@ -123,7 +123,7 @@ const TransactionsItem = ({ transaction }) => {
           onClick={openModal}
           aria-label="edit button"
         >
-          <Icon id="icon-pen" height={14} width={14} />
+          <img src={iconEdit} alt="Edit" height={14} width={14} />
           <p className={s.edit}>Edit</p>
         </button>
       </div>
