@@ -1,0 +1,42 @@
+export const transactions = [
+  {
+    id: "1",
+    transactionDate: "2024-07-12",
+    type: "EXPENSE",
+    categoryId: "1",
+    comment: "Groceries",
+    amount: 50.0,
+  },
+  {
+    id: "2",
+    transactionDate: "2024-07-11",
+    type: "INCOME",
+    categoryId: "2",
+    comment: "Salary",
+    amount: 2000.0,
+  },
+  {
+    id: "3",
+    transactionDate: "2024-07-10",
+    type: "EXPENSE",
+    categoryId: "3",
+    comment: "Transportation",
+    amount: 30.0,
+  },
+  {
+    id: "4",
+    transactionDate: "2024-07-09",
+    type: "EXPENSE",
+    categoryId: "1",
+    comment: "Dining out",
+    amount: 40.0,
+  },
+  {
+    id: "5",
+    transactionDate: "2024-07-08",
+    type: "INCOME",
+    categoryId: "2",
+    comment: "Freelance work",
+    amount: 500.0,
+  },
+];
