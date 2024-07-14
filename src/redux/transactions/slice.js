@@ -42,7 +42,9 @@ const slice = createSlice({
           deleteTransactionsThunk.pending,
           updateTransactionsThunk.pending
         ),
-        (state) => (state.isLoading = true)
+        (state) => {
+          state.isLoading = true;
+        }
       )
       .addMatcher(
         isAnyOf(
@@ -51,7 +53,9 @@ const slice = createSlice({
           deleteTransactionsThunk.fulfilled,
           updateTransactionsThunk.fulfilled
         ),
-        (state) => (state.isLoading = false)
+        (state) => {
+          state.isLoading = false;
+        }
       )
       .addMatcher(
         isAnyOf(
@@ -60,9 +64,10 @@ const slice = createSlice({
           deleteTransactionsThunk.rejected,
           updateTransactionsThunk.rejected
         ),
-        (state, action) => (
-          (state.isError = action.payload), (state.isLoading = false)
-        )
+        (state, action) => {
+          state.isError = action.payload;
+          state.isLoading = false;
+        }
       );
   },
 });

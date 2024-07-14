@@ -6,7 +6,7 @@ export const categoriesThunk = createAsyncThunk(
   async (_, thunkApi) => {
     try {
       const { data } = await guardApi.get("/api/transaction-categories");
-      console.log(data);
+      return data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
     }
@@ -15,7 +15,7 @@ export const categoriesThunk = createAsyncThunk(
 export const summaryThunk = createAsyncThunk("summary", async (_, thunkApi) => {
   try {
     const { data } = await guardApi.get("/api/transactions-summary");
-    console.log(data);
+    return data;
   } catch (error) {
     return thunkApi.rejectWithValue(error.message);
   }
