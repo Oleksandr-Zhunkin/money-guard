@@ -11,7 +11,7 @@ const Header = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const user = useSelector(selectUser);
 
-  const { mobileUser, tabletUser } = useRespons();
+  const { tabletUser } = useRespons();
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const handleModalOpen = () => {
@@ -29,35 +29,20 @@ const Header = () => {
             <img className={s.logo_icon} src={Logo} alt="logo" />
             <p className={s.logo_text}>Money Guard</p>
           </div>
-          {mobileUser && (
-            <div className={s.right_side}>
-              <p className={s.user}>{user}</p>
-              <button
-                onClick={() => {
-                  handleModalOpen();
-                }}
-                className={s.exit_btn}
-                type="button"
-              >
-                <img className={s.exit_icon} src={exitIcon} alt="exit" />
-              </button>
-            </div>
-          )}
-          {tabletUser && (
-            <div className={s.right_side}>
-              <p className={s.user}>{user}</p>
-              <button
-                onClick={() => {
-                  handleModalOpen();
-                }}
-                className={s.exit_btn}
-                type="button"
-              >
-                <img className={s.exit_icon} src={exitIcon} alt="exit" />
-                <p className={s.user}>Exit</p>
-              </button>
-            </div>
-          )}
+
+          <div className={s.right_side}>
+            <p className={s.user}>{user}</p>
+            <button
+              onClick={() => {
+                handleModalOpen();
+              }}
+              className={s.exit_btn}
+              type="button"
+            >
+              <img className={s.exit_icon} src={exitIcon} alt="exit" />
+              {tabletUser && <p className={s.exit_text}>Exit</p>}
+            </button>
+          </div>
         </header>
         <Logout
           modalIsOpen={modalIsOpen}

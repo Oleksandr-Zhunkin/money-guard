@@ -14,36 +14,36 @@ function App() {
   return (
     <>
       <Section>
-        <Container>
-          <Routes>
-            <Route path="/" element={<Layout />}>
-              <Route
-                index
-                element={
-                  <PrivateRoute component={<Test1 />} redirectTo="/login" />
-                }
-              />
-              <Route
-                path="/statistics"
-                element={
-                  <PrivateRoute component={<Test2 />} redirectTo="/login" />
-                }
-              />
-            </Route>
+        {/* <Container> */}
+        <Routes>
+          <Route path="/" element={<Layout />}>
             <Route
-              path="login"
+              index
               element={
-                <RestrictedRoute component={<LoginPage />} redirectTo="/" />
+                <PrivateRoute component={<Test1 />} redirectTo="/login" />
               }
             />
             <Route
-              path="register"
+              path="/statistics"
               element={
-                <RestrictedRoute component={<RegisterPage />} redirectTo="/" />
+                <PrivateRoute component={<Test2 />} redirectTo="/login" />
               }
             />
-          </Routes>
-        </Container>
+          </Route>
+          <Route
+            path="login"
+            element={
+              <RestrictedRoute component={<LoginPage />} redirectTo="/" />
+            }
+          />
+          <Route
+            path="register"
+            element={
+              <RestrictedRoute component={<RegisterPage />} redirectTo="/" />
+            }
+          />
+        </Routes>
+        {/* </Container> */}
       </Section>
     </>
   );
