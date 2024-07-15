@@ -1,25 +1,51 @@
-export const fetchCurrency = async () => {
-  const response = await fetch("https://api.monobank.ua/bank/currency");
-  if (!response.ok) {
-    throw new Error(`HTTP error! status: ${response.status}`);
-  }
-  const data = await response.json();
-  return data;
-};
-export const getCurrency = async () => {
-  const cachedCurrency = JSON.parse(localStorage.getItem("currency"));
-  const now = Date.now();
+import axios from "axios";
 
-  if (cachedCurrency && now - cachedCurrency.date < 3600000) {
+const apiClient = axios.create({
+  baseURL: "https://api.monobank.ua/bank/currency",
+});
+
+const fetchCurrencyData = async () => {
+  try {
+    const response = await apiClient.get();
+    return response.data;
+  } catch (error) {
+    console.error("Failed to fetch currency data:", error.message);
+    throw new Error("Failed to fetch currency data");
+  }
+};
+
+const getCachedCurrencyData = () => {
+  const cachedCurrency = JSON.parse(localStorage.getItem("currency"));
+  if (cachedCurrency && Date.now() - cachedCurrency.date < 3600000) {
+    return cachedCurrency;
+  }
+  return null;
+};
+
+const cacheCurrencyData = (data) => {
+  const now = Date.now();
+  const currencyData = {
+    date: now,
+    usd: data.find(
+      (item) => item.currencyCodeA === 840 && item.currencyCodeB === 980
+    ),
+    eur: data.find(
+      (item) => item.currencyCodeA === 978 && item.currencyCodeB === 980
+    ),
+  };
+
+  localStorage.setItem("currency", JSON.stringify(currencyData));
+  return currencyData;
+};
+
+const getCurrency = async () => {
+  const cachedCurrency = getCachedCurrencyData();
+  if (cachedCurrency) {
     return cachedCurrency;
   }
 
-  try {
-    const data = await fetchCurrency();
-    data.date = now;
-    localStorage.setItem("currency", JSON.stringify(data));
-    return data;
-  } catch (err) {
-    throw new Error(`Failed to fetch currency data: ${err.message}`);
-  }
+  const data = await fetchCurrencyData();
+  return cacheCurrencyData(data);
 };
+
+export default getCurrency;

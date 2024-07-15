@@ -9,7 +9,7 @@ import {
 const initialState = {
   user: null,
   token: "",
-  isLoggedIn: true,
+  isLoggedIn: false,
   isLoading: false,
   isRefresh: false,
   isError: false,
