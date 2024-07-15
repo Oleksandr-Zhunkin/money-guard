@@ -28,13 +28,13 @@ const Currency = () => {
     // fetchData();
   }, []);
 
-  if (loading) {
-    return <Loader />;
-  }
+  // if (loading) {
+  //   return <Loader />;
+  // }
 
-  if (!currency) {
-    return <div>No currency data available.</div>;
-  }
+  // if (!currency) {
+  //   return <div>No currency data available.</div>;
+  // }
 
   const getImage = () => {
     if (desktopUser) return desktopImage;
@@ -53,13 +53,13 @@ const Currency = () => {
       <div className={s.valueWrapper}>
         <div className={s.valueContainer}>
           <p>USD</p>
-          <p>{currency.usd ? currency.usd.rateBuy.toFixed(2) : "-"}</p>
-          <p>{currency.usd ? currency.usd.rateSell.toFixed(2) : "-"}</p>
+          <p>{currency?.usd ? currency.usd.rateBuy.toFixed(2) : "-"}</p>
+          <p>{currency?.usd ? currency.usd.rateSell.toFixed(2) : "-"}</p>
         </div>
         <div className={s.valueContainer}>
           <p>EUR</p>
-          <p>{currency.eur ? currency.eur.rateBuy.toFixed(2) : "-"}</p>
-          <p>{currency.eur ? currency.eur.rateSell.toFixed(2) : "-"}</p>
+          <p>{currency?.eur ? currency.eur.rateBuy.toFixed(2) : "-"}</p>
+          <p>{currency?.eur ? currency.eur.rateSell.toFixed(2) : "-"}</p>
         </div>
       </div>
       <img className={s.image} src={getImage()} alt="stats" />
