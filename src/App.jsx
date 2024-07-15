@@ -17,6 +17,7 @@ import { refreshThunk } from "./redux/auth/operations";
 import { selectIsRefresh } from "./redux/auth/selectors";
 import useRespons from "./hooks/useRespons.js";
 import CurrencyTab from "./pages/CurrencyTab/CurrencyTab";
+import Currency from "./components/Currency/Currency.jsx";
 
 function App() {
   const dispatch = useDispatch();
@@ -39,15 +40,15 @@ function App() {
               <Route
                 index
                 element={
-                  <PrivateRoute component={<Test1 />} redirectTo="/login" />
+                  <PrivateRoute component={<HomePage />} redirectTo="/login" />
                 }
               />
-              <Route index element={<HomePage />} />
-              {mobileUser ? (
-                <Route path="currency" element={<CurrencyTab />} />
-              ) : (
-                <Route path="currency" element={<Navigate to="/" />} />
-              )}
+              <Route
+                path="/currency"
+                element={
+                  <PrivateRoute component={<Currency />} redirectTo="/login" />
+                }
+              />
               <Route
                 path="/statistics"
                 element={
