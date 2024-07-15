@@ -1,19 +1,21 @@
 .modal {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  right: auto;
-  bottom: auto;
+  position: relative;
+  // position: absolute;
+  // top: 50%;
+  // left: 50%;
+  // right: auto;
+  // bottom: auto;
   padding: 0;
-  margin-right: -50%;
-  transform: translate(-50%, -50%);
+  // margin-right: -50%;
+  // transform: translate(-50%, -50%);
   backdrop-filter: blur(100px);
   box-shadow: 0 4px 60px 0 rgba(0, 0, 0, 0.25);
   background: rgba(255, 255, 255, 0.1);
   border: transparent;
   width: 100%;
   height: 100%;
-  //   transform: translateY(50px);
+  transform: translateY(200px);
+  transition: transform 500ms ease-in-out;
 }
 .overlay {
   position: fixed;
@@ -29,8 +31,8 @@
   overflow: hidden;
   overflow-y: auto;
   z-index: 2;
-  //   opacity: 0;
-  transition: opacity 250ms;
+  opacity: 0;
+  transition: opacity 500ms ease-in-out;
 }
 @media only screen and (min-width: 768px) {
   .modal {
