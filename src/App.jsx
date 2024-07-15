@@ -17,6 +17,11 @@ import { refreshThunk } from "./redux/auth/operations";
 import { selectIsRefresh } from "./redux/auth/selectors";
 import useRespons from "./hooks/useRespons.js";
 import Currency from "./components/Currency/Currency.jsx";
+import Statistics from "./pages/Statistics/Statistics.jsx";
+import {
+  categoriesThunk,
+  summaryThunk,
+} from "./redux/categories/operations.js";
 
 function App() {
   const dispatch = useDispatch();
@@ -25,6 +30,8 @@ function App() {
 
   useEffect(() => {
     dispatch(refreshThunk());
+    dispatch(categoriesThunk());
+    dispatch(summaryThunk());
   }, [dispatch]);
 
   return (
@@ -51,7 +58,10 @@ function App() {
               <Route
                 path="/statistics"
                 element={
-                  <PrivateRoute component={<Test2 />} redirectTo="/login" />
+                  <PrivateRoute
+                    component={<Statistics />}
+                    redirectTo="/login"
+                  />
                 }
               />
             </Route>
