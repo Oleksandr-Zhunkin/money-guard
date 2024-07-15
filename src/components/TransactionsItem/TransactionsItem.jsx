@@ -1,13 +1,10 @@
-import { useState } from "react";
 import clsx from "clsx";
 import { useDispatch, useSelector } from "react-redux";
 import iconEdit from "../../images/icons/icon-edit.svg";
 import useRespons from "../../hooks/useRespons.js";
-import EditTransactionForm from "../EditTransactionForm/EditTransactionForm";
 import { selectCategories } from "../../redux/categories/selectors.js";
 import { deleteTransactionsThunk } from "../../redux/transactions/operations";
 import s from "./TransactionsItem.module.css";
-import ModalWindow from "../ModalWindow/ModalWindow";
 
 const formatDate = (dateString) => {
   const date = new Date(dateString);
@@ -17,17 +14,12 @@ const formatDate = (dateString) => {
   return `${day}.${month}.${year}`;
 };
 
-const TransactionsItem = ({ transaction }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+const TransactionsItem = ({ transaction, openModal }) => {
   const dispatch = useDispatch();
   const displayType = transaction.type === "INCOME" ? "+" : "-";
   const { mobileUser } = useRespons();
 
-  const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
-
   const categories = useSelector(selectCategories);
-
   const category = categories.find(
     (item) => item.id === transaction.categoryId
   );
@@ -130,18 +122,7 @@ const TransactionsItem = ({ transaction }) => {
     </li>
   );
 
-  return (
-    <>
-      {!mobileUser ? transactionRow : transactionCard}
-      <ModalWindow isOpen={isModalOpen} onClose={closeModal}>
-        <EditTransactionForm
-          categoryName={categoryName}
-          closeModal={closeModal}
-          transaction={transaction}
-        />
-      </ModalWindow>
-    </>
-  );
+  return mobileUser ? transactionCard : transactionRow;
 };
 
 export default TransactionsItem;

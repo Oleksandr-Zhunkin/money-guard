@@ -1,15 +1,27 @@
 import { useSelector } from "react-redux";
-
+import { useState } from "react";
 import TransactionsItem from "../TransactionsItem/TransactionsItem";
-
 import { selectTransactions } from "../../redux/transactions/selectors.js";
 import useRespons from "../../hooks/useRespons.js";
-
 import s from "./TransactionsList.module.css";
+import ModalWindow from "../ModalWindow/ModalWindow";
+import EditTransactionForm from "../EditTransactionForm/EditTransactionForm";
 
 const TransactionsList = () => {
   const transactions = useSelector(selectTransactions);
   const { mobileUser } = useRespons();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedTransaction, setSelectedTransaction] = useState(null);
+
+  const openModal = (transaction) => {
+    setSelectedTransaction(transaction);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setSelectedTransaction(null);
+    setIsModalOpen(false);
+  };
 
   if (!transactions.length) {
     return (
@@ -18,6 +30,10 @@ const TransactionsList = () => {
       </div>
     );
   }
+
+  const sortedTransactions = transactions.toSorted(
+    (a, b) => new Date(b.transactionDate) - new Date(a.transactionDate)
+  );
 
   return (
     <>
@@ -34,33 +50,33 @@ const TransactionsList = () => {
             </tr>
           </thead>
           <tbody>
-            {transactions
-              ?.toSorted(
-                (a, b) =>
-                  new Date(b.transactionDate) - new Date(a.transactionDate)
-              )
-              .map((transaction) => (
-                <TransactionsItem
-                  key={transaction.id}
-                  transaction={transaction}
-                />
-              ))}
+            {sortedTransactions.map((transaction) => (
+              <TransactionsItem
+                key={transaction.id}
+                transaction={transaction}
+                openModal={() => openModal(transaction)}
+              />
+            ))}
           </tbody>
         </table>
       ) : (
         <ul>
-          {transactions
-            ?.toSorted(
-              (a, b) =>
-                new Date(b.transactionDate) - new Date(a.transactionDate)
-            )
-            .map((transaction) => (
-              <TransactionsItem
-                key={transaction.id}
-                transaction={transaction}
-              />
-            ))}
+          {sortedTransactions.map((transaction) => (
+            <TransactionsItem
+              key={transaction.id}
+              transaction={transaction}
+              openModal={() => openModal(transaction)}
+            />
+          ))}
         </ul>
+      )}
+      {isModalOpen && selectedTransaction && (
+        <ModalWindow isOpen={isModalOpen} onClose={closeModal}>
+          <EditTransactionForm
+            transaction={selectedTransaction}
+            closeModal={closeModal}
+          />
+        </ModalWindow>
       )}
     </>
   );
