@@ -1,4 +1,4 @@
-import Currency from "../Currency/Currency";
+import Currency from "../../components/Currency/Currency";
 import { motion } from "framer-motion";
 
 const CurrencyTab = () => {

@@ -9,32 +9,24 @@ import s from "./Currency.module.css";
 
 const Currency = () => {
   const { mobileUser, tabletUser, desktopUser } = useRespons();
-  const [currency, setCurrency] = useState({
-    usd: null,
-    eur: null,
-  });
-  const [loading, setLoading] = useState(true);
+  const [currency, setCurrency] = useState(
+    () => JSON.parse(localStorage.getItem("currency")) || null
+  );
+  const [loading, setLoading] = useState(!currency);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const data = await fetchCurrency();
-        setCurrency({
-          usd: data.usd.toFixed(2),
-          eur: data.eur.toFixed(2),
-        });
-        localStorage.setItem("currency", JSON.stringify(data));
+        setCurrency(data);
       } catch (error) {
         console.error("Error fetching currency data:", error);
       } finally {
         setLoading(false);
       }
     };
-
-    if (!currency.usd && !currency.eur) {
-      fetchData();
-    }
-  }, [currency]);
+    fetchData();
+  }, []);
 
   if (loading) {
     return <Loader />;
@@ -57,13 +49,13 @@ const Currency = () => {
       <div className={s.valueWrapper}>
         <div className={s.valueContainer}>
           <p>USD</p>
-          <p>{currency.usd}</p>
-          <p>{currency.usd}</p>
+          <p>{currency.usd.rateBuy.toFixed(2)}</p>
+          <p>{currency.usd.rateSell.toFixed(2)}</p>
         </div>
         <div className={s.valueContainer}>
           <p>EUR</p>
-          <p>{currency.eur}</p>
-          <p>{currency.eur}</p>
+          <p>{currency.eur.rateBuy.toFixed(2)}</p>
+          <p>{currency.eur.rateSell.toFixed(2)}</p>
         </div>
       </div>
       <img className={s.image} src={getImage()} alt="stats" />

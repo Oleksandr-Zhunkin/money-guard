@@ -1,14 +1,19 @@
-import PropTypes from "prop-types";
+import { useSelector } from "react-redux";
+
 import TransactionsItem from "../TransactionsItem/TransactionsItem";
-import useRespons from "../../hooks/useRespons";
+
+import { selectTransactions } from "../../redux/transactions/selectors.js";
+import useRespons from "../../hooks/useRespons.js";
+
 import s from "./TransactionsList.module.css";
 
-const TransactionsList = ({ transactions }) => {
+const TransactionsList = () => {
+  const transactions = useSelector(selectTransactions);
   const { mobileUser } = useRespons();
 
   if (!transactions.length) {
     return (
-      <div className={s.emptyBox}>
+      <div className={s.filler}>
         <p>You don’t have any transactions now...</p>
       </div>
     );
@@ -31,7 +36,7 @@ const TransactionsList = ({ transactions }) => {
             </thead>
             <tbody>
               {transactions
-                .toSorted(
+                ?.toSorted(
                   (a, b) =>
                     new Date(b.transactionDate) - new Date(a.transactionDate)
                 )
@@ -45,9 +50,9 @@ const TransactionsList = ({ transactions }) => {
           </table>
         </div>
       ) : (
-        <ul className={s.listTrans}>
+        <ul>
           {transactions
-            .toSorted(
+            ?.toSorted(
               (a, b) =>
                 new Date(b.transactionDate) - new Date(a.transactionDate)
             )
@@ -61,19 +66,6 @@ const TransactionsList = ({ transactions }) => {
       )}
     </>
   );
-};
-
-TransactionsList.propTypes = {
-  transactions: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      transactionDate: PropTypes.string.isRequired,
-      type: PropTypes.string.isRequired,
-      categoryId: PropTypes.string.isRequired,
-      comment: PropTypes.string.isRequired,
-      amount: PropTypes.number.isRequired,
-    })
-  ).isRequired,
 };
 
 export default TransactionsList;

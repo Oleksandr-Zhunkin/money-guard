@@ -1,50 +1,76 @@
-import { Route, Routes } from "react-router-dom";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Route, Routes, Navigate } from "react-router-dom";
 import "./App.css";
-import Container from "./components/Container/Container";
+// import Container from "./components/Container/Container";
 import Section from "./components/Section/Section";
 import Layout from "./components/Layout/Layout";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
+import RestrictedRoute from "./components/RestrictedRoute/RestrictedRoute";
 import Test1 from "./pages/Test/Test1";
 import Test2 from "./pages/Test/Test2";
-import RestrictedRoute from "./components/RestrictedRoute/RestrictedRoute";
 import { LoginPage } from "./pages/LoginPage/LoginPage";
 import { RegisterPage } from "./pages/RegisterPage/RegisterPage";
+import HomePage from "./pages/HomePage/HomePage";
+import Loader from "./components/Loader/Loader";
+import { refreshThunk } from "./redux/auth/operations";
+import { selectIsRefresh } from "./redux/auth/selectors";
+import useRespons from "./hooks/useRespons.js";
+import CurrencyTab from "./pages/CurrencyTab/CurrencyTab";
 
 function App() {
+  const dispatch = useDispatch();
+  const isRefreshing = useSelector(selectIsRefresh);
+  const { mobileUser } = useRespons();
+
+  useEffect(() => {
+    dispatch(refreshThunk());
+  }, [dispatch]);
+
   return (
     <>
-      <Section>
-        {/* <Container> */}
-        <Routes>
-          <Route path="/" element={<Layout />}>
+      {isRefreshing ? (
+        <Loader />
+      ) : (
+        <Section>
+          {/* <Container> */}
+          <Routes>
+            <Route path="/" element={<Layout />}>
+              <Route
+                index
+                element={
+                  <PrivateRoute component={<Test1 />} redirectTo="/login" />
+                }
+              />
+              <Route index element={<HomePage />} />
+              {mobileUser ? (
+                <Route path="currency" element={<CurrencyTab />} />
+              ) : (
+                <Route path="currency" element={<Navigate to="/" />} />
+              )}
+              <Route
+                path="/statistics"
+                element={
+                  <PrivateRoute component={<Test2 />} redirectTo="/login" />
+                }
+              />
+            </Route>
             <Route
-              index
+              path="login"
               element={
-                <PrivateRoute component={<Test1 />} redirectTo="/login" />
+                <RestrictedRoute component={<LoginPage />} redirectTo="/" />
               }
             />
             <Route
-              path="/statistics"
+              path="register"
               element={
-                <PrivateRoute component={<Test2 />} redirectTo="/login" />
+                <RestrictedRoute component={<RegisterPage />} redirectTo="/" />
               }
             />
-          </Route>
-          <Route
-            path="login"
-            element={
-              <RestrictedRoute component={<LoginPage />} redirectTo="/" />
-            }
-          />
-          <Route
-            path="register"
-            element={
-              <RestrictedRoute component={<RegisterPage />} redirectTo="/" />
-            }
-          />
-        </Routes>
-        {/* </Container> */}
-      </Section>
+          </Routes>
+          {/* </Container> */}
+        </Section>
+      )}
     </>
   );
 }
