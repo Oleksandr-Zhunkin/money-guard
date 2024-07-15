@@ -5,8 +5,9 @@ import { selectSummary } from "../../redux/categories/selectors";
 
 const Balance = () => {
   const userBalance = useSelector(selectSummary);
+  console.log(userBalance);
 
-  const formattedBalance = userBalance
+  const formattedBalance = userBalance?.periodTotal
     ?.toFixed(2)
     .replace(/\B(?=(\d{3})+(?!\d))/g, " ");
 

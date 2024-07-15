@@ -25,7 +25,7 @@ const Currency = () => {
         setLoading(false);
       }
     };
-    fetchData();
+    // fetchData();
   }, []);
 
   if (loading) {

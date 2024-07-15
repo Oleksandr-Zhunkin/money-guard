@@ -1,0 +1,20 @@
+.wrapper {
+  position: relative;
+  width: 280px;
+  margin-bottom: 32px;
+}
+.title {
+  font-weight: 400;
+  font-size: 30px;
+  text-align: center;
+  color: var(--color-text);
+}
+.balance {
+  position: absolute;
+  top: 170px;
+  left: 120px;
+  font-weight: 600;
+  font-size: 18px;
+  text-align: center;
+  color: var(--color-text);
+}
