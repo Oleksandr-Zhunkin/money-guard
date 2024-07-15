@@ -22,33 +22,31 @@ const TransactionsList = () => {
   return (
     <>
       {!mobileUser ? (
-        <div className={s.wrapper}>
-          <table>
-            <thead>
-              <tr>
-                <th>Date</th>
-                <th className={s.type}>Type</th>
-                <th>Category</th>
-                <th>Comment</th>
-                <th className={s.sum}>Sum</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              {transactions
-                ?.toSorted(
-                  (a, b) =>
-                    new Date(b.transactionDate) - new Date(a.transactionDate)
-                )
-                .map((transaction) => (
-                  <TransactionsItem
-                    key={transaction.id}
-                    transaction={transaction}
-                  />
-                ))}
-            </tbody>
-          </table>
-        </div>
+        <table className={s.wrapper}>
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th className={s.type}>Type</th>
+              <th>Category</th>
+              <th>Comment</th>
+              <th className={s.sum}>Sum</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            {transactions
+              ?.toSorted(
+                (a, b) =>
+                  new Date(b.transactionDate) - new Date(a.transactionDate)
+              )
+              .map((transaction) => (
+                <TransactionsItem
+                  key={transaction.id}
+                  transaction={transaction}
+                />
+              ))}
+          </tbody>
+        </table>
       ) : (
         <ul>
           {transactions

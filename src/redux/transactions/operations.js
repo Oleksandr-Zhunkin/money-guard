@@ -43,8 +43,8 @@ export const deleteTransactionsThunk = createAsyncThunk(
   "deleteTransaction",
   async (id, thunkApi) => {
     try {
-      const { data } = await guardApi.delete(`/api/transactions${id}`);
-      console.log(data);
+      const { data } = await guardApi.delete(`/api/transactions/${id}`);
+      return data.id;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
     }

@@ -12,7 +12,7 @@ export const RegisterPage = () => {
   };
 
   const initialValues = {
-    name: "",
+    username: "",
     email: "",
     password: "",
   };

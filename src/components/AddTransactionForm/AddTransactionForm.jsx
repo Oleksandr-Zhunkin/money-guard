@@ -27,6 +27,7 @@ const AddTransactionForm = () => {
   }, [dispatch]);
 
   const handleSubmit = (values, actions) => {
+    console.log(values);
     dispatch(
       addTransactionsThunk({
         transactionDate: values.datepicker,
