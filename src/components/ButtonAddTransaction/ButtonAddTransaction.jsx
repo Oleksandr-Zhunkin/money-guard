@@ -1,11 +1,7 @@
-import { useDispatch } from "react-redux";
-import ModalWindow from "../ModalWindow/ModalWindow";
-import AddTransactionForm from "../IncomeTransaction/IncomeTransaction";
 import s from "./ButtonAddTransaction.module.scss";
+import IconAddTransaction from "../Icons/IconAddTransaction";
 
 const ButtonAddTransaction = ({ toggleModal }) => {
-  const dispatch = useDispatch();
-
   return (
     <div>
       <button
@@ -13,7 +9,7 @@ const ButtonAddTransaction = ({ toggleModal }) => {
         onClick={() => toggleModal()}
         type="button"
       >
-        Add
+        <IconAddTransaction title="Add transaction" />
       </button>
     </div>
   );

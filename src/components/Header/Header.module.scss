@@ -19,11 +19,7 @@
     z-index: 0;
   }
 }
-@media only screen and (min-width: 1280px) {
-  .header {
-    padding: 16px 16px;
-  }
-}
+
 .left_side {
   display: flex;
   flex-direction: column;
@@ -64,6 +60,7 @@
 @media only screen and (min-width: 768px) {
   .user {
     font-size: 16px;
+    margin-right: 24px;
   }
 }
 .exit_text {
