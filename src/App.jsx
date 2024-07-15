@@ -17,11 +17,15 @@ import { refreshThunk } from "./redux/auth/operations";
 import { selectIsRefresh } from "./redux/auth/selectors";
 import useRespons from "./hooks/useRespons.js";
 import Currency from "./components/Currency/Currency.jsx";
+
+import StatisticDatePicker from "./components/StatisticsDataPicker/StatisticsDatePicker.jsx";
+
 import Statistics from "./pages/Statistics/Statistics.jsx";
 import {
   categoriesThunk,
   summaryThunk,
 } from "./redux/categories/operations.js";
+
 
 function App() {
   const dispatch = useDispatch();
@@ -79,6 +83,7 @@ function App() {
             />
           </Routes>
           {/* </Container> */}
+          <StatisticDatePicker />
         </Section>
       )}
     </>

@@ -50,3 +50,18 @@ export const deleteTransactionsThunk = createAsyncThunk(
     }
   }
 );
+
+export const fetchPeriodThunk = createAsyncThunk(
+  "transactions/fetchPeriod",
+  async ({ year, month }, thunkAPI) => {
+    try {
+      const response = await guardApi.get(
+        `/api/transactions?year=${year}&month=${month}`
+      );
+      console.log(response.data);
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
