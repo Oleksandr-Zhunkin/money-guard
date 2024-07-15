@@ -1,0 +1,19 @@
+.inputs-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.inputs {
+  border: 0px solid #000;
+  border-bottom: 1px solid #ffffff66;
+  background-color: transparent;
+  color: #fbfbfb;
+  width: 280px;
+  margin-bottom: 40px;
+  padding: 8px 20px;
+}
+
+textarea.inputs {
+  margin-bottom: 15px;
+  resize: none;
+}
