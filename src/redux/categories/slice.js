@@ -3,7 +3,7 @@ import { categoriesThunk, summaryThunk } from "./operations";
 
 const initialState = {
   categories: [],
-  summary: [],
+  summary: null,
 };
 
 const slice = createSlice({

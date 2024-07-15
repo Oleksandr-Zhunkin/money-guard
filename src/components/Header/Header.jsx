@@ -6,6 +6,7 @@ import exitIcon from "../../images/icons/exit-icon.svg";
 import useRespons from "../../hooks/useRespons";
 import { useState } from "react";
 import Logout from "../Logout/Logout";
+import Container from "../Container/Container";
 
 const Header = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
@@ -25,24 +26,28 @@ const Header = () => {
     isLoggedIn && (
       <>
         <header className={s.header}>
-          <div className={s.left_side}>
-            <img className={s.logo_icon} src={Logo} alt="logo" />
-            <p className={s.logo_text}>Money Guard</p>
-          </div>
+          <Container>
+            <div className={s.wrapper}>
+              <div className={s.left_side}>
+                <img className={s.logo_icon} src={Logo} alt="logo" />
+                <p className={s.logo_text}>Money Guard</p>
+              </div>
 
-          <div className={s.right_side}>
-            <p className={s.user}>{user}</p>
-            <button
-              onClick={() => {
-                handleModalOpen();
-              }}
-              className={s.exit_btn}
-              type="button"
-            >
-              <img className={s.exit_icon} src={exitIcon} alt="exit" />
-              {tabletUser && <p className={s.exit_text}>Exit</p>}
-            </button>
-          </div>
+              <div className={s.right_side}>
+                <p className={s.user}>{user.username}</p>
+                <button
+                  onClick={() => {
+                    handleModalOpen();
+                  }}
+                  className={s.exit_btn}
+                  type="button"
+                >
+                  <img className={s.exit_icon} src={exitIcon} alt="exit" />
+                  {tabletUser && <p className={s.exit_text}>Exit</p>}
+                </button>
+              </div>
+            </div>
+          </Container>
         </header>
         <Logout
           modalIsOpen={modalIsOpen}

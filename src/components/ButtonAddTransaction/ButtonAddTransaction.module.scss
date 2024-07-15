@@ -1,0 +1,16 @@
+.fixedButton {
+  position: fixed;
+
+  position: absolute;
+
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+@media screen and (min-width: 768px) {
+  .fixedButton {
+    bottom: 40px;
+    right: 40px;
+  }
+}

@@ -1,9 +1,6 @@
 .header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   color: var(--color-text);
-  padding: 12px 20px;
+  padding: 12px 0;
   background: linear-gradient(276deg, #2e1746 3.19%, #2e225f 100%);
   width: 100%;
   position: relative;
@@ -11,9 +8,14 @@
   left: 0;
   z-index: 10;
 }
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 @media only screen and (min-width: 768px) {
   .header {
-    padding: 16px 32px;
+    padding: 16px 0;
     z-index: 0;
   }
 }
