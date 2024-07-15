@@ -16,7 +16,6 @@ import Loader from "./components/Loader/Loader";
 import { refreshThunk } from "./redux/auth/operations";
 import { selectIsRefresh } from "./redux/auth/selectors";
 import useRespons from "./hooks/useRespons.js";
-import CurrencyTab from "./pages/CurrencyTab/CurrencyTab";
 import Currency from "./components/Currency/Currency.jsx";
 
 function App() {
@@ -70,7 +69,6 @@ function App() {
             />
           </Routes>
           {/* </Container> */}
-          <CurrencyTab />
         </Section>
       )}
     </>
