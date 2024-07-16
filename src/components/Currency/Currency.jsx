@@ -18,11 +18,9 @@ const Currency = () => {
   const currency = useSelector(selectMono);
   const dataFetch = useSelector(selectData);
 
-  console.log(currency);
-
   useEffect(() => {
     const currentData = Date.now();
-    if (currency.length !== 0) {
+    if (currency.length === 0) {
       dispatch(monoThunk());
       return;
     }

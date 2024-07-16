@@ -12,18 +12,23 @@ const TransactionsList = () => {
   const { mobileUser } = useRespons();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedTransaction, setSelectedTransaction] = useState(null);
+  const [localTransactions, setLocalTransactions] = useState(transactions);
 
   const openModal = (transaction) => {
     setSelectedTransaction(transaction);
     setIsModalOpen(true);
   };
-
+  const handleDelete = (transactionId) => {
+    setLocalTransactions(
+      localTransactions.filter((t) => t.id !== transactionId)
+    );
+  };
   const closeModal = () => {
     setSelectedTransaction(null);
     setIsModalOpen(false);
   };
 
-  if (!transactions.length) {
+  if (!localTransactions.length) {
     return (
       <div className={s.filler}>
         <p>You don’t have any transactions now...</p>
@@ -31,7 +36,7 @@ const TransactionsList = () => {
     );
   }
 
-  const sortedTransactions = transactions.toSorted(
+  const sortedTransactions = [...localTransactions].sort(
     (a, b) => new Date(b.transactionDate) - new Date(a.transactionDate)
   );
 
@@ -50,22 +55,26 @@ const TransactionsList = () => {
             </tr>
           </thead>
           <tbody>
-            {sortedTransactions.map((transaction) => (
+            {sortedTransactions.map((transaction, index) => (
               <TransactionsItem
                 key={transaction.id}
                 transaction={transaction}
                 openModal={() => openModal(transaction)}
+                handleDelete={() => handleDelete(transaction.id)}
+                index={index + 1}
               />
             ))}
           </tbody>
         </table>
       ) : (
         <ul>
-          {sortedTransactions.map((transaction) => (
+          {sortedTransactions.map((transaction, index) => (
             <TransactionsItem
               key={transaction.id}
               transaction={transaction}
               openModal={() => openModal(transaction)}
+              handleDelete={() => handleDelete(transaction.id)}
+              index={index + 1}
             />
           ))}
         </ul>
