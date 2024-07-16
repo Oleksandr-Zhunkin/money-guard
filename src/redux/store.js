@@ -23,10 +23,10 @@ const persistConfig = {
 };
 
 const monoConfig = {
-  key: "data_mono",
+  key: ["data_mono", "mono"],
   version: 1,
   storage,
-  whitelist: ["data_mono"],
+  whitelist: ["data_mono", "mono"],
 };
 
 export const store = configureStore({
