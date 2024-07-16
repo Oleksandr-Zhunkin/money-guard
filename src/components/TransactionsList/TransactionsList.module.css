@@ -40,6 +40,8 @@ tbody {
   width: 100%;
   height: 480px;
   overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
 }
 
 tbody tr {
@@ -51,7 +53,7 @@ tbody tr {
 th,
 td {
   padding: 20px;
-  color: black;
+  color: var(--color-text);
 }
 
 .listTrans {
@@ -62,11 +64,16 @@ td {
 }
 
 .card {
-  background: var(--form-color);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.082) 0%,
+    rgba(255, 255, 255, 0.2) 100%
+  );
+
   border-radius: 10px;
   padding: 16px;
   margin-bottom: 16px;
-  color: white;
+  color: var(--color-text);
 }
 
 .cardRow {

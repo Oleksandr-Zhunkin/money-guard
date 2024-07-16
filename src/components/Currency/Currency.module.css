@@ -7,18 +7,20 @@
 
 .headCurrency {
   width: 100%;
-  background-color: var(--white);
-  background: var(--white-20);
+  background-color: rgba(255, 255, 255, 0.4);
+  background: #ffffff33;
   display: flex;
   padding: 13px 20px;
+  gap: 12px;
+  padding: 8px 20px 0px 20px;
+  justify-content: space-between;
 }
 
-.headCurrency {
-  font-family: var(--font-family);
+.headCurrency p {
   font-weight: 600;
   font-size: 16px;
   text-align: center;
-  color: var(--white);
+  color: var(--color-text);
   height: 24px;
   display: flex;
   align-items: center;
@@ -41,11 +43,10 @@
   display: flex;
   align-items: center;
   height: 24px;
-  font-family: var(--font-family);
   font-weight: 400;
   font-size: 16px;
   text-align: center;
-  color: var(--white);
+  color: var(--color-text);
 }
 
 .valueWrapper {
@@ -54,7 +55,10 @@
   gap: 12px;
   padding: 8px 20px 0px 20px;
 }
-
+.image {
+  display: flex;
+  width: 100%;
+}
 @media screen and (min-width: 768px) {
   .headCurrency {
     padding: 12px 20px;

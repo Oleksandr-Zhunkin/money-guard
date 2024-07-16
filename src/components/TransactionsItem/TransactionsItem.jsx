@@ -48,7 +48,7 @@ const TransactionsItem = ({ transaction, openModal }) => {
             onClick={openModal}
             aria-label="edit button"
           >
-            <img src={iconEdit} alt="Edit" height={14} width={14} />
+            <img className={s.editImg} src={iconEdit} alt="Edit" />
           </button>
           <button
             className={s.button}
@@ -115,7 +115,13 @@ const TransactionsItem = ({ transaction, openModal }) => {
           onClick={openModal}
           aria-label="edit button"
         >
-          <img src={iconEdit} alt="Edit" height={14} width={14} />
+          <img
+            className={s.editImg}
+            src={iconEdit}
+            alt="Edit"
+            height={14}
+            width={14}
+          />
           <p className={s.edit}>Edit</p>
         </button>
       </div>

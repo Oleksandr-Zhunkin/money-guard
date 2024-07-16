@@ -48,7 +48,7 @@ const Currency = () => {
   };
 
   return (
-    <div className={s.wrapper}>
+    <div className={s.wrapperCurrency}>
       <div className={s.headCurrency}>
         <p className={s.currency}>Currency</p>
         <p className={s.purchase}>Purchase</p>
