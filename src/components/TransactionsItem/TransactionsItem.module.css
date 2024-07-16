@@ -14,9 +14,14 @@
   opacity: 1;
   border: 0;
   cursor: pointer;
-  background: var(--button-gradient);
-  color: black;
-  margin: 0 auto;
+  background: linear-gradient(
+    96.76deg,
+    #ffc727 -16.42%,
+    #9e40ba 97.04%,
+    #7000ff 150.71%
+  );
+  color: var(--color-text);
+  margin-left: 0 auto;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -26,7 +31,6 @@
   background: none;
   border: none;
   cursor: pointer;
-
 }
 
 tr {
@@ -85,7 +89,7 @@ ul {
   justify-content: space-between;
 }
 
-.cardActions button {
+.cardActions.edit {
   margin: 0px;
   padding: 0px;
 }
@@ -95,12 +99,11 @@ ul {
 }
 
 .edit {
-  font-family: var(--font-family);
   font-weight: 400;
   font-size: 16px;
   letter-spacing: 0.02em;
   text-align: center;
-  color: var(--white-60);
+  color: var(--color-text);
 }
 
 .editContainer {
@@ -126,4 +129,8 @@ ul {
 
 .cardExpense {
   border-left: 4px solid #ff868d;
+}
+.editImg {
+  display: block;
+  height: auto;
 }
