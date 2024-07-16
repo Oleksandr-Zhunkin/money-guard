@@ -1,31 +1,36 @@
 .main {
   margin: 0 auto;
-  padding: 374px 48px;
 }
-/* .main {
-  background-image: url("../../images/mobile@1x.png");
-  background-size: cover;
-  min-height: 100vh;
-}
+
 @media only screen and (min-width: 768px) {
   .main {
+    padding: 118px;
+    padding-top: 200px;
+    padding-bottom: 200px;
+
+    margin: 0 auto;
+    background-size: cover;
     background-image: url("../../images/register/tablet-register.png");
   }
 }
 @media only screen and (min-width: 1280px) {
   .main {
     margin: 0 auto;
-    padding: 374px 48px;
-    background-image: url("../../images/register/desc-register.png");
+    /* padding: 374px 48px; */
+    padding: 374px;
+    padding-bottom: 48px;
+    padding-top: 48px;
+    background-size: cover;
+    background-image: url("../../images/register/desc-register@2x.png");
   }
 }
 
-.main {
+/* .main {
   background-image: url("../../images/mobile@1x.png");
   background-size: cover;
   min-height: 100vh;
-}
-@media only screen and (min-width: 768px) {
+} */
+/* @media only screen and (min-width: 768px) {
   .main {
     background-image: url("../../images/register/tablet-register.png");
   }
@@ -37,13 +42,17 @@
     background-image: url("../../images/register/desc-register.png");
   }
 } */
+/* @media only screen and (min-width: 1280px) {
+  .wrapper {
+    max-width: 533px;
+    min-height: 624px;
+    } */
+
 .wrapper {
   border-radius: 8px;
-  max-width: 533px;
-  min-height: 624px;
-  padding: 374px 48px;
-  /* display: flex; */
-  /* margin: 0 auto; */
+  max-width: 320px;
+  min-height: 568px;
+  /* padding: 374px 48px; */
   padding: 62px 40px;
   backdrop-filter: blur(100px);
   box-shadow: 0 4px 60px 0 rgba(0, 0, 0, 0.25);
@@ -53,19 +62,19 @@
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  width: 182px;
-  height: 75px;
+  width: 128px;
+  height: 54px;
 }
 .logo {
   margin: 0 auto;
-  width: 36px;
-  height: 36px;
+  width: 26px;
+  height: 26px;
 }
 .title {
   margin: 0 auto;
   font-family: "Poppins", sans-serif;
   font-weight: 400;
-  font-size: 26px;
+  font-size: 19px;
   color: #fbfbfb;
 }
 .list {
@@ -75,37 +84,53 @@
   align-items: center;
   justify-content: center;
   margin-top: 40px;
-  /* padding-bottom: 1px; */
-  /* width: 409px;
-  height: 268px; */
 }
-.item {
+/* .item {
   width: calc(100%);
-}
-.bar {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 8px;
-  padding-bottom: 40px;
-}
+  } */
+/* .bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 8px;
+    padding-bottom: 40px;
+    } */
 .input_wrap {
   display: flex;
   justify-content: center;
   align-items: center;
+  min-width: 280px;
+  min-height: 35px;
+  font-weight: 400;
+  font-size: 18px;
+  flex-direction: column;
+  color: solid rgba(255, 255, 255, 0.4);
+  font-family: "Poppins", sans-serif;
 }
 .input {
-  min-width: 409px;
+  min-width: 280px;
   min-height: 35px;
   display: flex;
   justify-content: center;
   align-items: center;
-
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid lightgray;
   font-family: "Poppins", sans-serif;
   font-weight: 400;
   font-size: 18px;
-  color: rgba(255, 255, 255, 0.6);
+  color: lightgray;
+
+  outline: none;
+
+  /* &:focus {
+        background-color: transparent;
+        } */
 }
+
+/* .input:focus {
+        background-color: transparent;
+        } */
 .btn_wrapper {
   display: flex;
   flex-direction: column;
@@ -152,4 +177,36 @@
   text-align: center;
   color: #fbfbfb;
   cursor: pointer;
+}
+
+@media only screen and (min-width: 768px) {
+  .wrapper {
+    min-width: 532px;
+    max-width: 533px;
+    max-height: 624px;
+  }
+  .logo {
+    margin: 0 auto;
+    min-width: 36px;
+    min-height: 36px;
+  }
+  .title_wrap {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    width: 182px;
+    height: 76px;
+  }
+  .title {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    font-weight: 400;
+    font-size: 26px;
+    color: #fbfbfb;
+  }
+  .input {
+    min-width: 409px;
+    min-height: 35px;
+  }
 }
