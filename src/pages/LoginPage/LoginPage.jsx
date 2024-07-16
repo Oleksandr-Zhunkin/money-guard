@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import s from "./LoginPage.module.css";
 import { loginThunk } from "../../redux/auth/operations";
+import { loginFormSchema } from "../../schemas/validatorLogin";
 
 export const LoginPage = () => {
   const dispatch = useDispatch();
@@ -29,7 +30,11 @@ export const LoginPage = () => {
         </div>
 
         <div className={s.formik}>
-          <Formik initialValues={initialValues} onSubmit={handleSubmit}>
+          <Formik
+            initialValues={initialValues}
+            validationSchema={loginFormSchema}
+            onSubmit={handleSubmit}
+          >
             <Form className={s.form}>
               <ul className={s.list}>
                 <li>

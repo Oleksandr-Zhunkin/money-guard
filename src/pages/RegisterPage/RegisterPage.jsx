@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import s from "./RegisterPage.module.css";
 import { registerThunk } from "../../redux/auth/operations";
 import { Field, Form, Formik } from "formik";
+import { registerFormSchema } from "../../schemas/validatorLogin";
 
 export const RegisterPage = () => {
   const dispatch = useDispatch();
@@ -15,6 +16,7 @@ export const RegisterPage = () => {
     username: "",
     email: "",
     password: "",
+    confirmPassword: "",
   };
   return (
     <div className={s.main}>
@@ -29,7 +31,11 @@ export const RegisterPage = () => {
         </div>
 
         <div className={s.formik}>
-          <Formik initialValues={initialValues} onSubmit={handleSubmit}>
+          <Formik
+            initialValues={initialValues}
+            validationSchema={registerFormSchema}
+            onSubmit={handleSubmit}
+          >
             <Form className={s.form}>
               <ul className={s.list}>
                 <li className={s.item}>
