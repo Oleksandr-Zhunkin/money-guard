@@ -11,7 +11,9 @@ const StatisticDashboard = () => {
   const summary = categoriesSummary
     .filter((items) => items.type !== "INCOME")
     .map((item) => item.total);
-
+  const formattedBalance = periodTotal
+    ?.toFixed(2)
+    .replace(/\B(?=(\d{3})+(?!\d))/g, " ");
   const data = {
     labels: [],
     datasets: [
@@ -45,7 +47,7 @@ const StatisticDashboard = () => {
     <div className={s.wrapper}>
       <h2 className={s.title}>Statistics</h2>
       <Doughnut data={data} />
-      <p className={s.balance}>₴ {periodTotal}</p>
+      <p className={s.balance}>₴ {formattedBalance}</p>
     </div>
   );
 };

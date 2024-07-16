@@ -1,6 +1,6 @@
 .wrapper {
   position: relative;
-  width: 280px;
+  width: 100%;
   margin-bottom: 32px;
 }
 .title {
@@ -11,10 +11,32 @@
 }
 .balance {
   position: absolute;
-  top: 170px;
-  left: 120px;
+  top: 53%;
+  left: 40%;
   font-weight: 600;
   font-size: 18px;
   text-align: center;
   color: var(--color-text);
+}
+@media only screen and (min-width: 768px) and (max-width: 1279px) {
+  .wrapper {
+    min-width: 336px;
+  }
+  .balance {
+    top: 45%;
+    left: 36%;
+  }
+}
+@media only screen and (min-width: 1280px) {
+  .title {
+    text-align: left;
+    margin-bottom: 20px;
+  }
+  .wrapper {
+    max-width: 288px;
+  }
+  .balance {
+    top: 43%;
+    left: 32%;
+  }
 }
