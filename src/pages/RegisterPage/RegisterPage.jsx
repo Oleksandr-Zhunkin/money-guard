@@ -2,7 +2,8 @@ import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import s from "./RegisterPage.module.css";
 import { registerThunk } from "../../redux/auth/operations";
-import { Field, Form, Formik } from "formik";
+import { Field, Form, Formik, ErrorMessage } from "formik";
+import { registerFormSchema } from "../../schemas/validatorLogin";
 
 export const RegisterPage = () => {
   const dispatch = useDispatch();
@@ -15,6 +16,7 @@ export const RegisterPage = () => {
     username: "",
     email: "",
     password: "",
+    confirmPassword: "",
   };
   return (
     <div className={s.main}>
@@ -29,14 +31,24 @@ export const RegisterPage = () => {
         </div>
 
         <div className={s.formik}>
-          <Formik initialValues={initialValues} onSubmit={handleSubmit}>
+          <Formik
+            initialValues={initialValues}
+            validationSchema={registerFormSchema}
+            onSubmit={handleSubmit}
+          >
             <Form className={s.form}>
               <ul className={s.list}>
                 <li className={s.item}>
                   <div className={s.input_wrap}>
                     <label className={s.label}>
-                      {/* <span className={s.span}>Name</span> */}
+                      <span className={s.span}></span>
+
+                      {/* <span className={s.span}>UserName</span> */}
+                      {/* <span className={s.span}> */}
+                      {/* <img src="../../images/icons/user-icon.svg" alt="user" /> */}
+                      {/* </span> */}
                     </label>
+                    {/* <img src="../../images/icons/user-icon.svg" alt="user" /> */}
                     <Field
                       name="name"
                       type="name"
@@ -44,13 +56,24 @@ export const RegisterPage = () => {
                       className={s.input}
                       required
                     />
+                    <ErrorMessage
+                      className={s.error}
+                      name="name"
+                      component="span"
+                    />
                   </div>
                 </li>
                 <li className={s.item}>
                   <div className={s.input_wrap}>
                     <label className={s.label}>
+                      {/* <span className={s.span}>
+                        <img src="../../images/icons/email-icon.svg" />
+                      </span> */}
+                      <span className={s.span}></span>
+
                       {/* <span className={s.span}>Email</span> */}
                     </label>
+
                     <Field
                       name="email"
                       type="email"
@@ -58,11 +81,21 @@ export const RegisterPage = () => {
                       className={s.input}
                       required
                     />
+                    <ErrorMessage
+                      className={s.error}
+                      name="email"
+                      component="span"
+                    />
                   </div>
                 </li>
                 <li className={s.item}>
                   <div className={s.input_wrap}>
                     <label className={s.label}>
+                      <span className={s.span}></span>
+
+                      {/* <span className={s.span}>
+                        <img src="../../images/icons/pass-icon.svg" />
+                      </span> */}
                       {/* <span className={s.span}>Password</span> */}
                     </label>
                     <Field
@@ -72,25 +105,40 @@ export const RegisterPage = () => {
                       className={s.input}
                       required
                     />
+                    <ErrorMessage
+                      className={s.error}
+                      name="password"
+                      component="span"
+                    />
                   </div>
                 </li>
                 <li className={s.item}>
                   <div className={s.input_wrap}>
                     <label className={s.label}>
+                      <span className={s.span}></span>
+
+                      {/* <span className={s.span}>
+                        <img src="../../images/icons/pass-icon.svg" />
+                      </span> */}
                       {/* <span className={s.span}>Confirm password</span> */}
                     </label>
                     <Field
-                      name="confirm_password"
+                      name="confirmPassword"
                       type="password"
                       placeholder="Confirm password"
                       className={s.input}
                       required
                     />
+                    <ErrorMessage
+                      className={s.error}
+                      name="confirmPassword"
+                      component="span"
+                    />
                   </div>
                 </li>
               </ul>
 
-              <p className={s.bar}>bar</p>
+              {/* <p className={s.bar}>bar</p> */}
 
               <ul className={s.btn_wrapper}>
                 <li>

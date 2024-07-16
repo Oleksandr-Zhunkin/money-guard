@@ -1,9 +1,10 @@
-import { Field, Form, Formik } from "formik";
+import { Field, Form, Formik, ErrorMessage } from "formik";
 
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import s from "./LoginPage.module.css";
 import { loginThunk } from "../../redux/auth/operations";
+import { loginFormSchema } from "../../schemas/validatorLogin";
 
 export const LoginPage = () => {
   const dispatch = useDispatch();
@@ -17,6 +18,7 @@ export const LoginPage = () => {
     password: "",
   };
   return (
+    // <div className={s.div}>
     <div className={s.main}>
       <div className={s.wrapper}>
         <div className={s.title_wrap}>
@@ -29,13 +31,17 @@ export const LoginPage = () => {
         </div>
 
         <div className={s.formik}>
-          <Formik initialValues={initialValues} onSubmit={handleSubmit}>
+          <Formik
+            initialValues={initialValues}
+            validationSchema={loginFormSchema}
+            onSubmit={handleSubmit}
+          >
             <Form className={s.form}>
               <ul className={s.list}>
                 <li>
                   <div className={s.input_wrap}>
                     <label className={s.label}>
-                      {/* <span className={s.span}>Email</span> */}
+                      <span className={s.span}></span>
                     </label>
                     <Field
                       name="email"
@@ -43,6 +49,11 @@ export const LoginPage = () => {
                       placeholder="email"
                       className={s.input}
                       required
+                    />
+                    <ErrorMessage
+                      className={s.error}
+                      name="email"
+                      component="span"
                     />
                   </div>
                 </li>
@@ -57,6 +68,11 @@ export const LoginPage = () => {
                       placeholder="password"
                       className={s.input}
                       required
+                    />
+                    <ErrorMessage
+                      className={s.error}
+                      name="password"
+                      component="Field"
                     />
                   </div>
                 </li>
@@ -75,5 +91,6 @@ export const LoginPage = () => {
         </div>
       </div>
     </div>
+    // </div>
   );
 };
