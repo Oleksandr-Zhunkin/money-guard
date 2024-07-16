@@ -4,7 +4,13 @@
   width: 1440px;
 } */
 .main {
-  margin: 0 auto;
+  /* margin: 0 auto; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  /* height: 100%; */
+
   /* width: 1440px; */
 }
 /* @media only screen and (min-width: 768px) {
@@ -26,10 +32,10 @@
 
 @media only screen and (min-width: 768px) {
   .main {
-    margin: 0 auto;
+    /* margin: 0 auto;
     padding: 118px;
     padding-top: 227px;
-    padding-bottom: 227px;
+    padding-bottom: 227px; */
 
     /* padding: 118px 227px; */
     background-image: url("../../images/login/table-login.png");
@@ -38,8 +44,8 @@
 }
 @media only screen and (min-width: 1280px) {
   .main {
-    margin: 0 auto;
-    padding: 335px 75px;
+    /* margin: 0 auto;
+    padding: 335px 75px; */
     background-size: cover;
     background-image: url("../../images/login/desc-login.png");
   }

@@ -4,6 +4,7 @@ import s from "./RegisterPage.module.css";
 import { registerThunk } from "../../redux/auth/operations";
 import { Field, Form, Formik, ErrorMessage } from "formik";
 import { registerFormSchema } from "../../schemas/validatorLogin";
+import User from "../../components/Icons/UserIcon";
 
 export const RegisterPage = () => {
   const dispatch = useDispatch();
@@ -48,6 +49,7 @@ export const RegisterPage = () => {
                       {/* <img src="../../images/icons/user-icon.svg" alt="user" /> */}
                       {/* </span> */}
                     </label>
+                    <User />
                     {/* <img src="../../images/icons/user-icon.svg" alt="user" /> */}
                     <Field
                       name="name"
