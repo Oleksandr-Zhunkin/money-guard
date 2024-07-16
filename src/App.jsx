@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
-// import Container from "./components/Container/Container";
 import Section from "./components/Section/Section";
 import Layout from "./components/Layout/Layout";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
@@ -41,39 +40,32 @@ function App() {
       ) : (
         <Section>
           <Routes>
-            <Route path="/" element={<Layout />}>
-              <Route
-                index
-                element={
-                  <PrivateRoute component={<HomePage />} redirectTo="/login" />
-                }
-              />
-              <Route
-                path="/currency"
-                element={
-                  <PrivateRoute component={<Currency />} redirectTo="/login" />
-                }
-              />
-              <Route
-                path="/statistics"
-                element={
-                  <PrivateRoute
-                    component={<Statistics />}
-                    redirectTo="/login"
-                  />
-                }
-              />
+            <Route
+              path="/"
+              element={
+                <PrivateRoute>
+                  <Layout />
+                </PrivateRoute>
+              }
+            >
+              <Route index element={<HomePage />} />
+              <Route path="currency" element={<Currency />} />
+              <Route path="statistics" element={<Statistics />} />
             </Route>
             <Route
-              path="login"
+              path="/login"
               element={
-                <RestrictedRoute component={<LoginPage />} redirectTo="/" />
+                <RestrictedRoute>
+                  <LoginPage />
+                </RestrictedRoute>
               }
             />
             <Route
-              path="register"
+              path="/register"
               element={
-                <RestrictedRoute component={<RegisterPage />} redirectTo="/" />
+                <RestrictedRoute>
+                  <RegisterPage />
+                </RestrictedRoute>
               }
             />
           </Routes>
