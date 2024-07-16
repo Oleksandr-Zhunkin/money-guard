@@ -1,4 +1,4 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { authReducer } from "./auth/slice";
 import {
   persistStore,
@@ -22,11 +22,17 @@ const persistConfig = {
   whitelist: ["token"],
 };
 
-const persistedReducer = persistReducer(persistConfig, authReducer);
+const monoConfig = {
+  key: "data_mono",
+  version: 1,
+  storage,
+  whitelist: ["data_mono"],
+};
+
 export const store = configureStore({
   reducer: {
-    auth: persistedReducer,
-    mono: monoReducer,
+    auth: persistReducer(persistConfig, authReducer),
+    mono: persistReducer(monoConfig, monoReducer),
     categories: categoriesReducer,
     transactions: transactionsReducer,
   },
@@ -37,5 +43,4 @@ export const store = configureStore({
       },
     }),
 });
-
 export const persistor = persistStore(store);
