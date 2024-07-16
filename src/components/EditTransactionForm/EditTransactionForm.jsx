@@ -26,6 +26,7 @@ const EditTransactionForm = ({
     categoryId: "c9d9e447-1b83-4238-8712-edc77b18b739",
     userId: "d761b29a-7ba8-47da-b036-9be4b8058b80",
   },
+  onClose,
 }) => {
   const category = useSelector(selectCategories);
   const dispatch = useDispatch();
@@ -69,7 +70,19 @@ const EditTransactionForm = ({
     >
       <Form className={css.form}>
         <h2 className={css.tableContent}>Edit transaction</h2>
-        <div className={css["switcher-container"]}>Incoming / Expense</div>
+        <div className={css["switcher-container"]}>
+          {transaction.type == "INCOME" ? (
+            <span>Incoming</span>
+          ) : (
+            <span className={css.active}>Incoming</span>
+          )}
+          /{" "}
+          {transaction.type == "EXPENSE" ? (
+            <span>Expense</span>
+          ) : (
+            <span className={css.active}>Expense</span>
+          )}
+        </div>
         {transaction.type == "INCOME" ? (
           <IncomeTransaction />
         ) : (
@@ -84,7 +97,7 @@ const EditTransactionForm = ({
           <button className={css.button} type="submit">
             Add
           </button>
-          <button className={css.button} type="click">
+          <button className={css.button} onClick={onClose} type="click">
             Cancel
           </button>
         </div>
