@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import { useDispatch, useSelector } from "react-redux";
-import iconEdit from "../../images/icons/icon-edit.svg";
+import IconEdit from "../Icons/IconEdit";
 import useRespons from "../../hooks/useRespons.js";
 import { selectCategories } from "../../redux/categories/selectors.js";
 import { deleteTransactionsThunk } from "../../redux/transactions/operations";
@@ -14,11 +14,10 @@ const formatDate = (dateString) => {
   return `${day}.${month}.${year}`;
 };
 
-const TransactionsItem = ({ transaction, openModal }) => {
+const TransactionsItem = ({ transaction = {}, openModal, handleDelete }) => {
   const dispatch = useDispatch();
   const displayType = transaction.type === "INCOME" ? "+" : "-";
   const { mobileUser } = useRespons();
-
   const categories = useSelector(selectCategories);
   const category = categories.find(
     (item) => item.id === transaction.categoryId
@@ -48,12 +47,18 @@ const TransactionsItem = ({ transaction, openModal }) => {
             onClick={openModal}
             aria-label="edit button"
           >
-            <img className={s.editImg} src={iconEdit} alt="Edit" />
+            <IconEdit title="Edit" />
           </button>
           <button
             className={s.button}
             type="button"
-            onClick={() => dispatch(deleteTransactionsThunk(transaction.id))}
+            onClick={() =>
+              handleDelete(
+                transaction.id,
+                transaction.amount,
+                transaction.comment
+              )
+            }
             aria-label="delete button"
           >
             Delete
@@ -115,13 +120,7 @@ const TransactionsItem = ({ transaction, openModal }) => {
           onClick={openModal}
           aria-label="edit button"
         >
-          <img
-            className={s.editImg}
-            src={iconEdit}
-            alt="Edit"
-            height={14}
-            width={14}
-          />
+          <IconEdit />
           <p className={s.edit}>Edit</p>
         </button>
       </div>
