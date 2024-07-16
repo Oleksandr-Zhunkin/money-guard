@@ -3,6 +3,7 @@ import { monoThunk } from "./operations";
 
 const initialState = {
   mono: [],
+  data_mono: null,
 };
 const slice = createSlice({
   name: "mono",
@@ -10,6 +11,7 @@ const slice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(monoThunk.fulfilled, (state, action) => {
       state.mono = action.payload;
+      state.data_mono = Date.now();
     });
   },
 });

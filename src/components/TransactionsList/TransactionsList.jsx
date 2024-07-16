@@ -74,7 +74,7 @@ const TransactionsList = () => {
         <ModalWindow isOpen={isModalOpen} onClose={closeModal}>
           <EditTransactionForm
             transaction={selectedTransaction}
-            closeModal={closeModal}
+            onClose={closeModal}
           />
         </ModalWindow>
       )}

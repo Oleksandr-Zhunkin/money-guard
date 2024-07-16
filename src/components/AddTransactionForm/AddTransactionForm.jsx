@@ -15,9 +15,9 @@ let formSchema = Yup.object({
   comment: Yup.string().required(),
 });
 
-const AddTransactionForm = () => {
+const AddTransactionForm = ({ onClose }) => {
   const category = useSelector(selectCategories);
-  const [isIncome, setIsIncome] = useState(true);
+  const [isExpense, setIsIncome] = useState(true);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -31,26 +31,26 @@ const AddTransactionForm = () => {
     dispatch(
       addTransactionsThunk({
         transactionDate: values.datepicker,
-        type: isIncome ? "INCOME" : "EXPENSE",
-        categoryId: isIncome
+        type: !isExpense ? "INCOME" : "EXPENSE",
+        categoryId: !isExpense
           ? category.find((elem) => elem.name == "Income").id
           : category.find((elem) => elem.name == values.category).id,
         comment: values.comment,
-        amount: -values.sum,
+        amount: !isExpense ? values.sum : -values.sum,
       })
     );
     actions.resetForm();
   };
 
   const handleOnChange = () => {
-    setIsIncome(!isIncome);
+    setIsIncome(!isExpense);
   };
 
   return (
     <Formik
       initialValues={{
         category: "Main expenses",
-        incomeExpense: isIncome,
+        incomeExpense: !isExpense,
         sum: 0,
         datepicker: new Date(),
         comment: "",
@@ -62,24 +62,31 @@ const AddTransactionForm = () => {
         <h2 className={css.tableContent}>Add transaction</h2>
         <div className={css["switcher-container"]}>
           Incoming
-          <Field
-            checked={isIncome}
-            type="checkbox"
-            name="incomeExpense"
-            onChange={handleOnChange}
-          />
+          <label className={css.slider}>
+            <Field
+              checked={!isExpense}
+              type="checkbox"
+              name="incomeExpense"
+              onChange={handleOnChange}
+            />
+            <span className={css["slider-circle"]}></span>
+          </label>
           Expense
         </div>
-        {isIncome ? (
+        {isExpense ? (
           <IncomeTransaction />
         ) : (
           <ExpenseTransaction categories={category} />
         )}
         <div className={css["buttons-container"]}>
-          <button className={css.button} type="submit">
+          <button className={css.button + " qq"} type="submit">
             Add
           </button>
-          <button className={css.button} type="click">
+          <button
+            className={css.button}
+            onClick={(e) => onClose(e)}
+            type="click"
+          >
             Cancel
           </button>
         </div>

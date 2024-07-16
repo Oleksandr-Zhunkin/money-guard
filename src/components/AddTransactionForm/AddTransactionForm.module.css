@@ -1,21 +1,20 @@
 .form {
   width: 100%;
-  height: 100%;
   backdrop-filter: blur(15px);
-
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 40px;
   padding: 28px 0;
-  background-color: #000;
+  background-color: transparent;
 }
 
 .tableContent {
-  font-family: "Poppins";
+  font-family: "Poppins", sans-serif;
   font-size: 24px;
   font-weight: 400;
   line-height: 36px;
+  color: #fbfbfb;
 }
 
 .switcher-container {
@@ -34,4 +33,65 @@
   width: 280px;
   height: 50px;
   border-radius: 20px;
+
+  font-family: "Poppins", sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 27px;
+  letter-spacing: 0.1em;
+}
+
+.slider {
+  position: relative;
+  width: 80px;
+  height: 40px;
+}
+
+.slider input {
+  display: none;
+}
+
+.slider .slider-circle {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #fff;
+  transition: 0.4s;
+  border-radius: 34px;
+}
+
+.slider .slider-circle:before {
+  position: absolute;
+  content: "";
+  height: 44px;
+  width: 44px;
+  left: -2px;
+  bottom: -2px;
+  background-color: #ffb627;
+  box-shadow: 0px 0px 15px 0px #ffb627;
+
+  transition: 0.4s;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slider input:checked + .slider-circle:before {
+  transform: translateX(40px);
+  content: url("../../images/slider/minus.svg");
+  box-shadow: 0px 0px 15px 0px #ff868d;
+  background-color: #ff868d;
+}
+
+.slider .slider-circle:before {
+  content: url("../../images/slider/plus.svg");
+}
+
+@media screen and (min-width: 768px) {
+}
+@media screen and (min-width: 1280px) {
 }

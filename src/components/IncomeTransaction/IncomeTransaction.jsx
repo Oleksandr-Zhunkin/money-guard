@@ -15,7 +15,12 @@ const AddTransactionForm = () => {
         name="datepicker"
       />
 
-      <Field className={css.inputs} as="textarea" name="comment" />
+      <Field
+        className={css.inputs}
+        as="textarea"
+        name="comment"
+        placeholder="Comment"
+      />
       <ErrorMessage name="comment" />
     </div>
   );

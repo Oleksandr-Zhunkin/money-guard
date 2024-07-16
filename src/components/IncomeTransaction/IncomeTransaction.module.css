@@ -11,9 +11,53 @@
   width: 280px;
   margin-bottom: 40px;
   padding: 8px 20px;
+
+  font-family: "Poppins", sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 27px;
 }
-.inputs::placeholder {
-  border: 0px solid #000;
+.inputs:focus {
+  outline: none;
+}
+
+textarea.inputs::placeholder {
+  color: #bdbdbd;
+
+  font-family: "Poppins", sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 27px;
+  text-align: left;
+}
+
+input[type="select"].inputs {
+  width: 200px;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(to bottom, #d8c1e0, #9174b1);
+  color: white;
+  font-size: 16px;
+  outline: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+input[type="select"].inputs:focus {
+  outline: none;
+  box-shadow: none;
+}
+input[type="select"].inputs option {
+  background-color: #9174b1;
+  color: white;
+  padding: 10px;
+}
+input[type="select"].inputs option:hover {
+  background-color: #b68bb8;
+}
+input[type="select"].inputs option:checked {
+  background-color: #f06466; /* Колір для обраного пункту */
 }
 
 textarea.inputs {

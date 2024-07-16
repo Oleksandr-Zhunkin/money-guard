@@ -1,9 +1,9 @@
 import { ErrorMessage, Field } from "formik";
 
-import css from "./ExpenseTransaction.module.css";
+import css from "../IncomeTransaction/IncomeTransaction.module.css";
 import CustomDatePicker from "../CustomDatePicker/CustomDatePicker";
 
-const ExpenseTransaction = ({ categories, defaultValue }) => {
+const ExpenseTransaction = ({ categories, defaultValue = "Main expenses" }) => {
   return (
     <div className={css["inputs-container"]}>
       <Field className={css.inputs} as="select" name="category">
@@ -25,7 +25,12 @@ const ExpenseTransaction = ({ categories, defaultValue }) => {
         name="datepicker"
       />
 
-      <Field className={css.inputs} as="textarea" name="comment" />
+      <Field
+        className={css.inputs}
+        as="textarea"
+        name="comment"
+        placeholder="Comment"
+      />
       <ErrorMessage name="comment" />
     </div>
   );

@@ -25,7 +25,7 @@ export default function HomePage() {
       <TransactionsList />
       <ButtonAddTransactions toggleModal={toggleModal} />
       <ModalWindow isOpen={isModalOpen} onClose={toggleModal}>
-        <AddTransactionForm closeModal={toggleModal} />
+        <AddTransactionForm closeModal={toggleModal} onClose={toggleModal} />
       </ModalWindow>
     </div>
   );
