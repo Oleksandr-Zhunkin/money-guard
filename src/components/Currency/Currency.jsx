@@ -8,33 +8,34 @@ import tabletImage from "../../images/currency/currency-tablet@1x.webp";
 import mobileImage from "../../images/currency/currency-mobile@1x.webp";
 
 import s from "./Currency.module.css";
+import { useDispatch, useSelector } from "react-redux";
+import { monoThunk } from "../../redux/currency/operations";
+import { selectData, selectMono } from "../../redux/currency/selectors";
 
 const Currency = () => {
   const { mobileUser, tabletUser, desktopUser } = useRespons();
-  const [currency, setCurrency] = useState(null);
+  const dispatch = useDispatch();
+  // const [currency, setCurrency] = useState(null);
   const [loading, setLoading] = useState(true);
+  const currency = useSelector(selectMono);
+  const dataFetch = useSelector(selectData);
 
+  console.log(dataFetch);
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const data = await getCurrency();
-        setCurrency(data);
-      } catch (error) {
-        console.error("Error fetching currency data:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    // fetchData();
-  }, []);
+    const currentData = Date.now();
 
-  // if (loading) {
-  //   return <Loader />;
-  // }
+    if (currentData - dataFetch > 360000) {
+      dispatch(monoThunk());
+    }
+  }, [dispatch, dataFetch]);
 
-  // if (!currency) {
-  //   return <div>No currency data available.</div>;
-  // }
+  if (loading) {
+    return <Loader />;
+  }
+
+  if (!currency) {
+    return <div>No currency data available.</div>;
+  }
 
   const getImage = () => {
     if (desktopUser) return desktopImage;
