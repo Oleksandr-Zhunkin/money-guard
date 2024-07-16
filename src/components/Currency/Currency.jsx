@@ -15,7 +15,6 @@ import { selectData, selectMono } from "../../redux/currency/selectors";
 const Currency = () => {
   const { mobileUser, tabletUser, desktopUser } = useRespons();
   const dispatch = useDispatch();
-  // const [currency, setCurrency] = useState(null);
   const [loading, setLoading] = useState(true);
   const currency = useSelector(selectMono);
   const dataFetch = useSelector(selectData);
@@ -53,13 +52,13 @@ const Currency = () => {
       <div className={s.valueWrapper}>
         <div className={s.valueContainer}>
           <p>USD</p>
-          <p>{currency?.[0].rateBuy.toFixed(2)}</p>
-          <p>{currency?.[0].rateSell.toFixed(2)}</p>
+          <p>{currency?.[0].rateBuy.toFixed(2) || ""}</p>
+          <p>{currency?.[0].rateSell.toFixed(2) || ""}</p>
         </div>
         <div className={s.valueContainer}>
           <p>EUR</p>
-          <p>{currency?.[1].rateBuy.toFixed(2)}</p>
-          <p>{currency?.[1].rateSell.toFixed(2)}</p>
+          <p>{currency?.[1].rateBuy.toFixed(2) || ""}</p>
+          <p>{currency?.[1].rateSell.toFixed(2) || ""}</p>
         </div>
       </div>
       <img className={s.image} src={getImage()} alt="stats" />
