@@ -9,13 +9,10 @@ const slice = createSlice({
   name: "mono",
   initialState,
   extraReducers: (builder) => {
-    builder
-      .addCase(monoThunk.fulfilled, (state, action) => {
-        state.mono = action.payload;
-      })
-      .addCase(monoThunk.pending, (state) => {
-        state.data_mono = Date.now();
-      });
+    builder.addCase(monoThunk.fulfilled, (state, action) => {
+      state.mono = action.payload;
+      state.data_mono = Date.now();
+    });
   },
 });
 export const monoReducer = slice.reducer;
