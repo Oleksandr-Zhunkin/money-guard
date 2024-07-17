@@ -50,14 +50,19 @@ tr {
 ul {
   padding: 0px;
   margin: 0px;
+  gap: 8px;
 }
 
 /* mobile styles */
 
 .card {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.082) 0%,
+    rgba(255, 255, 255, 0.2) 100%
+  );
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  background: var(--form-color);
   color: #ffffff;
   border-left: 5px solid orange;
 }

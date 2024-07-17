@@ -9,6 +9,7 @@ import ExpenseTransaction from "../ExpenseTransaction/ExpenseTransaction";
 import { addTransactionsThunk } from "../../redux/transactions/operations";
 import { categoriesThunk } from "../../redux/categories/operations";
 import { selectCategories } from "../../redux/categories/selectors";
+import { fetchBalanceThunk } from "../../redux/auth/operations";
 
 let formSchema = Yup.object({
   sum: Yup.number().min(1).required(),
@@ -33,12 +34,16 @@ const AddTransactionForm = ({ onClose }) => {
         transactionDate: values.datepicker,
         type: isExpense ? "INCOME" : "EXPENSE",
         categoryId: isExpense
-          ? category.find((elem) => elem.name == "Income").id
-          : category.find((elem) => elem.name == values.category).id,
+          ? category.find((elem) => elem.name === "Income").id
+          : category.find((elem) => elem.name === values.category).id,
         comment: values.comment,
         amount: isExpense ? values.sum : -values.sum,
       })
-    );
+    )
+      .unwrap()
+      .then(() => {
+        dispatch(fetchBalanceThunk());
+      });
     actions.resetForm();
   };
 
