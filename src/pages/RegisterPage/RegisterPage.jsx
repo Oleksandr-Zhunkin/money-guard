@@ -5,6 +5,7 @@ import { registerThunk } from "../../redux/auth/operations";
 import { Field, Form, Formik, ErrorMessage } from "formik";
 import { registerFormSchema } from "../../schemas/validatorLogin";
 import User from "../../components/Icons/UserIcon";
+import PasswordStrengthBar from "react-password-strength-bar-with-style-item";
 
 export const RegisterPage = () => {
   const dispatch = useDispatch();
@@ -132,6 +133,11 @@ export const RegisterPage = () => {
                       className={s.error}
                       name="confirmPassword"
                       component="span"
+                    />
+                    <PasswordStrengthBar
+                      password={"password"}
+                      className="bar"
+                      scoreWordClassName="bar_sections"
                     />
                   </div>
                 </li>

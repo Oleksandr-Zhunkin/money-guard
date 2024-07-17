@@ -36,9 +36,7 @@ const Header = () => {
               <div className={s.right_side}>
                 <p className={s.user}>{user.username}</p>
                 <button
-                  onClick={() => {
-                    handleModalOpen();
-                  }}
+                  onClick={handleModalOpen}
                   className={s.exit_btn}
                   type="button"
                 >
