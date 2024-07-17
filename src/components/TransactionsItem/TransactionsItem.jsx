@@ -1,9 +1,8 @@
 import clsx from "clsx";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import IconEdit from "../Icons/IconEdit";
 import useRespons from "../../hooks/useRespons.js";
 import { selectCategories } from "../../redux/categories/selectors.js";
-import { deleteTransactionsThunk } from "../../redux/transactions/operations";
 import s from "./TransactionsItem.module.css";
 
 const formatDate = (dateString) => {
@@ -14,16 +13,14 @@ const formatDate = (dateString) => {
   return `${day}.${month}.${year}`;
 };
 
-const TransactionsItem = ({ transaction = {}, openModal, handleDelete }) => {
-  const dispatch = useDispatch();
-  const displayType = transaction.type === "INCOME" ? "+" : "-";
+const TransactionsItem = ({ transaction, openModal, handleDelete }) => {
   const { mobileUser } = useRespons();
-
   const categories = useSelector(selectCategories);
   const category = categories.find(
     (item) => item.id === transaction.categoryId
   );
   const categoryName = category ? category.name : "Unknown";
+  const displayType = transaction.type === "INCOME" ? "+" : "-";
   const displayAmount = Math.abs(transaction.amount);
 
   const transactionRow = (
@@ -53,13 +50,7 @@ const TransactionsItem = ({ transaction = {}, openModal, handleDelete }) => {
           <button
             className={s.button}
             type="button"
-            onClick={() =>
-              handleDelete(
-                transaction.id,
-                transaction.amount,
-                transaction.comment
-              )
-            }
+            onClick={() => handleDelete(transaction.id)}
             aria-label="delete button"
           >
             Delete
@@ -110,13 +101,7 @@ const TransactionsItem = ({ transaction = {}, openModal, handleDelete }) => {
         <button
           className={s.button}
           type="button"
-          onClick={() =>
-            handleDelete(
-              transaction.id,
-              transaction.amount,
-              transaction.comment
-            )
-          }
+          onClick={() => handleDelete(transaction.id)}
           aria-label="delete button"
         >
           Delete

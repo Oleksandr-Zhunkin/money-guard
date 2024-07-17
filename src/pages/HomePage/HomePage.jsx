@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import Balance from "../../components/Balance/Balance";
 import TransactionsList from "../../components/TransactionsList/TransactionsList";
 import AddTransactionForm from "../../components/AddTransactionForm/AddTransactionForm";
 import ButtonAddTransactions from "../../components/ButtonAddTransaction/ButtonAddTransaction";

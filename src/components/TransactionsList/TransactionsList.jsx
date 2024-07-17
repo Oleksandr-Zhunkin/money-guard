@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import TransactionsItem from "../TransactionsItem/TransactionsItem";
 import { selectTransactions } from "../../redux/transactions/selectors.js";
 import useRespons from "../../hooks/useRespons.js";
@@ -12,17 +12,23 @@ const TransactionsList = () => {
   const { mobileUser } = useRespons();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedTransaction, setSelectedTransaction] = useState(null);
-  const [localTransactions, setLocalTransactions] = useState(transactions);
+  const [localTransactions, setLocalTransactions] = useState([]);
+
+  useEffect(() => {
+    setLocalTransactions(transactions);
+  }, [transactions]);
 
   const openModal = (transaction) => {
     setSelectedTransaction(transaction);
     setIsModalOpen(true);
   };
+
   const handleDelete = (transactionId) => {
-    setLocalTransactions(
-      localTransactions.filter((t) => t.id !== transactionId)
+    setLocalTransactions((prev) =>
+      prev.filter((transaction) => transaction.id !== transactionId)
     );
   };
+
   const closeModal = () => {
     setSelectedTransaction(null);
     setIsModalOpen(false);

@@ -15,6 +15,13 @@ const initialState = {
 const slice = createSlice({
   name: "transactions",
   initialState,
+  reducers: {
+    deleteTransaction(state, action) {
+      state.transactions = state.transactions.filter(
+        (transaction) => transaction.id !== action.payload
+      );
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getTransactionsThunk.fulfilled, (state, action) => {
@@ -71,4 +78,6 @@ const slice = createSlice({
       );
   },
 });
+
+export const { deleteTransaction } = slice.actions;
 export const transactionsReducer = slice.reducer;
