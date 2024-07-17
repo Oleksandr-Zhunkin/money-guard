@@ -46,3 +46,16 @@ img {
 .ReactModal__Content--before-close {
   transform: translateY(200px);
 }
+.bar {
+  width: 100%;
+  & div {
+    transition: all 0.3s ease;
+    height: 5px;
+    & div:nth-child(2n) {
+      width: 0 !important;
+    }
+  }
+}
+.bar-sections {
+  display: none;
+}

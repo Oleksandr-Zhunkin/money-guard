@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import s from "../Navigation/Navigation.module.scss";
 import HomeIcon from "../Icons/IconHome";
 import IconStatistics from "../Icons/IconStatistics";
@@ -7,13 +7,23 @@ import clsx from "clsx";
 import useRespons from "../../hooks/useRespons";
 import Balance from "../Balance/Balance";
 import Currency from "../Currency/Currency";
+import { useEffect, useState } from "react";
 
 const buildLinkClass = ({ isActive }) => {
   return clsx(s.link, isActive && s.active);
 };
 
 const Navigation = () => {
+  const [isBalance, setIsBalance] = useState(false);
   const { mobileUser } = useRespons();
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.pathname === "/") {
+      return setIsBalance(true);
+    }
+    setIsBalance(false);
+  }, [location.pathname, location]);
 
   return (
     <div className={s.side_bar}>
@@ -39,7 +49,7 @@ const Navigation = () => {
             </NavLink>
           )}
         </nav>
-        <Balance />
+        {isBalance && <Balance />}
       </div>
       {!mobileUser && <Currency />}
     </div>

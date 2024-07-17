@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import Loader from "../../components/Loader/Loader";
 import useRespons from "../../hooks/useRespons";
+import Loader from "../../components/Loader/Loader";
 
 import desktopImage from "../../images/currency/currency-dekstop@1x.webp";
 import tabletImage from "../../images/currency/currency-tablet@1x.webp";
@@ -18,11 +18,9 @@ const Currency = () => {
   const currency = useSelector(selectMono);
   const dataFetch = useSelector(selectData);
 
-  console.log(currency);
-
   useEffect(() => {
     const currentData = Date.now();
-    if (currency.length !== 0) {
+    if (currency.length === 0) {
       dispatch(monoThunk());
       return;
     }
@@ -48,7 +46,7 @@ const Currency = () => {
   };
 
   return (
-    <div className={s.wrapper}>
+    <div className={s.wrapperCurrency}>
       <div className={s.headCurrency}>
         <p className={s.currency}>Currency</p>
         <p className={s.purchase}>Purchase</p>

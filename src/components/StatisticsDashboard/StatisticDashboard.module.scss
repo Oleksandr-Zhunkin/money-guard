@@ -1,5 +1,4 @@
 .wrapper {
-  position: relative;
   width: 100%;
   margin-bottom: 32px;
 }
@@ -9,10 +8,15 @@
   text-align: center;
   color: var(--color-text);
 }
+.chart {
+  position: relative;
+  width: fit-content;
+}
 .balance {
   position: absolute;
-  top: 53%;
-  left: 40%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   font-weight: 600;
   font-size: 18px;
   text-align: center;
@@ -22,10 +26,10 @@
   .wrapper {
     min-width: 336px;
   }
-  .balance {
-    top: 45%;
-    left: 36%;
-  }
+  // .balance {
+  //   top: 45%;
+  //   left: 36%;
+  // }
 }
 @media only screen and (min-width: 1280px) {
   .title {
@@ -35,8 +39,8 @@
   .wrapper {
     max-width: 288px;
   }
-  .balance {
-    top: 43%;
-    left: 32%;
-  }
+  // .balance {
+  //   top: 43%;
+  //   left: 32%;
+  // }
 }

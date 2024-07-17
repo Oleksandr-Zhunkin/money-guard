@@ -31,7 +31,7 @@ const TransactionsList = () => {
     );
   }
 
-  const sortedTransactions = transactions.toSorted(
+  const sortedTransactions = [...transactions].sort(
     (a, b) => new Date(b.transactionDate) - new Date(a.transactionDate)
   );
 
@@ -50,22 +50,24 @@ const TransactionsList = () => {
             </tr>
           </thead>
           <tbody>
-            {sortedTransactions.map((transaction) => (
+            {sortedTransactions.map((transaction, index) => (
               <TransactionsItem
                 key={transaction.id}
                 transaction={transaction}
                 openModal={() => openModal(transaction)}
+                index={index + 1}
               />
             ))}
           </tbody>
         </table>
       ) : (
         <ul>
-          {sortedTransactions.map((transaction) => (
+          {sortedTransactions.map((transaction, index) => (
             <TransactionsItem
               key={transaction.id}
               transaction={transaction}
               openModal={() => openModal(transaction)}
+              index={index + 1}
             />
           ))}
         </ul>

@@ -7,6 +7,7 @@ import useRespons from "../../hooks/useRespons";
 import { useState } from "react";
 import Logout from "../Logout/Logout";
 import Container from "../Container/Container";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
@@ -28,17 +29,15 @@ const Header = () => {
         <header className={s.header}>
           <Container>
             <div className={s.wrapper}>
-              <div className={s.left_side}>
+              <Link to="/" className={s.left_side}>
                 <img className={s.logo_icon} src={Logo} alt="logo" />
                 <p className={s.logo_text}>Money Guard</p>
-              </div>
+              </Link>
 
               <div className={s.right_side}>
                 <p className={s.user}>{user.username}</p>
                 <button
-                  onClick={() => {
-                    handleModalOpen();
-                  }}
+                  onClick={handleModalOpen}
                   className={s.exit_btn}
                   type="button"
                 >

@@ -24,19 +24,19 @@ const AddTransactionForm = ({ onClose }) => {
   useEffect(() => {
     setTimeout(() => {
       dispatch(categoriesThunk());
-    }, 1000);
+    }, 500);
   }, [dispatch]);
 
   const handleSubmit = (values, actions) => {
     dispatch(
       addTransactionsThunk({
         transactionDate: values.datepicker,
-        type: !isExpense ? "INCOME" : "EXPENSE",
-        categoryId: !isExpense
+        type: isExpense ? "INCOME" : "EXPENSE",
+        categoryId: isExpense
           ? category.find((elem) => elem.name == "Income").id
           : category.find((elem) => elem.name == values.category).id,
         comment: values.comment,
-        amount: !isExpense ? values.sum : -values.sum,
+        amount: isExpense ? values.sum : -values.sum,
       })
     );
     actions.resetForm();
@@ -51,12 +51,12 @@ const AddTransactionForm = ({ onClose }) => {
       initialValues={{
         category: "Main expenses",
         incomeExpense: !isExpense,
-        sum: 0,
+        sum: null,
         datepicker: new Date(),
         comment: "",
       }}
       onSubmit={handleSubmit}
-      validationSchema={formSchema}
+      validationSchema={transactionSchema}
     >
       <Form className={css.form}>
         <button className={css.close} onClick={(e) => onClose(e)}></button>

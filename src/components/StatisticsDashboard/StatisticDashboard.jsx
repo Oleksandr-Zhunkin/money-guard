@@ -1,17 +1,19 @@
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
-import { useSelector } from "react-redux";
-import { selectSummary } from "../../redux/categories/selectors";
+
 import s from "./StatisticDashboard.module.scss";
+import { useSelector } from "react-redux";
+import { selectUser } from "../../redux/auth/selectors";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const StatisticDashboard = () => {
-  const { categoriesSummary, periodTotal } = useSelector(selectSummary);
-  const summary = categoriesSummary
+const StatisticDashboard = ({ category }) => {
+  const userBalance = useSelector(selectUser);
+
+  const summary = category?.categoriesSummary
     .filter((items) => items.type !== "INCOME")
     .map((item) => item.total);
-  const formattedBalance = periodTotal
+  const formattedBalance = userBalance?.balance
     ?.toFixed(2)
     .replace(/\B(?=(\d{3})+(?!\d))/g, " ");
   const data = {
@@ -46,8 +48,10 @@ const StatisticDashboard = () => {
   return (
     <div className={s.wrapper}>
       <h2 className={s.title}>Statistics</h2>
-      <Doughnut data={data} />
-      <p className={s.balance}>₴ {formattedBalance}</p>
+      <div className={s.chart}>
+        <Doughnut data={data} />
+        <p className={s.balance}>₴ {formattedBalance}</p>
+      </div>
     </div>
   );
 };

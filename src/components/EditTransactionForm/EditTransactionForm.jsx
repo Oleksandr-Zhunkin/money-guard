@@ -1,13 +1,11 @@
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
-import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import css from "./EditTransactionForm.module.css";
 import IncomeTransaction from "../IncomeTransaction/IncomeTransaction";
 import ExpenseTransaction from "../ExpenseTransaction/ExpenseTransaction";
 import { updateTransactionsThunk } from "../../redux/transactions/operations";
-import { categoriesThunk } from "../../redux/categories/operations";
 import { selectCategories } from "../../redux/categories/selectors";
 
 let formSchema = Yup.object({
@@ -31,39 +29,34 @@ const EditTransactionForm = ({
   const category = useSelector(selectCategories);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    setTimeout(() => {
-      dispatch(categoriesThunk());
-    }, 1000);
-  }, [dispatch]);
-
   const handleSubmit = (values, actions) => {
-    console.log(values);
+    onClose();
     dispatch(
       updateTransactionsThunk({
         id: transaction.id,
         data: {
           transactionDate: values.datepicker,
-          type: transaction.type,
-          categoryId:
-            transaction.type == "INCOME"
-              ? category.find((elem) => elem.name == "Income")?.id
-              : category.find((elem) => elem.name == values.category)?.id,
+          type: values.type,
+          categoryId: values.categoryId,
           comment: values.comment,
-          amount: values.sum,
+          amount: values.type === "EXPENSE" ? -values.sum : values.sum,
         },
       })
     );
+
     actions.resetForm();
   };
   return (
     <Formik
       initialValues={{
-        category: category.find((elem) => elem.id === transaction.categoryId)
-          ?.name,
-        sum: transaction.amount,
+        type: transaction.type,
+        sum:
+          transaction.type === "EXPENSE"
+            ? -transaction.amount
+            : transaction.amount,
         datepicker: new Date(transaction.transactionDate),
         comment: transaction.comment,
+        categoryId: transaction.categoryId,
       }}
       onSubmit={handleSubmit}
       validationSchema={formSchema}
@@ -80,6 +73,8 @@ const EditTransactionForm = ({
           /{" "}
           {transaction.type == "EXPENSE" ? (
             <span className={css.active}>Expense</span>
+          ) : (
+            <span>Expense</span>
           ) : (
             <span>Expense</span>
           )}

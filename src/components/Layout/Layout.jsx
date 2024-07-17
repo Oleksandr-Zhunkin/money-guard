@@ -6,7 +6,7 @@ import Navigation from "../Navigation/Navigation";
 
 const Layout = () => {
   return (
-    <div>
+    <>
       <Header />
       <Container>
         <div className={s.wrapper}>
@@ -16,7 +16,7 @@ const Layout = () => {
           </div>
         </div>
       </Container>
-    </div>
+    </>
   );
 };
 export default Layout;

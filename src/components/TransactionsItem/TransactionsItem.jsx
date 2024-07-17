@@ -1,10 +1,14 @@
 import clsx from "clsx";
 import { useDispatch, useSelector } from "react-redux";
-import iconEdit from "../../images/icons/icon-edit.svg";
+import IconEdit from "../Icons/IconEdit";
 import useRespons from "../../hooks/useRespons.js";
 import { selectCategories } from "../../redux/categories/selectors.js";
-import { deleteTransactionsThunk } from "../../redux/transactions/operations";
+import {
+  deleteTransactionsThunk,
+  getTransactionsThunk,
+} from "../../redux/transactions/operations";
 import s from "./TransactionsItem.module.css";
+import { summaryThunk } from "../../redux/categories/operations.js";
 
 const formatDate = (dateString) => {
   const date = new Date(dateString);
@@ -14,10 +18,20 @@ const formatDate = (dateString) => {
   return `${day}.${month}.${year}`;
 };
 
-const TransactionsItem = ({ transaction, openModal }) => {
+const TransactionsItem = ({ transaction = {}, openModal }) => {
   const dispatch = useDispatch();
   const displayType = transaction.type === "INCOME" ? "+" : "-";
   const { mobileUser } = useRespons();
+
+  const handleDeleteTransaction = () => {
+    dispatch(deleteTransactionsThunk(transaction.id))
+      .unwrap()
+      .then(() => dispatch(summaryThunk()));
+
+    setTimeout(() => {
+      dispatch(getTransactionsThunk());
+    }, 500);
+  };
 
   const categories = useSelector(selectCategories);
   const category = categories.find(
@@ -48,12 +62,12 @@ const TransactionsItem = ({ transaction, openModal }) => {
             onClick={openModal}
             aria-label="edit button"
           >
-            <img src={iconEdit} alt="Edit" height={14} width={14} />
+            <IconEdit title="Edit" />
           </button>
           <button
             className={s.button}
             type="button"
-            onClick={() => dispatch(deleteTransactionsThunk(transaction.id))}
+            onClick={() => handleDeleteTransaction()}
             aria-label="delete button"
           >
             Delete
@@ -104,7 +118,7 @@ const TransactionsItem = ({ transaction, openModal }) => {
         <button
           className={s.button}
           type="button"
-          onClick={() => dispatch(deleteTransactionsThunk(transaction.id))}
+          onClick={() => handleDeleteTransaction()}
           aria-label="delete button"
         >
           Delete
@@ -115,7 +129,7 @@ const TransactionsItem = ({ transaction, openModal }) => {
           onClick={openModal}
           aria-label="edit button"
         >
-          <img src={iconEdit} alt="Edit" height={14} width={14} />
+          <IconEdit />
           <p className={s.edit}>Edit</p>
         </button>
       </div>
