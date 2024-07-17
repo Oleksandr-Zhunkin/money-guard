@@ -61,6 +61,13 @@
 .income {
   color: #ffb627;
 }
+.text {
+  margin-top: 20px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--color-text);
+}
 @media only screen and (min-width: 768px) and (max-width: 1279px) {
   .wrapper {
     min-width: 336px;

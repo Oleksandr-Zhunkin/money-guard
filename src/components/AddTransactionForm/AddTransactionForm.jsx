@@ -19,7 +19,7 @@ const AddTransactionForm = ({ onClose }) => {
   useEffect(() => {
     setTimeout(() => {
       dispatch(categoriesThunk());
-    }, 1000);
+    }, 500);
   }, [dispatch]);
 
   const handleSubmit = (values, actions) => {
