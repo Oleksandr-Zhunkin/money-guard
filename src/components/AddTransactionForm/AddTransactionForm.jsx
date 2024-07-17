@@ -56,7 +56,7 @@ const AddTransactionForm = ({ onClose }) => {
         comment: "",
       }}
       onSubmit={handleSubmit}
-      validationSchema={transactionSchema}
+      validationSchema={formSchema}
     >
       <Form className={css.form}>
         <button className={css.close} onClick={(e) => onClose(e)}></button>

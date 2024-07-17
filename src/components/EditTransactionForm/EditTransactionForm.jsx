@@ -75,8 +75,6 @@ const EditTransactionForm = ({
             <span className={css.active}>Expense</span>
           ) : (
             <span>Expense</span>
-          ) : (
-            <span>Expense</span>
           )}
         </div>
         {transaction.type == "INCOME" ? (
