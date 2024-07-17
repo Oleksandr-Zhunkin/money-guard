@@ -18,7 +18,7 @@ export const addTransactionsThunk = createAsyncThunk(
   async (transaction, thunkApi) => {
     try {
       const { data } = await guardApi.post("/api/transactions", transaction);
-      
+
       return data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
@@ -33,7 +33,8 @@ export const updateTransactionsThunk = createAsyncThunk(
         `/api/transactions/${transaction.id}`,
         transaction.data
       );
-      console.log(data);
+
+      return data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
     }
