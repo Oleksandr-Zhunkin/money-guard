@@ -75,8 +75,7 @@
 }
 .input {
   width: 100%;
-  padding-left: 5px;
-  /* border-bottom: 1px solid lightgray; */
+  padding-left: 55px;
 
   min-width: 280px;
   min-height: 35px;
@@ -100,16 +99,18 @@
   align-items: center;
 }
 
-.input-wrap .icon {
+.icon {
   position: absolute;
-  left: 20px;
-  top: 50%;
-  transform: translateY(-50%);
+  left: 15px;
+  right: 10px;
+  bottom: 5px;
+  top: 5px;
   color: lightgray;
 }
 .error {
   color: lightgray;
   position: absolute;
+  bottom: -25px;
 }
 .btn_wrapper {
   display: flex;

@@ -42,14 +42,15 @@ export const LoginPage = () => {
                 <li>
                   <div className={s.input_wrap}>
                     <label className={s.label}>
-                      {/* <span className={s.span}></span> */}
-                      <Email className={s.icon} />
+                      <div className={s.icon}>
+                        <Email />
+                      </div>
                     </label>
                     <div className={s.error_wrap}>
                       <Field
                         name="email"
                         type="email"
-                        placeholder="email"
+                        placeholder="E-mail"
                         className={s.input}
                       />
                       <ErrorMessage
@@ -63,13 +64,15 @@ export const LoginPage = () => {
                 <li>
                   <div className={s.input_wrap}>
                     <label className={s.label}>
-                      {/* <span className={s.span}></span> */}
-                      <Password className={s.icon} />
+                      <div className={s.icon}>
+                        <Password />
+                      </div>
+
                       <div className={s.error_wrap}>
                         <Field
                           name="password"
                           type="password"
-                          placeholder="password"
+                          placeholder="Password"
                           className={s.input}
                         />
                         <ErrorMessage

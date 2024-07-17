@@ -45,87 +45,90 @@ export const RegisterPage = () => {
                 <li className={s.item}>
                   <div className={s.input_wrap}>
                     <label className={s.label}>
-                      <span className={s.span}></span>
+                      <div className={s.icon}>
+                        <User />
+                      </div>
+                      <div className={s.error_wrap}>
+                        <Field
+                          name="name"
+                          type="name"
+                          placeholder="Name"
+                          className={s.input}
+                        />
+                        <ErrorMessage
+                          className={s.error}
+                          name="name"
+                          component="span"
+                        />
+                      </div>
                     </label>
-                    <User className={s.icon} />
-                    <div className={s.error_wrap}>
-                      <Field
-                        name="name"
-                        type="name"
-                        placeholder="Name"
-                        className={s.input}
-                      />
-                      <ErrorMessage
-                        className={s.error}
-                        name="name"
-                        component="span"
-                      />
-                    </div>
                   </div>
                 </li>
                 <li className={s.item}>
                   <div className={s.input_wrap}>
                     <label className={s.label}>
-                      <span className={s.span}></span>
+                      <div className={s.icon}>
+                        <Email />
+                      </div>
+                      <div className={s.error_wrap}>
+                        <Field
+                          name="email"
+                          type="email"
+                          placeholder="E-mail"
+                          className={s.input}
+                        />
+                        <ErrorMessage
+                          className={s.error}
+                          name="email"
+                          component="span"
+                        />
+                      </div>
                     </label>
-                    <Email className={s.icon} />
-                    <div className={s.error_wrap}>
-                      <Field
-                        name="email"
-                        type="email"
-                        placeholder="E-mail"
-                        className={s.input}
-                      />
-                      <ErrorMessage
-                        className={s.error}
-                        name="email"
-                        component="span"
-                      />
-                    </div>
                   </div>
                 </li>
                 <li className={s.item}>
                   <div className={s.input_wrap}>
                     <label className={s.label}>
-                      {/* <span className={s.span}></span> */}
-                      <Password className={s.icon} />
+                      <div className={s.icon}>
+                        <Password />
+                      </div>
+                      <div className={s.error_wrap}>
+                        <Field
+                          name="password"
+                          type="password"
+                          placeholder="Password"
+                          className={s.input}
+                        />
+                        <ErrorMessage
+                          className={s.error}
+                          name="password"
+                          component="span"
+                        />
+                      </div>
                     </label>
-
-                    <div className={s.error_wrap}>
-                      <Field
-                        name="password"
-                        type="password"
-                        placeholder="Password"
-                        className={s.input}
-                      />
-                      <ErrorMessage
-                        className={s.error}
-                        name="password"
-                        component="span"
-                      />
-                    </div>
                   </div>
                 </li>
                 <li className={s.item}>
                   <div className={s.input_wrap}>
                     <label className={s.label}>
-                      {/* <span className={s.span}></span> */}
-                      <Password className={s.icon} />
+                      <div className={s.icon}>
+                        <Password />
+                      </div>
+                      <div className={s.error_wrap}>
+                        <Field
+                          name="confirmPassword"
+                          type="password"
+                          placeholder="Confirm password"
+                          className={s.input}
+                          required
+                        />
+                        <ErrorMessage
+                          className={s.error}
+                          name="confirmPassword"
+                          component="span"
+                        />
+                      </div>
                     </label>
-                    <div className={s.error_wrap}>
-                      <Field
-                        name="confirmPassword"
-                        type="password"
-                        placeholder="Confirm password"
-                        className={s.input}
-                        required
-                      />
-                      <ErrorMessage
-                        className={s.error}
-                        name="confirmPassword"
-                        component="span"
-                      />
-                    </div>
                   </div>
                   <PasswordStrengthBar
                     password={"password"}
