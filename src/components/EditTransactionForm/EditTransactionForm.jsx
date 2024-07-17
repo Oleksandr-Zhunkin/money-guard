@@ -7,8 +7,11 @@ import css from "./EditTransactionForm.module.css";
 import IncomeTransaction from "../IncomeTransaction/IncomeTransaction";
 import ExpenseTransaction from "../ExpenseTransaction/ExpenseTransaction";
 import { updateTransactionsThunk } from "../../redux/transactions/operations";
-import { categoriesThunk } from "../../redux/categories/operations";
+import {
+  categoriesThunk
+} from "../../redux/categories/operations";
 import { selectCategories } from "../../redux/categories/selectors";
+import { fetchBalanceThunk } from "../../redux/auth/operations";
 
 let formSchema = Yup.object({
   datepicker: Yup.date().required(),
@@ -36,7 +39,6 @@ const EditTransactionForm = ({
       dispatch(categoriesThunk());
     }, 1000);
   }, [dispatch]);
-
   const handleSubmit = (values, actions) => {
     console.log(values);
     dispatch(
@@ -53,9 +55,14 @@ const EditTransactionForm = ({
           amount: values.sum,
         },
       })
-    );
+    )
+      .unwrap()
+      .then(() => {
+        dispatch(fetchBalanceThunk());
+      });
     actions.resetForm();
   };
+
   return (
     <Formik
       initialValues={{

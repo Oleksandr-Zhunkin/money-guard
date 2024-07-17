@@ -4,6 +4,7 @@ import {
   logoutThunk,
   refreshThunk,
   registerThunk,
+  fetchBalanceThunk,
 } from "./operations";
 
 const initialState = {
@@ -13,6 +14,7 @@ const initialState = {
   isLoading: false,
   isRefresh: false,
   isError: false,
+  balance: 0, // Add balance to the initial state
 };
 
 const slice = createSlice({
@@ -42,9 +44,15 @@ const slice = createSlice({
         state.isRefresh = true;
       })
       .addCase(logoutThunk.fulfilled, () => {
-        console.log("ok");
         return initialState;
+      })
+      .addCase(fetchBalanceThunk.fulfilled, (state, action) => {
+        state.balance = action.payload; 
+      })
+      .addCase(fetchBalanceThunk.rejected, (state, action) => {
+        state.isError = action.payload;
       });
   },
 });
+
 export const authReducer = slice.reducer;

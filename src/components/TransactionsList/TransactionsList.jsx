@@ -61,7 +61,7 @@ const TransactionsList = () => {
           </tbody>
         </table>
       ) : (
-        <ul>
+        <ul className={s.listTrans}>
           {sortedTransactions.map((transaction, index) => (
             <TransactionsItem
               key={transaction.id}

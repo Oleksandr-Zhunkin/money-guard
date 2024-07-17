@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { guardApi } from "../../config/guardApi";
+import { fetchBalanceThunk } from "../auth/operations";
 
 export const getTransactionsThunk = createAsyncThunk(
   "getTransaction",
@@ -13,12 +14,13 @@ export const getTransactionsThunk = createAsyncThunk(
     }
   }
 );
+
 export const addTransactionsThunk = createAsyncThunk(
   "addTransaction",
   async (transaction, thunkApi) => {
     try {
       const { data } = await guardApi.post("/api/transactions", transaction);
-      
+      await thunkApi.dispatch(fetchBalanceThunk());
       return data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
