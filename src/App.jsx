@@ -13,7 +13,6 @@ import Loader from "./components/Loader/Loader";
 import { refreshThunk } from "./redux/auth/operations";
 import { selectIsRefresh } from "./redux/auth/selectors";
 import Currency from "./components/Currency/Currency.jsx";
-import StatisticDatePicker from "./components/StatisticsDataPicker/StatisticsDatePicker.jsx";
 import Statistics from "./pages/Statistics/Statistics.jsx";
 import {
   categoriesThunk,
@@ -33,50 +32,46 @@ function App() {
     dispatch(summaryThunk());
   }, [dispatch]);
 
-  return (
-    <>
-      {isRefreshing ? (
-        <Loader />
-      ) : (
-        <Section>
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <PrivateRoute>
-                  <Layout />
-                </PrivateRoute>
-              }
-            >
-              <Route index element={<HomePage />} />
-              <Route path="statistics" element={<Statistics />} />
-              <Route
-                path="currency"
-                element={mobileUser ? <Currency /> : <Navigate to="/" />}
-              />
-            </Route>
-            <Route
-              path="/login"
-              element={
-                <RestrictedRoute>
-                  <LoginPage />
-                </RestrictedRoute>
-              }
-            />
-            <Route
-              path="/register"
-              element={
-                <RestrictedRoute>
-                  <RegisterPage />
-                </RestrictedRoute>
-              }
-            />
+  return isRefreshing ? (
+    <Loader />
+  ) : (
+    <Section>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <PrivateRoute>
+              <Layout />
+            </PrivateRoute>
+          }
+        >
+          <Route index element={<HomePage />} />
+          <Route path="statistics" element={<Statistics />} />
+          <Route
+            path="currency"
+            element={mobileUser ? <Currency /> : <Navigate to="/" />}
+          />
+        </Route>
+        <Route
+          path="/login"
+          element={
+            <RestrictedRoute>
+              <LoginPage />
+            </RestrictedRoute>
+          }
+        />
+        <Route
+          path="/register"
+          element={
+            <RestrictedRoute>
+              <RegisterPage />
+            </RestrictedRoute>
+          }
+        />
 
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </Section>
-      )}
-    </>
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </Section>
   );
 }
 

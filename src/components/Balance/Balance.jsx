@@ -1,15 +1,13 @@
 import { useSelector } from "react-redux";
-
-import { selectUserBalance } from "../../redux/auth/selectors";
+import { selectUser } from "../../redux/auth/selectors";
 
 import s from "./Balance.module.css";
 
 const Balance = () => {
-  const userBalance = useSelector(selectUserBalance);
-  
+  const userBalance = useSelector(selectUser);
 
-  const formattedBalance = userBalance
-    .toFixed(2)
+  const formattedBalance = userBalance?.balance
+    ?.toFixed(2)
     .replace(/\B(?=(\d{3})+(?!\d))/g, " ");
 
   return (

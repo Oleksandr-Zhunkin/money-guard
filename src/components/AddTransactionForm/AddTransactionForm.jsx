@@ -9,7 +9,7 @@ import ExpenseTransaction from "../ExpenseTransaction/ExpenseTransaction";
 import { addTransactionsThunk } from "../../redux/transactions/operations";
 import { categoriesThunk } from "../../redux/categories/operations";
 import { selectCategories } from "../../redux/categories/selectors";
-import { fetchBalanceThunk } from "../../redux/auth/operations";
+import { refreshThunk } from "../../redux/auth/operations";
 
 let formSchema = Yup.object({
   sum: Yup.number().min(1).required(),
@@ -42,7 +42,7 @@ const AddTransactionForm = ({ onClose }) => {
     )
       .unwrap()
       .then(() => {
-        dispatch(fetchBalanceThunk());
+        dispatch(refreshThunk());
       });
     actions.resetForm();
   };
@@ -56,7 +56,7 @@ const AddTransactionForm = ({ onClose }) => {
       initialValues={{
         category: "Main expenses",
         incomeExpense: !isExpense,
-        sum: null,
+        sum: "",
         datepicker: new Date(),
         comment: "",
       }}
@@ -85,7 +85,11 @@ const AddTransactionForm = ({ onClose }) => {
           <ExpenseTransaction categories={category} />
         )}
         <div className={css["buttons-container"]}>
-          <button className={`${css.button} ${css.submit_btn}`} type="submit">
+          <button
+            onClick={(e) => onClose(e)}
+            className={`${css.button} ${css.submit_btn}`}
+            type="submit"
+          >
             Add
           </button>
           <button
