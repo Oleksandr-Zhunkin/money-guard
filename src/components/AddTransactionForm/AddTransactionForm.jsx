@@ -9,7 +9,12 @@ import ExpenseTransaction from "../ExpenseTransaction/ExpenseTransaction";
 import { addTransactionsThunk } from "../../redux/transactions/operations";
 import { categoriesThunk } from "../../redux/categories/operations";
 import { selectCategories } from "../../redux/categories/selectors";
-import { transactionSchema } from "../../schemas/validatorTransactionsForm";
+
+let formSchema = Yup.object({
+  sum: Yup.number().min(1).required(),
+  datepicker: Yup.date().required(),
+  comment: Yup.string().required(),
+});
 
 const AddTransactionForm = ({ onClose }) => {
   const category = useSelector(selectCategories);
@@ -23,7 +28,6 @@ const AddTransactionForm = ({ onClose }) => {
   }, [dispatch]);
 
   const handleSubmit = (values, actions) => {
-    console.log(values);
     dispatch(
       addTransactionsThunk({
         transactionDate: values.datepicker,
@@ -52,9 +56,10 @@ const AddTransactionForm = ({ onClose }) => {
         comment: "",
       }}
       onSubmit={handleSubmit}
-      validationSchema={transactionSchema}
+      validationSchema={formSchema}
     >
       <Form className={css.form}>
+        <button className={css.close} onClick={(e) => onClose(e)}></button>
         <h2 className={css.tableContent}>Add transaction</h2>
         <div className={css["switcher-container"]}>
           Incoming
@@ -75,11 +80,7 @@ const AddTransactionForm = ({ onClose }) => {
           <ExpenseTransaction categories={category} />
         )}
         <div className={css["buttons-container"]}>
-          <button
-            onClick={(e) => onClose(e)}
-            className={css.button + " qq"}
-            type="submit"
-          >
+          <button className={`${css.button} ${css.submit_btn}`} type="submit">
             Add
           </button>
           <button
