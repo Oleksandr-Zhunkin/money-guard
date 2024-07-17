@@ -8,6 +8,7 @@ import {
   getTransactionsThunk,
 } from "../../redux/transactions/operations";
 import s from "./TransactionsItem.module.css";
+import { summaryThunk } from "../../redux/categories/operations.js";
 
 const formatDate = (dateString) => {
   const date = new Date(dateString);
@@ -23,7 +24,9 @@ const TransactionsItem = ({ transaction = {}, openModal }) => {
   const { mobileUser } = useRespons();
 
   const handleDeleteTransaction = () => {
-    dispatch(deleteTransactionsThunk(transaction.id));
+    dispatch(deleteTransactionsThunk(transaction.id))
+      .unwrap()
+      .then(() => dispatch(summaryThunk()));
 
     setTimeout(() => {
       dispatch(getTransactionsThunk());

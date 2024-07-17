@@ -20,6 +20,7 @@ import {
   summaryThunk,
 } from "./redux/categories/operations.js";
 import useRespons from "./hooks/useRespons.js";
+import NotFound from "./components/NotFound/NotFound.jsx";
 
 function App() {
   const dispatch = useDispatch();
@@ -67,6 +68,8 @@ function App() {
                 </RestrictedRoute>
               }
             />
+
+            <Route path="*" element={<NotFound />} />
           </Routes>
 
           <StatisticDatePicker />
