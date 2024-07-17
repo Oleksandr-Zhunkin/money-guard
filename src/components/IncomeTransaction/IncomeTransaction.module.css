@@ -64,3 +64,36 @@ textarea.inputs {
   margin-bottom: 15px;
   resize: none;
 }
+
+.inline-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.select {
+  padding: 8px 20px;
+}
+.select select {
+  width: 200px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 0px;
+  font-size: 16px;
+}
+.option {
+  color: #333;
+}
+
+@media screen and (min-width: 768px) {
+  .inputs {
+    width: 394px;
+  }
+  .inline-objects {
+    width: 180px;
+  }
+  .inline-container {
+    flex-direction: row;
+    gap: 32px;
+  }
+}

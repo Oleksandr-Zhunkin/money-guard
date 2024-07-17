@@ -1,15 +1,16 @@
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
-import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import css from "./EditTransactionForm.module.css";
 import IncomeTransaction from "../IncomeTransaction/IncomeTransaction";
 import ExpenseTransaction from "../ExpenseTransaction/ExpenseTransaction";
 import { updateTransactionsThunk } from "../../redux/transactions/operations";
+
 import {
   categoriesThunk
 } from "../../redux/categories/operations";
+
 import { selectCategories } from "../../redux/categories/selectors";
 import { fetchBalanceThunk } from "../../redux/auth/operations";
 
@@ -34,60 +35,68 @@ const EditTransactionForm = ({
   const category = useSelector(selectCategories);
   const dispatch = useDispatch();
 
+
   useEffect(() => {
     setTimeout(() => {
       dispatch(categoriesThunk());
     }, 1000);
   }, [dispatch]);
+
   const handleSubmit = (values, actions) => {
-    console.log(values);
+    onClose();
     dispatch(
       updateTransactionsThunk({
         id: transaction.id,
         data: {
           transactionDate: values.datepicker,
-          type: transaction.type,
-          categoryId:
-            transaction.type == "INCOME"
-              ? category.find((elem) => elem.name == "Income")?.id
-              : category.find((elem) => elem.name == values.category)?.id,
+          type: values.type,
+          categoryId: values.categoryId,
           comment: values.comment,
-          amount: values.sum,
+          amount: values.type === "EXPENSE" ? -values.sum : values.sum,
         },
       })
+
     )
       .unwrap()
       .then(() => {
         dispatch(fetchBalanceThunk());
       });
+
+    );
+
+
     actions.resetForm();
   };
 
   return (
     <Formik
       initialValues={{
-        category: category.find((elem) => elem.id === transaction.categoryId)
-          ?.name,
-        sum: transaction.amount,
+        type: transaction.type,
+        sum:
+          transaction.type === "EXPENSE"
+            ? -transaction.amount
+            : transaction.amount,
         datepicker: new Date(transaction.transactionDate),
         comment: transaction.comment,
+        categoryId: transaction.categoryId,
       }}
       onSubmit={handleSubmit}
       validationSchema={formSchema}
     >
       <Form className={css.form}>
+        <button className={css.close} onClick={(e) => onClose(e)}></button>
         <h2 className={css.tableContent}>Edit transaction</h2>
         <div className={css["switcher-container"]}>
           {transaction.type == "INCOME" ? (
-            <span>Incoming</span>
-          ) : (
             <span className={css.active}>Incoming</span>
+          ) : (
+            <span>Incoming</span>
           )}
           /{" "}
           {transaction.type == "EXPENSE" ? (
-            <span>Expense</span>
-          ) : (
             <span className={css.active}>Expense</span>
+          ) : (
+            <span>Expense</span>
           )}
         </div>
         {transaction.type == "INCOME" ? (
@@ -101,8 +110,8 @@ const EditTransactionForm = ({
           />
         )}
         <div className={css["buttons-container"]}>
-          <button className={css.button} type="submit">
-            Add
+          <button className={`${css.button} ${css.submit_btn}`} type="submit">
+            Save
           </button>
           <button className={css.button} onClick={onClose} type="click">
             Cancel
