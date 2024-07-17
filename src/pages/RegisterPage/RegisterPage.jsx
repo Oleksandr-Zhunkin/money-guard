@@ -56,7 +56,6 @@ export const RegisterPage = () => {
                       type="name"
                       placeholder="Name"
                       className={s.input}
-                      required
                     />
                     <ErrorMessage
                       className={s.error}
@@ -81,7 +80,6 @@ export const RegisterPage = () => {
                       type="email"
                       placeholder="E-mail"
                       className={s.input}
-                      required
                     />
                     <ErrorMessage
                       className={s.error}
@@ -105,7 +103,6 @@ export const RegisterPage = () => {
                       type="password"
                       placeholder="Password"
                       className={s.input}
-                      required
                     />
                     <ErrorMessage
                       className={s.error}
@@ -150,9 +147,9 @@ export const RegisterPage = () => {
                 </li>
 
                 <li>
-                  <button className={s.login_btn}>
-                    <Link to="/login"> LOG IN</Link>
-                  </button>
+                  <Link className={s.login_btn} to="/login">
+                    LOG IN
+                  </Link>
                 </li>
               </ul>
             </Form>
