@@ -2,12 +2,14 @@ import { createSlice, isAnyOf } from "@reduxjs/toolkit";
 import {
   addTransactionsThunk,
   deleteTransactionsThunk,
+  fetchPeriodThunk,
   getTransactionsThunk,
   updateTransactionsThunk,
 } from "./operations";
 
 const initialState = {
   transactions: [],
+  periodTransaction: null,
   isError: false,
   isLoading: false,
 };
@@ -35,12 +37,16 @@ const slice = createSlice({
           (transaction) => transaction.id !== action.payload
         );
       })
+      .addCase(fetchPeriodThunk.fulfilled, (state, action) => {
+        state.periodTransaction = action.payload;
+      })
       .addMatcher(
         isAnyOf(
           getTransactionsThunk.pending,
           addTransactionsThunk.pending,
           deleteTransactionsThunk.pending,
-          updateTransactionsThunk.pending
+          updateTransactionsThunk.pending,
+          fetchPeriodThunk.pending
         ),
         (state) => {
           state.isLoading = true;
@@ -51,7 +57,8 @@ const slice = createSlice({
           getTransactionsThunk.fulfilled,
           addTransactionsThunk.fulfilled,
           deleteTransactionsThunk.fulfilled,
-          updateTransactionsThunk.fulfilled
+          updateTransactionsThunk.fulfilled,
+          fetchPeriodThunk.fulfilled
         ),
         (state) => {
           state.isLoading = false;
@@ -62,7 +69,8 @@ const slice = createSlice({
           getTransactionsThunk.rejected,
           addTransactionsThunk.rejected,
           deleteTransactionsThunk.rejected,
-          updateTransactionsThunk.rejected
+          updateTransactionsThunk.rejected,
+          fetchPeriodThunk.rejected
         ),
         (state, action) => {
           state.isError = action.payload;
