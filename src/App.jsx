@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Section from "./components/Section/Section";
 import Layout from "./components/Layout/Layout";
@@ -50,7 +50,10 @@ function App() {
             >
               <Route index element={<HomePage />} />
               <Route path="statistics" element={<Statistics />} />
-              <Route path="currency" element={mobileUser && <Currency />} />
+              <Route
+                path="currency"
+                element={mobileUser ? <Currency /> : <Navigate to="/" />}
+              />
             </Route>
             <Route
               path="/login"

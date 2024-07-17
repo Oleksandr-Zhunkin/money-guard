@@ -9,11 +9,7 @@ import ExpenseTransaction from "../ExpenseTransaction/ExpenseTransaction";
 import { addTransactionsThunk } from "../../redux/transactions/operations";
 import { categoriesThunk } from "../../redux/categories/operations";
 import { selectCategories } from "../../redux/categories/selectors";
-
-let formSchema = Yup.object({
-  datepicker: Yup.date().required(),
-  comment: Yup.string().required(),
-});
+import { transactionSchema } from "../../schemas/validatorTransactionsForm";
 
 const AddTransactionForm = ({ onClose }) => {
   const category = useSelector(selectCategories);
@@ -51,12 +47,12 @@ const AddTransactionForm = ({ onClose }) => {
       initialValues={{
         category: "Main expenses",
         incomeExpense: !isExpense,
-        sum: 0,
+        sum: null,
         datepicker: new Date(),
         comment: "",
       }}
       onSubmit={handleSubmit}
-      validationSchema={formSchema}
+      validationSchema={transactionSchema}
     >
       <Form className={css.form}>
         <h2 className={css.tableContent}>Add transaction</h2>
