@@ -8,20 +8,13 @@ export const NotFound = () => {
 
   return (
     <>
-      {!mobileUser && (
-        <div>
-          {(
-            <img className={s.image} src={descNotFound} alt="not found page" />
-          ) || <p className={s.text}>Not Found...</p>}
-        </div>
-      )}
-      {mobileUser && (
-        <div>
-          {(
-            <img className={s.image} src={mobNotFound} alt="not found page" />
-          ) || <p className={s.text}>Not Found...</p>}
-        </div>
-      )}
+      <div>
+        <img
+          className={s.image}
+          src={mobileUser ? mobNotFound : descNotFound}
+          alt="not found page"
+        />
+      </div>
     </>
   );
 };

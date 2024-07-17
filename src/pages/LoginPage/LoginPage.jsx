@@ -48,7 +48,6 @@ export const LoginPage = () => {
                       type="email"
                       placeholder="email"
                       className={s.input}
-                      required
                     />
                     <ErrorMessage
                       className={s.error}
@@ -67,7 +66,6 @@ export const LoginPage = () => {
                       type="password"
                       placeholder="password"
                       className={s.input}
-                      required
                     />
                     <ErrorMessage
                       className={s.error}
@@ -82,9 +80,10 @@ export const LoginPage = () => {
                 <button type="submit" className={s.login_btn}>
                   LOG IN
                 </button>
-                <button className={s.register_btn}>
-                  <Link to="/register">REGISTER</Link>
-                </button>
+
+                <Link className={s.register_btn} to="/register">
+                  REGISTER
+                </Link>
               </div>
             </Form>
           </Formik>
