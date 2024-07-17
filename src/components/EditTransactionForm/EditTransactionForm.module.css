@@ -39,6 +39,7 @@
 .button {
   width: 280px;
   height: 50px;
+  border: 0 solid #000;
   border-radius: 20px;
 
   font-family: "Poppins", sans-serif;
@@ -48,6 +49,40 @@
   letter-spacing: 0.1em;
 }
 
+.submit_btn {
+  color: #fbfbfb;
+  background: linear-gradient(
+    167deg,
+    #ffc727 0%,
+    #9e40ba 61.46%,
+    #7000ff 90.54%
+  );
+}
+
 .active {
   color: #ffb627;
+}
+
+.close {
+  display: none;
+  background-color: transparent;
+  border: 0 solid #000;
+  background: url("../../images/close.svg") no-repeat center center;
+  width: 16px;
+  height: 16px;
+}
+
+@media screen and (min-width: 768px) {
+  .form {
+    height: auto;
+    width: 540px;
+    border-radius: 8px;
+    padding: 40px 0;
+  }
+  .close {
+    display: block;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+  }
 }

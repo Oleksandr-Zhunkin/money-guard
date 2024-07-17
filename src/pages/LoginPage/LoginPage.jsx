@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import s from "./LoginPage.module.css";
 import { loginThunk } from "../../redux/auth/operations";
 import { loginFormSchema } from "../../schemas/validatorLogin";
+import Password from "../../components/Icons/PasswordIcon";
+import Email from "../../components/Icons/EmailIcon";
 
 export const LoginPage = () => {
   const dispatch = useDispatch();
@@ -18,7 +20,6 @@ export const LoginPage = () => {
     password: "",
   };
   return (
-    // <div className={s.div}>
     <div className={s.main}>
       <div className={s.wrapper}>
         <div className={s.title_wrap}>
@@ -41,37 +42,43 @@ export const LoginPage = () => {
                 <li>
                   <div className={s.input_wrap}>
                     <label className={s.label}>
-                      <span className={s.span}></span>
+                      {/* <span className={s.span}></span> */}
+                      <Email className={s.icon} />
                     </label>
-                    <Field
-                      name="email"
-                      type="email"
-                      placeholder="email"
-                      className={s.input}
-                    />
-                    <ErrorMessage
-                      className={s.error}
-                      name="email"
-                      component="span"
-                    />
+                    <div className={s.error_wrap}>
+                      <Field
+                        name="email"
+                        type="email"
+                        placeholder="email"
+                        className={s.input}
+                      />
+                      <ErrorMessage
+                        className={s.error}
+                        name="email"
+                        component="span"
+                      />
+                    </div>
                   </div>
                 </li>
                 <li>
                   <div className={s.input_wrap}>
                     <label className={s.label}>
-                      {/* <span className={s.span}>Password</span> */}
+                      {/* <span className={s.span}></span> */}
+                      <Password className={s.icon} />
+                      <div className={s.error_wrap}>
+                        <Field
+                          name="password"
+                          type="password"
+                          placeholder="password"
+                          className={s.input}
+                        />
+                        <ErrorMessage
+                          className={s.error}
+                          name="password"
+                          component="Field"
+                        />
+                      </div>
                     </label>
-                    <Field
-                      name="password"
-                      type="password"
-                      placeholder="password"
-                      className={s.input}
-                    />
-                    <ErrorMessage
-                      className={s.error}
-                      name="password"
-                      component="Field"
-                    />
                   </div>
                 </li>
               </ul>
@@ -90,6 +97,5 @@ export const LoginPage = () => {
         </div>
       </div>
     </div>
-    // </div>
   );
 };
