@@ -4,7 +4,10 @@ import s from "./StatisticsDatePicker.module.css";
 
 import Select from "react-select";
 import { useDispatch } from "react-redux";
-import { fetchPeriodThunk } from "../../redux/transactions/operations";
+import {
+  fetchPeriodThunk,
+  fetchYearThunk,
+} from "../../redux/transactions/operations";
 import { summaryThunk } from "../../redux/categories/operations";
 import { reach } from "yup";
 
@@ -72,8 +75,8 @@ const StatisticDatePicker = ({
   const yearOptions = years.map((year) => ({ value: year, label: year }));
   useEffect(() => {
     const data = { year: selectedYear, month: selectedMonth };
-
-    dispatch(selectedMonth ? fetchPeriodThunk(data) : summaryThunk());
+    const dataYear = { year: selectedYear };
+    dispatch(selectedMonth ? fetchPeriodThunk(data) : fetchYearThunk(dataYear));
   }, [selectedMonth, selectedYear, dispatch, currentYear]);
 
   return (

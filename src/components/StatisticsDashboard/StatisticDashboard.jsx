@@ -16,6 +16,8 @@ const StatisticDashboard = ({ category }) => {
   const formattedBalance = userBalance?.balance
     ?.toFixed(2)
     .replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+
+  console.log(userBalance);
   const data = {
     labels: [],
     datasets: [

@@ -3,6 +3,7 @@ import {
   addTransactionsThunk,
   deleteTransactionsThunk,
   fetchPeriodThunk,
+  fetchYearThunk,
   getTransactionsThunk,
   updateTransactionsThunk,
 } from "./operations";
@@ -40,13 +41,17 @@ const slice = createSlice({
       .addCase(fetchPeriodThunk.fulfilled, (state, action) => {
         state.periodTransaction = action.payload;
       })
+      .addCase(fetchYearThunk.fulfilled, (state, action) => {
+        state.periodTransaction = action.payload;
+      })
       .addMatcher(
         isAnyOf(
           getTransactionsThunk.pending,
           addTransactionsThunk.pending,
           deleteTransactionsThunk.pending,
           updateTransactionsThunk.pending,
-          fetchPeriodThunk.pending
+          fetchPeriodThunk.pending,
+          fetchYearThunk.pending
         ),
         (state) => {
           state.isLoading = true;
@@ -58,7 +63,8 @@ const slice = createSlice({
           addTransactionsThunk.fulfilled,
           deleteTransactionsThunk.fulfilled,
           updateTransactionsThunk.fulfilled,
-          fetchPeriodThunk.fulfilled
+          fetchPeriodThunk.fulfilled,
+          fetchYearThunk.fulfilled
         ),
         (state) => {
           state.isLoading = false;
@@ -70,7 +76,8 @@ const slice = createSlice({
           addTransactionsThunk.rejected,
           deleteTransactionsThunk.rejected,
           updateTransactionsThunk.rejected,
-          fetchPeriodThunk.rejected
+          fetchPeriodThunk.rejected,
+          fetchYearThunk.rejected
         ),
         (state, action) => {
           state.isError = action.payload;

@@ -11,26 +11,11 @@ const currentYear = getYear(new Date());
 const Statistics = () => {
   const [selectedYear, setSelectedYear] = useState(currentYear);
   const [selectedMonth, setSelectedMonth] = useState(null);
-  const [category, setCategory] = useState(null);
-  const summaryPeriod = useSelector(selectSummary);
   const period = useSelector(selectPeriodTransaction);
-  console.log(selectedMonth);
 
-  useEffect(() => {
-    if (!period) {
-      setCategory(summaryPeriod);
-    } else {
-      if (selectedMonth === null) {
-        setCategory(summaryPeriod);
-        return;
-      }
-      setCategory(period);
-      // setCategory(summaryPeriod);
-    }
-  }, [period, summaryPeriod, selectedMonth, selectedYear]);
   return (
     <div className={s.box}>
-      <StatisticDashboard category={category} />
+      <StatisticDashboard category={period} />
       <div>
         <StatisticDatePicker
           selectedYear={selectedYear}
@@ -39,7 +24,7 @@ const Statistics = () => {
           setSelectedMonth={setSelectedMonth}
           currentYear={currentYear}
         />
-        <StatisticsTable category={category} />
+        <StatisticsTable category={period} />
       </div>
     </div>
   );

@@ -42,7 +42,6 @@ const slice = createSlice({
         state.isRefresh = true;
       })
       .addCase(logoutThunk.fulfilled, () => {
-        console.log("ok");
         return initialState;
       });
   },
