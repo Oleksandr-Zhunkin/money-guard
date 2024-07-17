@@ -6,14 +6,19 @@ import CustomDatePicker from "../CustomDatePicker/CustomDatePicker";
 const AddTransactionForm = () => {
   return (
     <div className={css["inputs-container"]}>
-      <Field className={css.inputs} name="sum" type="number" placeholder="0" />
-      <ErrorMessage name="sum" />
+      <div className={css["inline-container"]}>
+        <Field
+          className={`${css.inputs} ${css["inline-objects"]}`}
+          type="number"
+          name="sum"
+        />
 
-      <Field
-        className={css.inputs}
-        component={CustomDatePicker}
-        name="datepicker"
-      />
+        <Field
+          className={`${css.inputs} ${css["inline-objects"]}`}
+          component={CustomDatePicker}
+          name="datepicker"
+        />
+      </div>
 
       <Field
         className={css.inputs}

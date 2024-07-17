@@ -62,12 +62,13 @@ const EditTransactionForm = ({
       validationSchema={formSchema}
     >
       <Form className={css.form}>
+        <button className={css.close} onClick={(e) => onClose(e)}></button>
         <h2 className={css.tableContent}>Edit transaction</h2>
         <div className={css["switcher-container"]}>
           {transaction.type == "INCOME" ? (
-            <span className={css.active}>Income</span>
+            <span className={css.active}>Incoming</span>
           ) : (
-            <span>Income</span>
+            <span>Incoming</span>
           )}
           /{" "}
           {transaction.type == "EXPENSE" ? (
@@ -87,8 +88,8 @@ const EditTransactionForm = ({
           />
         )}
         <div className={css["buttons-container"]}>
-          <button className={css.button} type="submit">
-            Edit
+          <button className={`${css.button} ${css.submit_btn}`} type="submit">
+            Save
           </button>
           <button className={css.button} onClick={onClose} type="click">
             Cancel
