@@ -4,7 +4,7 @@ export const loginFormSchema = Yup.object().shape({
   email: Yup.string().required("Number is required!"),
   password: Yup.string()
     .min(6, "Name must be at least 6 characters!")
-    .max(13, "Number must be less than 12 characters!")
+    .max(30, "Number must be less than 12 characters!")
     .required("Password is required!"),
 });
 
