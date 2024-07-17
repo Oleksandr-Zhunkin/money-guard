@@ -79,7 +79,11 @@ const AddTransactionForm = ({ onClose }) => {
           <ExpenseTransaction categories={category} />
         )}
         <div className={css["buttons-container"]}>
-          <button className={css.button + " qq"} type="submit">
+          <button
+            onClick={(e) => onClose(e)}
+            className={css.button + " qq"}
+            type="submit"
+          >
             Add
           </button>
           <button
