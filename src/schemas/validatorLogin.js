@@ -1,7 +1,11 @@
 import * as Yup from "yup";
 
+const regPattern = /^\w+(.\w+)?@[a-zA-Z_]+?.[a-zA-Z]{2,3}$/;
+
 export const loginFormSchema = Yup.object().shape({
-  email: Yup.string().required("Email is required!"),
+  email: Yup.string()
+    .required("Email is required!")
+    .matches(regPattern, "Email must consist only english of letters!"),
   password: Yup.string()
     .min(6, "Password must be at least 6 characters!")
     .max(40, "Password must be less than 12 characters!")
@@ -15,7 +19,9 @@ export const registerFormSchema = Yup.object().shape({
     .max(20, "Name must be less than 20 characters!")
     // .matches(/^[A-Za-z]+$/, "Name must consist only of letters!")
     .required("Name is required!"),
-  email: Yup.string().required("Email is required!"),
+  email: Yup.string()
+    .required("Email is required!")
+    .matches(regPattern, "Email must consist only english of letters!"),
   password: Yup.string()
     .min(6, "Password must be at least 6 characters!")
     .max(13, "Password must be less than 12 characters!")
