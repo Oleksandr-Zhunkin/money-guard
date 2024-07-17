@@ -71,8 +71,6 @@ function App() {
 
             <Route path="*" element={<NotFound />} />
           </Routes>
-
-          <StatisticDatePicker />
         </Section>
       )}
     </>
