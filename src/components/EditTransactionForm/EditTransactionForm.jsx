@@ -9,6 +9,7 @@ import { updateTransactionsThunk } from "../../redux/transactions/operations";
 import { categoriesThunk } from "../../redux/categories/operations";
 import { selectCategories } from "../../redux/categories/selectors";
 import { fetchBalanceThunk } from "../../redux/auth/operations";
+import { useEffect } from "react";
 
 let formSchema = Yup.object({
   datepicker: Yup.date().required(),
@@ -50,7 +51,15 @@ const EditTransactionForm = ({
           amount: values.type === "EXPENSE" ? -values.sum : values.sum,
         },
       })
-    );
+
+    )
+      .unwrap()
+      .then(() => {
+        dispatch(fetchBalanceThunk());
+      });
+
+
+
     actions.resetForm();
   };
 

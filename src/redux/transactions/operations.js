@@ -20,7 +20,11 @@ export const addTransactionsThunk = createAsyncThunk(
   async (transaction, thunkApi) => {
     try {
       const { data } = await guardApi.post("/api/transactions", transaction);
+
       await thunkApi.dispatch(fetchBalanceThunk());
+
+
+
       return data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
