@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import Loader from "../../components/Loader/Loader";
 import useRespons from "../../hooks/useRespons";
+import Loader from "../../components/Loader/Loader";
 
 import desktopImage from "../../images/currency/currency-dekstop@1x.webp";
 import tabletImage from "../../images/currency/currency-tablet@1x.webp";

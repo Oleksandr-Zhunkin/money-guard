@@ -31,12 +31,12 @@ const AddTransactionForm = ({ onClose }) => {
     dispatch(
       addTransactionsThunk({
         transactionDate: values.datepicker,
-        type: !isExpense ? "INCOME" : "EXPENSE",
-        categoryId: !isExpense
+        type: isExpense ? "INCOME" : "EXPENSE",
+        categoryId: isExpense
           ? category.find((elem) => elem.name == "Income").id
           : category.find((elem) => elem.name == values.category).id,
         comment: values.comment,
-        amount: !isExpense ? values.sum : -values.sum,
+        amount: isExpense ? values.sum : -values.sum,
       })
     );
     actions.resetForm();
@@ -79,7 +79,11 @@ const AddTransactionForm = ({ onClose }) => {
           <ExpenseTransaction categories={category} />
         )}
         <div className={css["buttons-container"]}>
-          <button className={css.button + " qq"} type="submit">
+          <button
+            onClick={(e) => onClose(e)}
+            className={css.button + " qq"}
+            type="submit"
+          >
             Add
           </button>
           <button
