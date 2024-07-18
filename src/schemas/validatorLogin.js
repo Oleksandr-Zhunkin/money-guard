@@ -27,6 +27,6 @@ export const registerFormSchema = Yup.object().shape({
     .max(13, "Password must be less than 12 characters!")
     .required("Password is required!"),
   confirmPassword: Yup.string()
-    .oneOf([Yup.ref("password"), null], "Passwords must match")
+    .oneOf([Yup.ref("password"), null], "Passwords must be the same")
     .required("Is required!"),
 });
