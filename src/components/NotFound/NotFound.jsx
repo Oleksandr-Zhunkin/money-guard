@@ -1,7 +1,10 @@
+import { Link } from "react-router-dom";
+import { MdOutlineKeyboardBackspace } from "react-icons/md";
+
+import s from "../NotFound/NotFound.module.scss";
 import mobNotFound from "../../images/notFound/mob-notFound.png";
 import descNotFound from "../../images/notFound/desk-notFound.png";
 import useResponse from "../../hooks/useResponse";
-import s from "../NotFound/NotFound.module.scss";
 
 export const NotFound = () => {
   const { isMobile } = useResponse();
@@ -9,6 +12,11 @@ export const NotFound = () => {
   return (
     <>
       <div>
+        <Link to="/" className={s.go_back}>
+          <MdOutlineKeyboardBackspace className={s.icon} />
+          Go Home
+        </Link>
+
         <img
           className={s.image}
           src={isMobile ? mobNotFound : descNotFound}
