@@ -18,7 +18,12 @@ import NotFound from "./components/NotFound/NotFound.jsx";
 
 import { refreshThunk } from "./redux/auth/operations";
 import { selectIsRefresh } from "./redux/auth/selectors";
+<<<<<<< Updated upstream
 import useResponse from "./hooks/useResponse.js";
+=======
+import useRespons from "./hooks/useRespons.js";
+import { Toaster } from "react-hot-toast";
+>>>>>>> Stashed changes
 
 function App() {
   const dispatch = useDispatch();
@@ -68,6 +73,19 @@ function App() {
 
         <Route path="*" element={<NotFound />} />
       </Routes>
+      <Toaster
+        position="top-right"
+        toastOptions={{
+          style: {
+            background: "#ff868d",
+            padding: "16px",
+            color: "#fbfbfb",
+            fontWeight: "normal",
+            fontSize: "16px",
+          },
+          duration: 3000,
+        }}
+      />
     </Section>
   );
 }

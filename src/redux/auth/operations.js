@@ -1,4 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import toast from "react-hot-toast";
+
 import {
   clearAuthHeader,
   guardApi,
@@ -13,6 +15,7 @@ export const registerThunk = createAsyncThunk(
       setAuthHeader(data.token);
       return data;
     } catch (error) {
+      toast(error.message);
       return thunkApi.rejectWithValue(error.message);
     }
   }
@@ -26,6 +29,7 @@ export const loginThunk = createAsyncThunk(
       setAuthHeader(data.token);
       return data;
     } catch (error) {
+      toast(error.message);
       return thunkApi.rejectWithValue(error.message);
     }
   }
