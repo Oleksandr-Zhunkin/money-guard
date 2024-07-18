@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import useRespons from "../../hooks/useRespons";
+import useResponse from "../../hooks/useResponse";
 
 import desktopImage from "../../images/currency/currency-dekstop@1x.webp";
 import tabletImage from "../../images/currency/currency-tablet@1x.webp";
@@ -11,7 +11,7 @@ import { monoThunk } from "../../redux/currency/operations";
 import { selectData, selectMono } from "../../redux/currency/selectors";
 
 const Currency = () => {
-  const { mobileUser, tabletUser, desktopUser } = useRespons();
+  const { isMobile, isTablet, isDesktop } = useResponse();
   const dispatch = useDispatch();
   const currency = useSelector(selectMono);
   const dataFetch = useSelector(selectData);
@@ -33,9 +33,9 @@ const Currency = () => {
   }
 
   const getImage = () => {
-    if (desktopUser) return desktopImage;
-    if (tabletUser) return tabletImage;
-    if (mobileUser) return mobileImage;
+    if (isDesktop) return desktopImage;
+    if (isTablet) return tabletImage;
+    if (isMobile) return mobileImage;
     return desktopImage;
   };
 

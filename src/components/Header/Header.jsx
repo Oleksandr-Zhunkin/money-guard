@@ -9,14 +9,14 @@ import exitIcon from "../../images/icons/exit-icon.svg";
 import Logout from "../Logout/Logout";
 import Container from "../Container/Container";
 
-import useRespons from "../../hooks/useRespons";
+import useResponse from "../../hooks/useResponse";
 import { selectIsLoggedIn, selectUser } from "../../redux/auth/selectors";
 
 const Header = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const user = useSelector(selectUser);
 
-  const { tabletUser } = useRespons();
+  const { isTablet } = useResponse();
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const handleModalOpen = () => {
@@ -45,7 +45,7 @@ const Header = () => {
                   type="button"
                 >
                   <img className={s.exit_icon} src={exitIcon} alt="exit" />
-                  {tabletUser && <p className={s.exit_text}>Exit</p>}
+                  {isTablet && <p className={s.exit_text}>Exit</p>}
                 </button>
               </div>
             </div>
