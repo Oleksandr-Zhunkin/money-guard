@@ -38,7 +38,7 @@ const TransactionsList = () => {
   return (
     <>
       {!mobileUser ? (
-        <table className={s.wrapper}>
+        <table className={s.wrapper_tab}>
           <thead>
             <tr>
               <th>Date</th>

@@ -1,18 +1,20 @@
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import s from "./RegisterPage.module.css";
-import { registerThunk } from "../../redux/auth/operations";
 import { Field, Form, Formik, ErrorMessage } from "formik";
-import { registerFormSchema } from "../../schemas/validatorLogin";
-import User from "../../components/Icons/UserIcon";
 import PasswordStrengthBar from "react-password-strength-bar-with-style-item";
+
+import s from "./RegisterPage.module.scss";
+
+import User from "../../components/Icons/UserIcon";
 import Email from "../../components/Icons/EmailIcon";
 import Password from "../../components/Icons/PasswordIcon";
 
-export const RegisterPage = () => {
+import { registerThunk } from "../../redux/auth/operations";
+import { registerFormSchema } from "../../schemas/validatorLogin";
+
+const RegisterPage = () => {
   const dispatch = useDispatch();
   const handleSubmit = (values) => {
-    console.log(values);
     dispatch(registerThunk(values));
   };
 
@@ -158,3 +160,4 @@ export const RegisterPage = () => {
     </div>
   );
 };
+export default RegisterPage;

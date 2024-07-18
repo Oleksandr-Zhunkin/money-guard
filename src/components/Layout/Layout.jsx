@@ -11,9 +11,8 @@ const Layout = () => {
       <Container>
         <div className={s.wrapper}>
           <Navigation />
-          <div>
-            <Outlet />
-          </div>
+
+          <Outlet />
         </div>
       </Container>
     </>

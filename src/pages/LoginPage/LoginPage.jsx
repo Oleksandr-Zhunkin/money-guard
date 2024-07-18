@@ -1,17 +1,19 @@
 import { Field, Form, Formik, ErrorMessage } from "formik";
-
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import s from "./LoginPage.module.css";
-import { loginThunk } from "../../redux/auth/operations";
-import { loginFormSchema } from "../../schemas/validatorLogin";
+
+import s from "./LoginPage.module.scss";
+
 import Password from "../../components/Icons/PasswordIcon";
 import Email from "../../components/Icons/EmailIcon";
 
-export const LoginPage = () => {
+import { loginThunk } from "../../redux/auth/operations";
+import { loginFormSchema } from "../../schemas/validatorLogin";
+
+const LoginPage = () => {
   const dispatch = useDispatch();
+
   const handleSubmit = (values) => {
-    console.log(values);
     dispatch(loginThunk(values));
   };
 
@@ -102,3 +104,4 @@ export const LoginPage = () => {
     </div>
   );
 };
+export default LoginPage;

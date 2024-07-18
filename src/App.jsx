@@ -1,25 +1,24 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate, Route, Routes } from "react-router-dom";
-import "./App.css";
+
+import "./App.scss";
+import LoginPage from "./pages/LoginPage/LoginPage";
+import RegisterPage from "./pages/RegisterPage/RegisterPage";
+import HomePage from "./pages/HomePage/HomePage";
+import Statistics from "./pages/Statistics/Statistics.jsx";
+import CurrencyTab from "./pages/CurrencyTab/CurrencyTab.jsx";
+
 import Section from "./components/Section/Section";
 import Layout from "./components/Layout/Layout";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import RestrictedRoute from "./components/RestrictedRoute/RestrictedRoute";
-import { LoginPage } from "./pages/LoginPage/LoginPage";
-import { RegisterPage } from "./pages/RegisterPage/RegisterPage";
-import HomePage from "./pages/HomePage/HomePage";
 import Loader from "./components/Loader/Loader";
+import NotFound from "./components/NotFound/NotFound.jsx";
+
 import { refreshThunk } from "./redux/auth/operations";
 import { selectIsRefresh } from "./redux/auth/selectors";
-import Currency from "./components/Currency/Currency.jsx";
-import Statistics from "./pages/Statistics/Statistics.jsx";
-import {
-  categoriesThunk,
-  summaryThunk,
-} from "./redux/categories/operations.js";
 import useRespons from "./hooks/useRespons.js";
-import NotFound from "./components/NotFound/NotFound.jsx";
 
 function App() {
   const dispatch = useDispatch();
@@ -28,8 +27,6 @@ function App() {
 
   useEffect(() => {
     dispatch(refreshThunk());
-    dispatch(categoriesThunk());
-    dispatch(summaryThunk());
   }, [dispatch]);
 
   return isRefreshing ? (
@@ -49,7 +46,7 @@ function App() {
           <Route path="statistics" element={<Statistics />} />
           <Route
             path="currency"
-            element={mobileUser ? <Currency /> : <Navigate to="/" />}
+            element={mobileUser ? <CurrencyTab /> : <Navigate to="/" />}
           />
         </Route>
         <Route

@@ -4,12 +4,14 @@ import s from "./Loader.module.css";
 
 export default function Loader() {
   return (
-    <FallingLines
-      color="#FFFFFF"
-      width="100"
-      visible={true}
-      ariaLabel="falling-circles-loading"
-      wrapperClass={s.loader}
-    />
+    <div className={s.wrapper}>
+      <FallingLines
+        color="#FFFFFF"
+        width="100"
+        visible={true}
+        ariaLabel="falling-circles-loading"
+        wrapperClass={s.loader}
+      />
+    </div>
   );
 }
