@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import { useDispatch, useSelector } from "react-redux";
 import IconEdit from "../Icons/IconEdit";
-import useRespons from "../../hooks/useRespons.js";
+import useResponse from "../../hooks/useResponse.js";
 import { selectCategories } from "../../redux/categories/selectors.js";
 import {
   deleteTransactionsThunk,
@@ -21,7 +21,7 @@ const formatDate = (dateString) => {
 const TransactionsItem = ({ transaction = {}, openModal }) => {
   const dispatch = useDispatch();
   const displayType = transaction.type === "INCOME" ? "+" : "-";
-  const { mobileUser } = useRespons();
+  const { isMobile } = useResponse();
 
   const handleDeleteTransaction = () => {
     dispatch(deleteTransactionsThunk(transaction.id))
@@ -136,7 +136,7 @@ const TransactionsItem = ({ transaction = {}, openModal }) => {
     </li>
   );
 
-  return mobileUser ? transactionCard : transactionRow;
+  return isMobile ? transactionCard : transactionRow;
 };
 
 export default TransactionsItem;

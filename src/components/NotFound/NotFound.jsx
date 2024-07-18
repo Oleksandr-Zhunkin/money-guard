@@ -1,17 +1,17 @@
 import mobNotFound from "../../images/notFound/mob-notFound.png";
 import descNotFound from "../../images/notFound/desk-notFound.png";
-import useRespons from "../../hooks/useRespons";
+import useResponse from "../../hooks/useResponse";
 import s from "../NotFound/NotFound.module.scss";
 
 export const NotFound = () => {
-  const { mobileUser } = useRespons();
+  const { isMobile } = useResponse();
 
   return (
     <>
       <div>
         <img
           className={s.image}
-          src={mobileUser ? mobNotFound : descNotFound}
+          src={isMobile ? mobNotFound : descNotFound}
           alt="not found page"
         />
       </div>

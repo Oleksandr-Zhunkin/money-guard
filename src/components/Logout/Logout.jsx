@@ -5,16 +5,16 @@ import s from "./Logout.module.scss";
 import Logo from "../../images/icons/logo.svg";
 
 import { logoutThunk } from "../../redux/auth/operations";
-import useRespons from "../../hooks/useRespons";
+import useResponse from "../../hooks/useResponse";
 
 const Logout = ({ modalIsOpen, handleModalClose }) => {
   const dispatch = useDispatch();
-  const { mobileUser } = useRespons();
+  const { isMobile } = useResponse();
 
   return (
     <ModalWindow isOpen={modalIsOpen} onClose={handleModalClose}>
       <div className={s.box}>
-        {!mobileUser && (
+        {!isMobile && (
           <>
             <img src={Logo} alt="logo" className={s.logo} />
             <h4 className={s.title}>Money Guard</h4>
