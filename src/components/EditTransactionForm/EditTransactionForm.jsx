@@ -2,7 +2,8 @@ import { Form, Formik } from "formik";
 import * as Yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
 
-import css from "./EditTransactionForm.module.css";
+import css from "./EditTransactionForm.module.scss";
+
 import IncomeTransaction from "../IncomeTransaction/IncomeTransaction";
 import ExpenseTransaction from "../ExpenseTransaction/ExpenseTransaction";
 import { updateTransactionsThunk } from "../../redux/transactions/operations";

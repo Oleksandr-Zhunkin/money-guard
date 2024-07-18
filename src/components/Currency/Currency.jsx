@@ -1,12 +1,12 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import useRespons from "../../hooks/useRespons";
-import Loader from "../../components/Loader/Loader";
 
 import desktopImage from "../../images/currency/currency-dekstop@1x.webp";
 import tabletImage from "../../images/currency/currency-tablet@1x.webp";
 import mobileImage from "../../images/currency/currency-mobile@1x.webp";
 
-import s from "./Currency.module.css";
+import s from "./Currency.module.scss";
+
 import { useDispatch, useSelector } from "react-redux";
 import { monoThunk } from "../../redux/currency/operations";
 import { selectData, selectMono } from "../../redux/currency/selectors";
@@ -14,7 +14,6 @@ import { selectData, selectMono } from "../../redux/currency/selectors";
 const Currency = () => {
   const { mobileUser, tabletUser, desktopUser } = useRespons();
   const dispatch = useDispatch();
-  const [loading, setLoading] = useState(true);
   const currency = useSelector(selectMono);
   const dataFetch = useSelector(selectData);
 
@@ -29,10 +28,6 @@ const Currency = () => {
       dispatch(monoThunk());
     }
   }, [currency.length, dataFetch, dispatch]);
-
-  // if (loading) {
-  //   return <Loader />;
-  // }
 
   if (!currency) {
     return <div>No currency data available.</div>;

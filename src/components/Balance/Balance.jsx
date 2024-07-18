@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import { selectUser } from "../../redux/auth/selectors";
 
-import s from "./Balance.module.css";
+import s from "./Balance.module.scss";
 
 const Balance = () => {
   const userBalance = useSelector(selectUser);

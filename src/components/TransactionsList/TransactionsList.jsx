@@ -1,14 +1,22 @@
 import { useSelector } from "react-redux";
 import { useState } from "react";
-import TransactionsItem from "../TransactionsItem/TransactionsItem";
-import { selectTransactions } from "../../redux/transactions/selectors.js";
-import useRespons from "../../hooks/useRespons.js";
-import s from "./TransactionsList.module.css";
+
+import s from "./TransactionsList.module.scss";
+
 import ModalWindow from "../ModalWindow/ModalWindow";
 import EditTransactionForm from "../EditTransactionForm/EditTransactionForm";
+import TransactionsItem from "../TransactionsItem/TransactionsItem";
+import Loader from "../Loader/Loader.jsx";
+
+import {
+  selectIsLoading,
+  selectTransactions,
+} from "../../redux/transactions/selectors.js";
+import useRespons from "../../hooks/useRespons.js";
 
 const TransactionsList = () => {
   const transactions = useSelector(selectTransactions);
+  const isLoading = useSelector(selectIsLoading);
   const { mobileUser } = useRespons();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedTransaction, setSelectedTransaction] = useState(null);
@@ -35,7 +43,9 @@ const TransactionsList = () => {
     (a, b) => new Date(b.transactionDate) - new Date(a.transactionDate)
   );
 
-  return (
+  return isLoading ? (
+    <Loader />
+  ) : (
     <>
       {!mobileUser ? (
         <table className={s.wrapper_tab}>
