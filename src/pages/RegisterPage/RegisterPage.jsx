@@ -130,7 +130,7 @@ const RegisterPage = () => {
                           required
                         />
                         <ErrorMessage
-                          className={s.error}
+                          className={s.error_confirm}
                           name="confirmPassword"
                           component="span"
                         />

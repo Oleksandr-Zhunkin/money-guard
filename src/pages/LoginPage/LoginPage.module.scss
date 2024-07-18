@@ -20,8 +20,8 @@
 
 .wrapper {
   border-radius: 8px;
-  width: 320px;
-  height: 568px;
+  min-width: 320px;
+  min-height: 568px;
 
   margin: 0 auto;
   padding: 62px 80px;
@@ -53,7 +53,9 @@
   flex-direction: column;
   gap: 40px;
   padding-top: 52px;
-  padding-bottom: 52px;
+  padding-bottom: 40px;
+  justify-content: center;
+  align-items: center;
 }
 .input_wrap {
   position: relative;
@@ -78,6 +80,7 @@
 .input {
   width: 100%;
   padding-left: 55px;
+  // position: absolute;
 
   min-width: 280px;
   min-height: 35px;
@@ -96,7 +99,7 @@
 }
 .icon {
   position: absolute;
-  left: 0;
+  left: 10px;
   bottom: 5px;
   top: 5px;
   color: lightgray;
@@ -159,6 +162,9 @@
   bottom: -25px;
 }
 @media only screen and (min-width: 768px) {
+  // .input_wrap {
+  //   min-width: 280px;
+  // }
   .wrapper {
     margin: 0 auto;
 
