@@ -18,12 +18,6 @@ import NotFound from "./components/NotFound/NotFound.jsx";
 
 import { refreshThunk } from "./redux/auth/operations";
 import { selectIsRefresh } from "./redux/auth/selectors";
-import CurrencyTab from "./components/Currency/Currency.jsx";
-import Statistics from "./pages/Statistics/Statistics.jsx";
-import {
-  categoriesThunk,
-  summaryThunk,
-} from "./redux/categories/operations.js";
 import useRespons from "./hooks/useRespons.js";
 
 function App() {
