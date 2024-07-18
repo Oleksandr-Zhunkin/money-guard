@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate, Route, Routes } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
 
 import "./App.scss";
 import LoginPage from "./pages/LoginPage/LoginPage";
@@ -68,6 +69,19 @@ function App() {
 
         <Route path="*" element={<NotFound />} />
       </Routes>
+      <Toaster
+        position="top-right"
+        toastOptions={{
+          style: {
+            background: "#ff868d",
+            padding: "16px",
+            color: "#fbfbfb",
+            fontWeight: "normal",
+            fontSize: "16px",
+          },
+          duration: 3000,
+        }}
+      />
     </Section>
   );
 }
