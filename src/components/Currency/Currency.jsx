@@ -6,7 +6,6 @@ import tabletImage from "../../images/currency/currency-tablet@1x.webp";
 import mobileImage from "../../images/currency/currency-mobile@1x.webp";
 
 import s from "./Currency.module.scss";
-
 import { useDispatch, useSelector } from "react-redux";
 import { monoThunk } from "../../redux/currency/operations";
 import { selectData, selectMono } from "../../redux/currency/selectors";

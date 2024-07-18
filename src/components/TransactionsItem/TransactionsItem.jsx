@@ -1,10 +1,6 @@
 import clsx from "clsx";
 import { useDispatch, useSelector } from "react-redux";
-
-import s from "./TransactionsItem.module.scss";
-
 import IconEdit from "../Icons/IconEdit";
-
 import useRespons from "../../hooks/useRespons.js";
 import { selectCategories } from "../../redux/categories/selectors.js";
 import {
@@ -12,6 +8,7 @@ import {
   getTransactionsThunk,
 } from "../../redux/transactions/operations";
 import { refreshThunk } from "../../redux/auth/operations.js";
+import s from "./TransactionsItem.module.scss";
 
 const formatDate = (dateString) => {
   const date = new Date(dateString);
