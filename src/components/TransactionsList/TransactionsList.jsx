@@ -3,7 +3,7 @@ import { useState } from "react";
 import TransactionsItem from "../TransactionsItem/TransactionsItem";
 import { selectTransactions } from "../../redux/transactions/selectors.js";
 import useRespons from "../../hooks/useRespons.js";
-import s from "./TransactionsList.module.css";
+import s from "./TransactionsList.module.scss";
 import ModalWindow from "../ModalWindow/ModalWindow";
 import EditTransactionForm from "../EditTransactionForm/EditTransactionForm";
 

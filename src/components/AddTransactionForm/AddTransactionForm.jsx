@@ -15,46 +15,70 @@ let formSchema = Yup.object({
   sum: Yup.number().min(1).required(),
   datepicker: Yup.date().required(),
   comment: Yup.string().required(),
+  category: Yup.object()
+    .shape({
+      value: Yup.string().required(),
+      label: Yup.string().required(),
+    })
+    .required(),
 });
 
 const AddTransactionForm = ({ onClose }) => {
-  const category = useSelector(selectCategories);
+  const categories = useSelector(selectCategories);
   const [isExpense, setIsIncome] = useState(true);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    setTimeout(() => {
-      dispatch(categoriesThunk());
-    }, 500);
+    dispatch(categoriesThunk());
   }, [dispatch]);
 
   const handleSubmit = (values, actions) => {
-    dispatch(
-      addTransactionsThunk({
-        transactionDate: values.datepicker,
-        type: isExpense ? "INCOME" : "EXPENSE",
-        categoryId: isExpense
-          ? category.find((elem) => elem.name === "Income").id
-          : category.find((elem) => elem.name === values.category).id,
-        comment: values.comment,
-        amount: isExpense ? values.sum : -values.sum,
-      })
-    )
+    const categoryName = isExpense ? "Income" : values.category.value;
+    const category = categories.find((elem) => elem.name === categoryName);
+
+    if (!category) {
+      console.error(`Category not found: ${categoryName}`);
+      return;
+    }
+
+    const data = {
+      transactionDate: values.datepicker,
+      type: isExpense ? "INCOME" : "EXPENSE",
+      categoryId: category.id,
+      comment: values.comment,
+      amount: isExpense ? values.sum : -values.sum,
+    };
+
+    console.log("Submitting transaction data:", data);
+
+    dispatch(addTransactionsThunk(data))
       .unwrap()
       .then(() => {
         dispatch(refreshThunk());
+        actions.resetForm();
+      })
+      .catch((error) => {
+        console.error("Error adding transaction:", error);
       });
-    actions.resetForm();
   };
 
   const handleOnChange = () => {
     setIsIncome(!isExpense);
   };
 
+  if (!categories.length) {
+    return <div>Loading categories...</div>;
+  }
+
+  const categoryOptions = categories.map((cat) => ({
+    value: cat.name,
+    label: cat.name,
+  }));
+
   return (
     <Formik
       initialValues={{
-        category: "Main expenses",
+        category: { value: "Main expenses", label: "Main expenses" },
         incomeExpense: !isExpense,
         sum: "",
         datepicker: new Date(),
@@ -64,7 +88,7 @@ const AddTransactionForm = ({ onClose }) => {
       validationSchema={formSchema}
     >
       <Form className={css.form}>
-        <button className={css.close} onClick={(e) => onClose(e)}></button>
+        <button className={css.close} onClick={onClose}></button>
         <h2 className={css.tableContent}>Add transaction</h2>
         <div className={css["switcher-container"]}>
           Incoming
@@ -82,21 +106,13 @@ const AddTransactionForm = ({ onClose }) => {
         {isExpense ? (
           <IncomeTransaction />
         ) : (
-          <ExpenseTransaction categories={category} />
+          <ExpenseTransaction categories={categoryOptions} />
         )}
         <div className={css["buttons-container"]}>
-          <button
-            onClick={(e) => onClose(e)}
-            className={`${css.button} ${css.submit_btn}`}
-            type="submit"
-          >
+          <button className={`${css.button} ${css.submit_btn}`} type="submit">
             Add
           </button>
-          <button
-            className={css.button}
-            onClick={(e) => onClose(e)}
-            type="click"
-          >
+          <button className={css.button} type="button" onClick={onClose}>
             Cancel
           </button>
         </div>

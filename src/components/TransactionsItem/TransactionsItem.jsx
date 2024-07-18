@@ -7,8 +7,13 @@ import {
   deleteTransactionsThunk,
   getTransactionsThunk,
 } from "../../redux/transactions/operations";
+<<<<<<< Updated upstream
 import s from "./TransactionsItem.module.css";
 import { refreshThunk } from "../../redux/auth/operations.js";
+=======
+import s from "./TransactionsItem.module.scss";
+import { summaryThunk } from "../../redux/categories/operations.js";
+>>>>>>> Stashed changes
 
 const formatDate = (dateString) => {
   const date = new Date(dateString);

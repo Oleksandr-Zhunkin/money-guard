@@ -1,12 +1,11 @@
 import "react-datepicker/dist/react-datepicker.css";
-import { useEffect, useState } from "react";
+import { useEffect} from "react";
 import s from "./StatisticsDatePicker.module.css";
 
 import Select from "react-select";
 import { useDispatch } from "react-redux";
 import { fetchPeriodThunk } from "../../redux/transactions/operations";
 import { summaryThunk } from "../../redux/categories/operations";
-import { reach } from "yup";
 
 const customStyles = {
   control: (provided) => ({

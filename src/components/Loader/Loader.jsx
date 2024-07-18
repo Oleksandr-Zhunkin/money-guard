@@ -1,6 +1,6 @@
 import { FallingLines } from "react-loader-spinner";
 
-import s from "./Loader.module.css";
+import s from "./Loader.module.scss";
 
 export default function Loader() {
   return (

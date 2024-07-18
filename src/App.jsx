@@ -12,7 +12,7 @@ import HomePage from "./pages/HomePage/HomePage";
 import Loader from "./components/Loader/Loader";
 import { refreshThunk } from "./redux/auth/operations";
 import { selectIsRefresh } from "./redux/auth/selectors";
-import Currency from "./components/Currency/Currency.jsx";
+import CurrencyTab from "./components/Currency/Currency.jsx";
 import Statistics from "./pages/Statistics/Statistics.jsx";
 import {
   categoriesThunk,
@@ -49,7 +49,7 @@ function App() {
           <Route path="statistics" element={<Statistics />} />
           <Route
             path="currency"
-            element={mobileUser ? <Currency /> : <Navigate to="/" />}
+            element={mobileUser ? <CurrencyTab /> : <Navigate to="/" />}
           />
         </Route>
         <Route
