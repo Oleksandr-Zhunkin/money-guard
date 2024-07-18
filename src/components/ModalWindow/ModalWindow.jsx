@@ -1,10 +1,23 @@
 import Modal from "react-modal";
-
 import s from "./ModalWindow.module.scss";
+
+import { useEffect } from "react";
 
 Modal.setAppElement("#root");
 
 const ModalWindow = ({ children, isOpen, onClose }) => {
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [isOpen]);
+
   return (
     <div>
       <Modal
