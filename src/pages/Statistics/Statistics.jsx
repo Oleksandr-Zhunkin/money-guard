@@ -1,12 +1,14 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { getYear } from "date-fns";
+import s from "./Statistics.module.scss";
+
 import StatisticDashboard from "../../components/StatisticsDashboard/StatisticDashboard";
 import StatisticDatePicker from "../../components/StatisticsDataPicker/StatisticsDatePicker";
 import StatisticsTable from "../../components/StatisticsTable/StatisticsTable";
-import s from "./Statistics.module.scss";
+
 import { useSelector } from "react-redux";
-import { selectSummary } from "../../redux/categories/selectors";
 import { selectPeriodTransaction } from "../../redux/transactions/selectors";
-import { getYear } from "date-fns";
+
 const currentYear = getYear(new Date());
 const Statistics = () => {
   const [selectedYear, setSelectedYear] = useState(currentYear);

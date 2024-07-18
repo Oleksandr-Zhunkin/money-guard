@@ -12,6 +12,8 @@ const CustomDatePicker = ({ field, form, ...props }) => {
       onChange={(val) => {
         form.setFieldValue(field.name, val);
       }}
+      maxDate={new Date()}
+      calendarStartDay={1}
       icon={
         <svg
           width="24"
