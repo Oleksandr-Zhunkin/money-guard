@@ -1,6 +1,7 @@
 import { ErrorMessage, Field } from "formik";
 
-import css from "./IncomeTransaction.module.css";
+import css from "./IncomeTransaction.module.scss";
+
 import CustomDatePicker from "../CustomDatePicker/CustomDatePicker";
 
 const AddTransactionForm = () => {

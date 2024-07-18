@@ -1,5 +1,7 @@
 import { ErrorMessage, Field } from "formik";
-import css from "../IncomeTransaction/IncomeTransaction.module.css";
+
+import css from "../IncomeTransaction/IncomeTransaction.module.scss";
+
 import CustomDatePicker from "../CustomDatePicker/CustomDatePicker";
 import CustomSelect from "./CustomSelect";
 

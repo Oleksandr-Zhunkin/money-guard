@@ -2,6 +2,7 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
 
 import s from "./StatisticDashboard.module.scss";
+
 import { useSelector } from "react-redux";
 import { selectUser } from "../../redux/auth/selectors";
 
@@ -16,6 +17,7 @@ const StatisticDashboard = ({ category }) => {
   const formattedBalance = userBalance?.balance
     ?.toFixed(2)
     .replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+
   const data = {
     labels: [],
     datasets: [

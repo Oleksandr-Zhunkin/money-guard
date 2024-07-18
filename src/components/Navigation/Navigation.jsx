@@ -1,13 +1,17 @@
 import { NavLink, useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
+import clsx from "clsx";
+
 import s from "../Navigation/Navigation.module.scss";
+
 import HomeIcon from "../Icons/IconHome";
 import IconStatistics from "../Icons/IconStatistics";
 import IconCurrency from "../Icons/IconCurrency";
-import clsx from "clsx";
-import useRespons from "../../hooks/useRespons";
+
 import Balance from "../Balance/Balance";
 import Currency from "../Currency/Currency";
-import { useEffect, useState } from "react";
+
+import useRespons from "../../hooks/useRespons";
 
 const buildLinkClass = ({ isActive }) => {
   return clsx(s.link, isActive && s.active);

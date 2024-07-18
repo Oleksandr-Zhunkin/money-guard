@@ -34,11 +34,14 @@ const slice = createSlice({
         state.user = action.payload;
         state.isLoggedIn = true;
         state.isRefresh = false;
+        state.isLoading = false;
       })
       .addCase(refreshThunk.rejected, (state) => {
+        state.isLoading = false;
         state.isRefresh = false;
       })
       .addCase(refreshThunk.pending, (state) => {
+        state.isLoading = true;
         state.isRefresh = true;
       })
       .addCase(logoutThunk.fulfilled, () => {

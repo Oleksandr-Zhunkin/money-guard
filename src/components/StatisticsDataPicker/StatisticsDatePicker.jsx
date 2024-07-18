@@ -1,11 +1,14 @@
 import "react-datepicker/dist/react-datepicker.css";
-import { useEffect} from "react";
-import s from "./StatisticsDatePicker.module.css";
-
+import { useEffect } from "react";
 import Select from "react-select";
 import { useDispatch } from "react-redux";
-import { fetchPeriodThunk } from "../../redux/transactions/operations";
-import { summaryThunk } from "../../redux/categories/operations";
+
+import s from "./StatisticsDatePicker.module.scss";
+
+import {
+  fetchPeriodThunk,
+  fetchYearThunk,
+} from "../../redux/transactions/operations";
 
 const customStyles = {
   control: (provided) => ({
@@ -71,8 +74,8 @@ const StatisticDatePicker = ({
   const yearOptions = years.map((year) => ({ value: year, label: year }));
   useEffect(() => {
     const data = { year: selectedYear, month: selectedMonth };
-
-    dispatch(selectedMonth ? fetchPeriodThunk(data) : summaryThunk());
+    const dataYear = { year: selectedYear };
+    dispatch(selectedMonth ? fetchPeriodThunk(data) : fetchYearThunk(dataYear));
   }, [selectedMonth, selectedYear, dispatch, currentYear]);
 
   return (

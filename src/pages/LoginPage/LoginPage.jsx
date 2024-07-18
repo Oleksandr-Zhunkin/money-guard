@@ -1,17 +1,19 @@
 import { Field, Form, Formik, ErrorMessage } from "formik";
-
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import s from "./LoginPage.module.css";
-import { loginThunk } from "../../redux/auth/operations";
-import { loginFormSchema } from "../../schemas/validatorLogin";
+
+import s from "./LoginPage.module.scss";
+
 import Password from "../../components/Icons/PasswordIcon";
 import Email from "../../components/Icons/EmailIcon";
 
-export const LoginPage = () => {
+import { loginThunk } from "../../redux/auth/operations";
+import { loginFormSchema } from "../../schemas/validatorLogin";
+
+const LoginPage = () => {
   const dispatch = useDispatch();
+
   const handleSubmit = (values) => {
-    console.log(values);
     dispatch(loginThunk(values));
   };
 
@@ -42,14 +44,15 @@ export const LoginPage = () => {
                 <li>
                   <div className={s.input_wrap}>
                     <label className={s.label}>
-                      {/* <span className={s.span}></span> */}
-                      <Email className={s.icon} />
+                      <div className={s.icon}>
+                        <Email />
+                      </div>
                     </label>
                     <div className={s.error_wrap}>
                       <Field
                         name="email"
                         type="email"
-                        placeholder="email"
+                        placeholder="E-mail"
                         className={s.input}
                       />
                       <ErrorMessage
@@ -63,13 +66,15 @@ export const LoginPage = () => {
                 <li>
                   <div className={s.input_wrap}>
                     <label className={s.label}>
-                      {/* <span className={s.span}></span> */}
-                      <Password className={s.icon} />
+                      <div className={s.icon}>
+                        <Password />
+                      </div>
+
                       <div className={s.error_wrap}>
                         <Field
                           name="password"
                           type="password"
-                          placeholder="password"
+                          placeholder="Password"
                           className={s.input}
                         />
                         <ErrorMessage
@@ -99,3 +104,4 @@ export const LoginPage = () => {
     </div>
   );
 };
+export default LoginPage;

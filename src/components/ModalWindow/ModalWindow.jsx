@@ -1,5 +1,7 @@
 import Modal from "react-modal";
+
 import s from "./ModalWindow.module.scss";
+
 Modal.setAppElement("#root");
 
 const ModalWindow = ({ children, isOpen, onClose }) => {
