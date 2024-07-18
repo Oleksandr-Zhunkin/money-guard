@@ -12,12 +12,12 @@ import {
   selectIsLoading,
   selectTransactions,
 } from "../../redux/transactions/selectors.js";
-import useRespons from "../../hooks/useRespons.js";
+import useResponse from "../../hooks/useResponse.js";
 
 const TransactionsList = () => {
   const transactions = useSelector(selectTransactions);
   const isLoading = useSelector(selectIsLoading);
-  const { mobileUser } = useRespons();
+  const { isMobile } = useResponse();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedTransaction, setSelectedTransaction] = useState(null);
 
@@ -47,7 +47,7 @@ const TransactionsList = () => {
     <Loader />
   ) : (
     <>
-      {!mobileUser ? (
+      {!isMobile ? (
         <table className={s.wrapper_tab}>
           <thead>
             <tr>

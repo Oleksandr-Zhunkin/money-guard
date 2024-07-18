@@ -11,7 +11,7 @@ import IconCurrency from "../Icons/IconCurrency";
 import Balance from "../Balance/Balance";
 import Currency from "../Currency/Currency";
 
-import useRespons from "../../hooks/useRespons";
+import useResponse from "../../hooks/useResponse";
 
 const buildLinkClass = ({ isActive }) => {
   return clsx(s.link, isActive && s.active);
@@ -19,7 +19,7 @@ const buildLinkClass = ({ isActive }) => {
 
 const Navigation = () => {
   const [isBalance, setIsBalance] = useState(false);
-  const { mobileUser } = useRespons();
+  const { isMobile } = useResponse();
   const location = useLocation();
 
   useEffect(() => {
@@ -36,18 +36,18 @@ const Navigation = () => {
           <NavLink to="/" className={buildLinkClass}>
             <div className={s.link_wrap}>
               <HomeIcon title="Home" />
-              {!mobileUser && <p className={s.text}>Home</p>}
+              {!isMobile && <p className={s.text}>Home</p>}
             </div>
           </NavLink>
 
           <NavLink to="/statistics" className={buildLinkClass}>
             <div className={s.link_wrap}>
               <IconStatistics title="Statistics" />
-              {!mobileUser && <p className={s.text}>Statistics</p>}
+              {!isMobile && <p className={s.text}>Statistics</p>}
             </div>
           </NavLink>
 
-          {mobileUser && (
+          {isMobile && (
             <NavLink to="/currency" className={buildLinkClass}>
               <IconCurrency title="Currency" />
             </NavLink>
@@ -55,7 +55,7 @@ const Navigation = () => {
         </nav>
         {isBalance && <Balance />}
       </div>
-      {!mobileUser && <Currency />}
+      {!isMobile && <Currency />}
     </div>
   );
 };

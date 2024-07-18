@@ -14,6 +14,7 @@ const CustomDatePicker = ({ field, form, ...props }) => {
       }}
       maxDate={new Date()}
       calendarStartDay={1}
+      className=""
       icon={
         <svg
           width="24"

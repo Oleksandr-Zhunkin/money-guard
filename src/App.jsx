@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate, Route, Routes } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
 
 import "./App.scss";
 import LoginPage from "./pages/LoginPage/LoginPage";
@@ -18,12 +19,12 @@ import NotFound from "./components/NotFound/NotFound.jsx";
 
 import { refreshThunk } from "./redux/auth/operations";
 import { selectIsRefresh } from "./redux/auth/selectors";
-import useRespons from "./hooks/useRespons.js";
+import useResponse from "./hooks/useResponse.js";
 
 function App() {
   const dispatch = useDispatch();
   const isRefreshing = useSelector(selectIsRefresh);
-  const { mobileUser } = useRespons();
+  const { isMobile } = useResponse();
 
   useEffect(() => {
     dispatch(refreshThunk());
@@ -46,7 +47,7 @@ function App() {
           <Route path="statistics" element={<Statistics />} />
           <Route
             path="currency"
-            element={mobileUser ? <CurrencyTab /> : <Navigate to="/" />}
+            element={isMobile ? <CurrencyTab /> : <Navigate to="/" />}
           />
         </Route>
         <Route
@@ -68,6 +69,19 @@ function App() {
 
         <Route path="*" element={<NotFound />} />
       </Routes>
+      <Toaster
+        position="top-right"
+        toastOptions={{
+          style: {
+            background: "#ff868d",
+            padding: "16px",
+            color: "#fbfbfb",
+            fontWeight: "normal",
+            fontSize: "16px",
+          },
+          duration: 3000,
+        }}
+      />
     </Section>
   );
 }
