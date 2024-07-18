@@ -54,8 +54,14 @@ img {
     & div:nth-child(2n) {
       width: 0 !important;
     }
+    & div:nth-child(n) {
+      height: 4px !important;
+    }
+    & div:first-child {
+      border-radius: 15px 0 0 15px;
+    }
+    & div:last-child {
+      border-radius: 0 15px 15px 0;
+    }
   }
-}
-.bar-sections {
-  display: none;
 }

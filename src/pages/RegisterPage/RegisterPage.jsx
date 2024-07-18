@@ -11,8 +11,10 @@ import Password from "../../components/Icons/PasswordIcon";
 
 import { registerThunk } from "../../redux/auth/operations";
 import { registerFormSchema } from "../../schemas/validatorLogin";
+import { useState } from "react";
 
 const RegisterPage = () => {
+  const [password, setPassword] = useState("");
   const dispatch = useDispatch();
   const handleSubmit = (values) => {
     const credentials = {
@@ -47,118 +49,121 @@ const RegisterPage = () => {
             onSubmit={handleSubmit}
             validationSchema={registerFormSchema}
           >
-            <Form className={s.form}>
-              <ul className={s.list}>
-                <li className={s.item}>
-                  <div className={s.input_wrap}>
-                    <label className={s.label}>
-                      <div className={s.icon}>
-                        <User />
-                      </div>
-                      <div className={s.error_wrap}>
-                        <Field
-                          name="username"
-                          type="name"
-                          placeholder="Name"
-                          className={s.input}
-                        />
-                        <ErrorMessage
-                          className={s.error}
-                          name="username"
-                          component="span"
-                        />
-                      </div>
-                    </label>
-                  </div>
-                </li>
-                <li className={s.item}>
-                  <div className={s.input_wrap}>
-                    <label className={s.label}>
-                      <div className={s.icon}>
-                        <Email />
-                      </div>
-                      <div className={s.error_wrap}>
-                        <Field
-                          name="email"
-                          type="email"
-                          placeholder="E-mail"
-                          className={s.input}
-                        />
-                        <ErrorMessage
-                          className={s.error}
-                          name="email"
-                          component="span"
-                        />
-                      </div>
-                    </label>
-                  </div>
-                </li>
-                <li className={s.item}>
-                  <div className={s.input_wrap}>
-                    <label className={s.label}>
-                      <div className={s.icon}>
-                        <Password />
-                      </div>
-                      <div className={s.error_wrap}>
-                        <Field
-                          name="password"
-                          type="password"
-                          placeholder="Password"
-                          className={s.input}
-                        />
-                        <ErrorMessage
-                          className={s.error}
-                          name="password"
-                          component="span"
-                        />
-                      </div>
-                    </label>
-                  </div>
-                </li>
-                <li className={s.item}>
-                  <div className={s.input_wrap}>
-                    <label className={s.label}>
-                      <div className={s.icon}>
-                        <Password />
-                      </div>
-                      <div className={s.error_wrap}>
-                        <Field
-                          name="confirmPassword"
-                          type="password"
-                          placeholder="Confirm password"
-                          className={s.input}
-                          required
-                        />
-                        <ErrorMessage
-                          className={s.error_confirm}
-                          name="confirmPassword"
-                          component="span"
-                        />
-                      </div>
-                    </label>
-                  </div>
-                  <PasswordStrengthBar
-                    password={"password"}
-                    className="bar"
-                    scoreWordClassName="bar_sections"
-                  />
-                </li>
-              </ul>
+            {({ handleChange }) => (
+              <Form className={s.form}>
+                <ul className={s.list}>
+                  <li className={s.item}>
+                    <div className={s.input_wrap}>
+                      <label className={s.label}>
+                        <div className={s.icon}>
+                          <User />
+                        </div>
+                        <div className={s.error_wrap}>
+                          <Field
+                            name="username"
+                            type="name"
+                            placeholder="Name"
+                            className={s.input}
+                          />
+                          <ErrorMessage
+                            className={s.error}
+                            name="username"
+                            component="span"
+                          />
+                        </div>
+                      </label>
+                    </div>
+                  </li>
+                  <li className={s.item}>
+                    <div className={s.input_wrap}>
+                      <label className={s.label}>
+                        <div className={s.icon}>
+                          <Email />
+                        </div>
+                        <div className={s.error_wrap}>
+                          <Field
+                            name="email"
+                            type="email"
+                            placeholder="E-mail"
+                            className={s.input}
+                          />
+                          <ErrorMessage
+                            className={s.error}
+                            name="email"
+                            component="span"
+                          />
+                        </div>
+                      </label>
+                    </div>
+                  </li>
+                  <li className={s.item}>
+                    <div className={s.input_wrap}>
+                      <label className={s.label}>
+                        <div className={s.icon}>
+                          <Password />
+                        </div>
+                        <div className={s.error_wrap}>
+                          <Field
+                            name="password"
+                            type="password"
+                            placeholder="Password"
+                            className={s.input}
+                            onChange={(e) => {
+                              handleChange(e);
+                              setPassword(e.target.value);
+                            }}
+                            // onBlur={handleBlur}
+                          />
+                          <ErrorMessage
+                            className={s.error}
+                            name="password"
+                            component="span"
+                          />
+                        </div>
+                      </label>
+                    </div>
+                  </li>
+                  <li className={s.item}>
+                    <div className={s.input_wrap}>
+                      <label className={s.label}>
+                        <div className={s.icon}>
+                          <Password />
+                        </div>
+                        <div className={s.error_wrap}>
+                          <Field
+                            name="confirmPassword"
+                            type="password"
+                            placeholder="Confirm password"
+                            className={s.input}
+                            required
+                          />
+                          <ErrorMessage
+                            className={s.error_confirm}
+                            name="confirmPassword"
+                            component="span"
+                          />
+                        </div>
+                      </label>
+                    </div>
+                    <PasswordStrengthBar password={password} className="bar" />
+                  </li>
+                </ul>
 
-              <ul className={s.btn_wrapper}>
-                <li>
-                  <button type="submit" className={s.register_btn}>
-                    REGISTER
-                  </button>
-                </li>
+                <ul className={s.btn_wrapper}>
+                  <li>
+                    <button type="submit" className={s.register_btn}>
+                      REGISTER
+                    </button>
+                  </li>
 
-                <li>
-                  <Link className={s.login_btn} to="/login">
-                    LOG IN
-                  </Link>
-                </li>
-              </ul>
-            </Form>
+                  <li>
+                    <Link className={s.login_btn} to="/login">
+                      LOG IN
+                    </Link>
+                  </li>
+                </ul>
+              </Form>
+            )}
           </Formik>
         </div>
       </div>
