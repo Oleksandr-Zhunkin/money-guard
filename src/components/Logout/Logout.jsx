@@ -1,9 +1,11 @@
 import ModalWindow from "../ModalWindow/ModalWindow";
-import s from "./Logout.module.scss";
 import { useDispatch } from "react-redux";
+
+import s from "./Logout.module.scss";
+import Logo from "../../images/icons/logo.svg";
+
 import { logoutThunk } from "../../redux/auth/operations";
 import useRespons from "../../hooks/useRespons";
-import Logo from "../../images/icons/logo.svg";
 
 const Logout = ({ modalIsOpen, handleModalClose }) => {
   const dispatch = useDispatch();

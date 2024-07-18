@@ -1,4 +1,4 @@
-import s from "../TransactionsItem/TransactionsItem.module.css";
+import s from "../TransactionsItem/TransactionsItem.module.scss";
 
 const IconEdit = () => {
   return (

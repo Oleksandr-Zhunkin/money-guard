@@ -1,13 +1,16 @@
 import { useSelector } from "react-redux";
-import { selectIsLoggedIn, selectUser } from "../../redux/auth/selectors";
+import { Link } from "react-router-dom";
+import { useState } from "react";
+
 import s from "./Header.module.scss";
 import Logo from "../../images/icons/logo.svg";
 import exitIcon from "../../images/icons/exit-icon.svg";
-import useRespons from "../../hooks/useRespons";
-import { useState } from "react";
+
 import Logout from "../Logout/Logout";
 import Container from "../Container/Container";
-import { Link } from "react-router-dom";
+
+import useRespons from "../../hooks/useRespons";
+import { selectIsLoggedIn, selectUser } from "../../redux/auth/selectors";
 
 const Header = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);

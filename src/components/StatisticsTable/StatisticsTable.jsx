@@ -12,7 +12,6 @@ export const StatisticsTable = ({ category }) => {
     "#c5baff",
     "#24cca7",
   ];
-  // categoriesSummary, expenseSummary, incomeSummary;
 
   return (
     <div className={s.wrapper}>

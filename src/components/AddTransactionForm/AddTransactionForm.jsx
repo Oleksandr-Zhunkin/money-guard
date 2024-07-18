@@ -3,7 +3,8 @@ import * as Yup from "yup";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import css from "./AddTransactionForm.module.css";
+import css from "./AddTransactionForm.module.scss";
+
 import IncomeTransaction from "../IncomeTransaction/IncomeTransaction";
 import ExpenseTransaction from "../ExpenseTransaction/ExpenseTransaction";
 import { addTransactionsThunk } from "../../redux/transactions/operations";
