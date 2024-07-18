@@ -3,6 +3,9 @@
   font-family: "Poppins";
   src: url("./fonts/Poppins/Poppins-Regular.ttf") format("ttf");
 }
+html {
+  background: #2e225f;
+}
 body {
   font-family: "Poppins", sans-serif;
 }
@@ -64,4 +67,12 @@ img {
       border-radius: 0 15px 15px 0;
     }
   }
+}
+
+.react-datepicker__header {
+  background-color: transparent;
+}
+.react-datepicker {
+  background-color: #2c055f;
+  opacity: 0.7;
 }
