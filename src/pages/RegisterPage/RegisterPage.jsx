@@ -15,7 +15,12 @@ import { registerFormSchema } from "../../schemas/validatorLogin";
 const RegisterPage = () => {
   const dispatch = useDispatch();
   const handleSubmit = (values) => {
-    dispatch(registerThunk(values));
+    const credentials = {
+      username: values.username,
+      email: values.email,
+      password: values.password,
+    };
+    dispatch(registerThunk(credentials));
   };
 
   const initialValues = {
@@ -39,8 +44,8 @@ const RegisterPage = () => {
         <div className={s.formik}>
           <Formik
             initialValues={initialValues}
-            validationSchema={registerFormSchema}
             onSubmit={handleSubmit}
+            validationSchema={registerFormSchema}
           >
             <Form className={s.form}>
               <ul className={s.list}>
@@ -52,14 +57,14 @@ const RegisterPage = () => {
                       </div>
                       <div className={s.error_wrap}>
                         <Field
-                          name="name"
+                          name="username"
                           type="name"
                           placeholder="Name"
                           className={s.input}
                         />
                         <ErrorMessage
                           className={s.error}
-                          name="name"
+                          name="username"
                           component="span"
                         />
                       </div>
