@@ -139,3 +139,17 @@ ul {
   display: block;
   height: auto;
 }
+.gotoUpButton {
+  position: fixed;
+  bottom: 70px;
+  right: 20px;
+  z-index: 1000;
+  border-radius: 50%;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 11px;
+  cursor: pointer;
+  background: var(--background-btn);
+}
