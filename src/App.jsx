@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate, Route, Routes } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
 
 import "./App.scss";
 import LoginPage from "./pages/LoginPage/LoginPage";
@@ -18,12 +19,7 @@ import NotFound from "./components/NotFound/NotFound.jsx";
 
 import { refreshThunk } from "./redux/auth/operations";
 import { selectIsRefresh } from "./redux/auth/selectors";
-<<<<<<< Updated upstream
 import useResponse from "./hooks/useResponse.js";
-=======
-import useRespons from "./hooks/useRespons.js";
-import { Toaster } from "react-hot-toast";
->>>>>>> Stashed changes
 
 function App() {
   const dispatch = useDispatch();
