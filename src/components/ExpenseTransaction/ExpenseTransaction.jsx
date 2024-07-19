@@ -6,13 +6,14 @@ import CustomDatePicker from "../CustomDatePicker/CustomDatePicker";
 import CustomSelect from "./CustomSelect";
 
 const ExpenseTransaction = ({ categories }) => {
+  const expenseCategory = categories.filter((item) => item.value !== "Income");
   return (
     <div className={css["inputs-container"]}>
       <Field
         className={`${css.inputs} ${css.category}`}
         name="category"
         component={CustomSelect}
-        options={categories}
+        options={expenseCategory}
       />
       <ErrorMessage name="category" component="div" className="error" />
 

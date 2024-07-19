@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
 import s from "./LoginPage.module.scss";
+import Logo from "../../images/icons/logo.svg";
 
 import Password from "../../components/Icons/PasswordIcon";
 import Email from "../../components/Icons/EmailIcon";
@@ -25,11 +26,7 @@ const LoginPage = () => {
     <div className={s.main}>
       <div className={s.wrapper}>
         <div className={s.title_wrap}>
-          <img
-            src="../../../public/Money Guard.svg"
-            alt="logo"
-            className={s.logo}
-          />
+          <img src={Logo} alt="logo" className={s.logo} />
           <h1 className={s.title}>Money Guard</h1>
         </div>
 

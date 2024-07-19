@@ -1,4 +1,8 @@
 .wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   margin-bottom: 32px;
 }
@@ -34,5 +38,6 @@
   }
   .wrapper {
     max-width: 288px;
+    justify-content: start;
   }
 }
