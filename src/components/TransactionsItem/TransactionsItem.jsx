@@ -28,10 +28,6 @@ const TransactionsItem = ({ transaction = {}, openModal }) => {
     dispatch(deleteTransactionsThunk(transaction.id))
       .unwrap()
       .then(() => dispatch(getBalanceThunk()));
-
-    setTimeout(() => {
-      dispatch(getTransactionsThunk());
-    }, 500);
   };
 
   const categories = useSelector(selectCategories);
