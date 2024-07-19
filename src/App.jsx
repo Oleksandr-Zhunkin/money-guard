@@ -20,6 +20,7 @@ import NotFound from "./components/NotFound/NotFound.jsx";
 import { refreshThunk } from "./redux/auth/operations";
 import { selectIsRefresh } from "./redux/auth/selectors";
 import useResponse from "./hooks/useResponse.js";
+import { categoriesThunk } from "./redux/categories/operations.js";
 
 function App() {
   const dispatch = useDispatch();
@@ -28,6 +29,7 @@ function App() {
 
   useEffect(() => {
     dispatch(refreshThunk());
+    dispatch(categoriesThunk());
   }, [dispatch]);
 
   return isRefreshing ? (
