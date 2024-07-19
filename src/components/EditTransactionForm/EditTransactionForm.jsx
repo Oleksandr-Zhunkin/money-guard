@@ -39,7 +39,7 @@ const EditTransactionForm = ({
         data: {
           transactionDate: values.datepicker,
           type: values.type,
-          categoryId: values.categoryId,
+          categoryId: values.categoryId.value,
           comment: values.comment,
           amount: values.type === "EXPENSE" ? -values.sum : values.sum,
         },
@@ -63,7 +63,11 @@ const EditTransactionForm = ({
             : transaction.amount,
         datepicker: new Date(transaction.transactionDate),
         comment: transaction.comment,
-        categoryId: transaction.categoryId,
+        categoryId: {
+          value: transaction.categoryId,
+          label: category.find((elem) => elem.id == transaction.categoryId)
+            ?.name,
+        },
       }}
       onSubmit={handleSubmit}
       validationSchema={formSchema}

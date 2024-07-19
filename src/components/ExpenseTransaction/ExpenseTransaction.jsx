@@ -4,7 +4,7 @@ import CustomDatePicker from "../CustomDatePicker/CustomDatePicker";
 import CustomSelect from "./CustomSelect";
 
 const ExpenseTransaction = ({ categories, defaultValue }) => {
-  const expenseCategory = categories.filter((item) => item.value !== "Income");
+  const expenseCategory = categories.filter((item) => item.name !== "Income");
 
   return (
     <div className={css["inputs-container"]}>

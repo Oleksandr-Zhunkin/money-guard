@@ -16,7 +16,7 @@ let formSchema = Yup.object({
   sum: Yup.number().min(1).required(),
   datepicker: Yup.date().required(),
   comment: Yup.string().required(),
-  category: Yup.object()
+  categoryId: Yup.object()
     .shape({
       value: Yup.string().required(),
       label: Yup.string().required(),
@@ -34,18 +34,12 @@ const AddTransactionForm = ({ onClose }) => {
   }, [dispatch]);
 
   const handleSubmit = (values, actions) => {
-    const categoryName = isExpense ? "Income" : values.category.value;
-    const category = categories.find((elem) => elem.name === categoryName);
-
-    if (!category) {
-      console.error(`Category not found: ${categoryName}`);
-      return;
-    }
+    const category = isExpense ? "Income" : values.categoryId.value;
 
     const data = {
       transactionDate: values.datepicker,
       type: isExpense ? "INCOME" : "EXPENSE",
-      categoryId: category.id,
+      categoryId: category,
       comment: values.comment,
       amount: isExpense ? values.sum : -values.sum,
     };
@@ -72,15 +66,10 @@ const AddTransactionForm = ({ onClose }) => {
     return <div>Loading categories...</div>;
   }
 
-  const categoryOptions = categories.map((cat) => ({
-    value: cat.name,
-    label: cat.name,
-  }));
-
   return (
     <Formik
       initialValues={{
-        category: { value: "Main expenses", label: "Main expenses" },
+        categoryId: { value: "Main expenses", label: "Main expenses" },
         incomeExpense: !isExpense,
         sum: "",
         datepicker: new Date(),
@@ -108,7 +97,7 @@ const AddTransactionForm = ({ onClose }) => {
         {isExpense ? (
           <IncomeTransaction />
         ) : (
-          <ExpenseTransaction categories={categoryOptions} />
+          <ExpenseTransaction categories={categories} />
         )}
         <div className={css["buttons-container"]}>
           <button className={`${css.button} ${css.submit_btn}`} type="submit">

@@ -51,11 +51,16 @@ const customStyles = {
 };
 
 const CustomSelect = ({ field, form, options, ...props }) => {
+  const newOption = options.map((elem) => {
+    return { value: elem.id, label: elem.name };
+  });
+
   return (
     <Select
       {...field}
       {...props}
-      options={options}
+      value={field.value}
+      options={newOption}
       onChange={(option) => form.setFieldValue(field.name, option)}
       onBlur={() => form.setFieldTouched(field.name, true)}
       styles={customStyles}
