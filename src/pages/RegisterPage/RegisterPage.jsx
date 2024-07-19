@@ -4,6 +4,7 @@ import { Field, Form, Formik, ErrorMessage } from "formik";
 import PasswordStrengthBar from "react-password-strength-bar-with-style-item";
 
 import s from "./RegisterPage.module.scss";
+import Logo from "../../images/icons/logo.svg";
 
 import User from "../../components/Icons/UserIcon";
 import Email from "../../components/Icons/EmailIcon";
@@ -35,11 +36,7 @@ const RegisterPage = () => {
     <div className={s.main}>
       <div className={s.wrapper}>
         <div className={s.title_wrap}>
-          <img
-            src="../../../public/Money Guard.svg"
-            alt="logo"
-            className={s.logo}
-          />
+          <img src={Logo} alt="logo" className={s.logo} />
           <h1 className={s.title}>Money Guard</h1>
         </div>
 
