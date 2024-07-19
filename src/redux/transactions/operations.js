@@ -2,6 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import toast from "react-hot-toast";
 
 import { guardApi } from "../../config/guardApi";
+import { getBalanceThunk } from "../auth/operations";
 
 export const getTransactionsThunk = createAsyncThunk(
   "getTransaction",
@@ -21,6 +22,7 @@ export const addTransactionsThunk = createAsyncThunk(
   async (transaction, thunkApi) => {
     try {
       const { data } = await guardApi.post("/api/transactions", transaction);
+      thunkApi.dispatch(getBalanceThunk());
       return data;
     } catch (error) {
       toast(error.message);
@@ -50,6 +52,7 @@ export const deleteTransactionsThunk = createAsyncThunk(
   async (id, thunkApi) => {
     try {
       const { data } = await guardApi.delete(`/api/transactions/${id}`);
+      thunkApi.dispatch(getBalanceThunk());
       return data.id;
     } catch (error) {
       toast(error.message);
