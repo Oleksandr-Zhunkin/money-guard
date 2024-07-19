@@ -9,6 +9,7 @@ import {
 } from "../../redux/transactions/operations";
 import { refreshThunk } from "../../redux/auth/operations.js";
 import s from "./TransactionsItem.module.scss";
+import IconArrowUp from "../Icons/IconArrowUp.jsx";
 
 const formatDate = (dateString) => {
   const date = new Date(dateString);
@@ -39,6 +40,10 @@ const TransactionsItem = ({ transaction = {}, openModal }) => {
   );
   const categoryName = category ? category.name : "Unknown";
   const displayAmount = Math.abs(transaction.amount);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   const transactionRow = (
     <tr key={transaction.id}>
@@ -131,6 +136,14 @@ const TransactionsItem = ({ transaction = {}, openModal }) => {
         >
           <IconEdit />
           <p className={s.edit}>Edit</p>
+        </button>
+        <button
+          className={s.gotoUpButton}
+          type="button"
+          onClick={scrollToTop}
+          aria-label="back to top button"
+        >
+          <IconArrowUp />
         </button>
       </div>
     </li>
