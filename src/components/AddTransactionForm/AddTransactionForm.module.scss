@@ -37,12 +37,18 @@
   height: 50px;
   border: 0 solid #000;
   border-radius: 20px;
-
-  font-family: "Poppins", sans-serif;
   font-size: 18px;
   font-weight: 400;
   line-height: 27px;
   letter-spacing: 0.1em;
+  transition: transform 0.3s ease, background-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.button:hover {
+  transform: translate(2px, 2px);
+  background-color: #dcdcdc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .submit_btn {
@@ -53,8 +59,19 @@
     #9e40ba 61.46%,
     #7000ff 90.54%
   );
+  transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
 }
 
+.submit_btn:hover {
+  transform: translate(2px, 2px);
+  background: linear-gradient(
+    167deg,
+    #ffdd44 0%,
+    #b44dd4 61.46%,
+    #8000ff 90.54%
+  );
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
 .slider {
   position: relative;
   width: 80px;
@@ -109,6 +126,14 @@
   background: url("../../images/close.svg") no-repeat center center;
   width: 16px;
   height: 16px;
+  transition: transform 0.3s ease, background-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.close:hover {
+  transform: scale(1.2);
+  background-color: rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 @media screen and (min-width: 768px) {

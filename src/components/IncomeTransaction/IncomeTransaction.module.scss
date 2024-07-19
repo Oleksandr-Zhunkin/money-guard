@@ -12,6 +12,12 @@
   width: 280px;
   margin-bottom: 40px;
   padding: 8px 20px;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.inputs:hover {
+  border-color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .inputs:focus {
@@ -33,6 +39,11 @@ select.inputs {
   -webkit-appearance: none;
   -moz-appearance: none;
   cursor: pointer;
+  transition: box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+select.inputs:hover {
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 select.inputs:focus {
@@ -66,6 +77,12 @@ select.inputs option:checked {
 textarea.inputs {
   margin-bottom: 15px;
   resize: none;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+textarea.inputs:hover {
+  border-color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .inline-container {

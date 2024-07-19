@@ -3,6 +3,7 @@
   object-fit: contain;
   height: 100vh;
 }
+
 .go_back {
   position: fixed;
   top: 20px;
@@ -25,12 +26,29 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.go_back:hover {
+  background: linear-gradient(
+    96.76deg,
+    #ffbf00 -16.42%,
+    #8e30aa 97.04%,
+    #6000dd 150.71%
+  );
+  transform: scale(1.05);
 }
 
 .icon {
   position: absolute;
   width: 30px;
   height: 25px;
-  top: 5;
+  top: 5px;
   left: 0;
+  transition: transform 0.3s ease, fill 0.3s ease;
+}
+
+.go_back:hover .icon {
+  transform: translateX(-5px);
+  fill: #ffffff; 
 }

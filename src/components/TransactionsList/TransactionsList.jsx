@@ -33,7 +33,7 @@ const TransactionsList = () => {
 
   if (!transactions.length) {
     return (
-      <div className={s.filler}>
+      <div className={s.emptyBox}>
         <p>You don’t have any transactions now...</p>
       </div>
     );
