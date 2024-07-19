@@ -8,7 +8,7 @@ import IncomeTransaction from "../IncomeTransaction/IncomeTransaction";
 import ExpenseTransaction from "../ExpenseTransaction/ExpenseTransaction";
 import { updateTransactionsThunk } from "../../redux/transactions/operations";
 import { selectCategories } from "../../redux/categories/selectors";
-import { refreshThunk } from "../../redux/auth/operations";
+import { getBalanceThunk } from "../../redux/auth/operations";
 
 let formSchema = Yup.object({
   datepicker: Yup.date().required(),
@@ -47,7 +47,7 @@ const EditTransactionForm = ({
     )
       .unwrap()
       .then(() => {
-        dispatch(refreshThunk());
+        dispatch(getBalanceThunk());
       });
 
     actions.resetForm();

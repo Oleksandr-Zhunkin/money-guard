@@ -4,11 +4,18 @@ import {
   logoutThunk,
   refreshThunk,
   registerThunk,
+  getBalanceThunk,
 } from "./operations";
+import { addTransactionsThunk } from "../transactions/operations";
 
 const initialState = {
-  user: null,
+  user: {
+    username: null,
+    email: null,
+    balance: null,
+  },
   token: "",
+  balance: null,
   isLoggedIn: false,
   isLoading: false,
   isRefresh: false,
@@ -29,6 +36,12 @@ const slice = createSlice({
         state.user = action.payload.user;
         state.token = action.payload.token;
         state.isLoggedIn = true;
+      })
+      .addCase(getBalanceThunk.fulfilled, (state, action) => {
+        state.user.balance = action.payload;
+      })
+      .addCase(addTransactionsThunk.fulfilled, (state, action) => {
+        state.user.balance = action.payload.balanceAfter;
       })
       .addCase(refreshThunk.fulfilled, (state, action) => {
         state.user = action.payload;

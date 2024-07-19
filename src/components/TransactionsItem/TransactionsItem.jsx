@@ -7,7 +7,7 @@ import {
   deleteTransactionsThunk,
   getTransactionsThunk,
 } from "../../redux/transactions/operations";
-import { refreshThunk } from "../../redux/auth/operations.js";
+import { getBalanceThunk } from "../../redux/auth/operations.js";
 import s from "./TransactionsItem.module.scss";
 import IconArrowUp from "../Icons/IconArrowUp.jsx";
 
@@ -27,7 +27,7 @@ const TransactionsItem = ({ transaction = {}, openModal }) => {
   const handleDeleteTransaction = () => {
     dispatch(deleteTransactionsThunk(transaction.id))
       .unwrap()
-      .then(() => dispatch(refreshThunk()));
+      .then(() => dispatch(getBalanceThunk()));
 
     setTimeout(() => {
       dispatch(getTransactionsThunk());

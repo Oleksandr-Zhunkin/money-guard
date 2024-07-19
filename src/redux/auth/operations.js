@@ -62,3 +62,15 @@ export const refreshThunk = createAsyncThunk("refresh", async (_, thunkApi) => {
     return thunkApi.rejectWithValue(error.message);
   }
 });
+export const getBalanceThunk = createAsyncThunk(
+  "auth/getBalance",
+  async (_, thunkAPI) => {
+    try {
+      const { data } = await guardApi.get("/api/users/current");
+      console.log(data.balance);
+      return data.balance;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
