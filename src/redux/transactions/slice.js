@@ -35,7 +35,7 @@ const slice = createSlice({
       })
       .addCase(deleteTransactionsThunk.fulfilled, (state, action) => {
         state.transactions = state.transactions.filter(
-          (transaction) => transaction.id !== action.payload
+          (transaction) => transaction.id !== action.meta.arg
         );
       })
       .addCase(fetchPeriodThunk.fulfilled, (state, action) => {
