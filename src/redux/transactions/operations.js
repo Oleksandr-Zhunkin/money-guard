@@ -9,9 +9,9 @@ export const getTransactionsThunk = createAsyncThunk(
   async (_, thunkApi) => {
     try {
       const { data } = await guardApi.get("/api/transactions");
-
       return data;
     } catch (error) {
+      toast.error(error.message);
       return thunkApi.rejectWithValue(error.message);
     }
   }
@@ -23,9 +23,10 @@ export const addTransactionsThunk = createAsyncThunk(
     try {
       const { data } = await guardApi.post("/api/transactions", transaction);
       thunkApi.dispatch(getBalanceThunk());
+      toast.success(`Transaction: "${data.comment}" is added`);
       return data;
     } catch (error) {
-      toast(error.message);
+      toast.error(error.message);
       return thunkApi.rejectWithValue(error.message);
     }
   }
@@ -38,10 +39,10 @@ export const updateTransactionsThunk = createAsyncThunk(
         `/api/transactions/${transaction.id}`,
         transaction.data
       );
-
+      toast.success(`Transaction: "${data.comment}" is edited`);
       return data;
     } catch (error) {
-      toast(error.message);
+      toast.error(error.message);
       return thunkApi.rejectWithValue(error.message);
     }
   }
@@ -53,9 +54,10 @@ export const deleteTransactionsThunk = createAsyncThunk(
     try {
       const { data } = await guardApi.delete(`/api/transactions/${id}`);
       thunkApi.dispatch(getBalanceThunk());
+      toast.success(`Transaction is deleted`);
       return data.id;
     } catch (error) {
-      toast(error.message);
+      toast.error(error.message);
       return thunkApi.rejectWithValue(error.message);
     }
   }

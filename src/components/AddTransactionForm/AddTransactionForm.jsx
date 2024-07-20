@@ -33,7 +33,9 @@ const AddTransactionForm = ({ onClose }) => {
   }, [dispatch]);
 
   const handleSubmit = (values, actions) => {
-    const category = isExpense ? "063f1132-ba5d-42b4-951d-44011ca46262" : values.categoryId.value;
+    const category = isExpense
+      ? "063f1132-ba5d-42b4-951d-44011ca46262"
+      : values.categoryId.value;
 
     const data = {
       transactionDate: values.datepicker,
