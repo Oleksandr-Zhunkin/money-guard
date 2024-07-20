@@ -67,7 +67,10 @@ const AddTransactionForm = ({ onClose }) => {
   return (
     <Formik
       initialValues={{
-        categoryId: { value: "Main expenses", label: "Main expenses" },
+        categoryId: {
+          value: "c9d9e447-1b83-4238-8712-edc77b18b739",
+          label: "Main expenses",
+        },
         incomeExpense: !isExpense,
         sum: "",
         datepicker: new Date(),

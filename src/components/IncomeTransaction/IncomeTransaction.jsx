@@ -10,6 +10,7 @@ const AddTransactionForm = () => {
       <div className={css["inline-container"]}>
         <Field
           className={`${css.inputs} ${css["inline-objects"]}`}
+          placeholder="Sum"
           type="number"
           name="sum"
         />
