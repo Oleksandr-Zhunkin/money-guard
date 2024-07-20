@@ -3,9 +3,9 @@ import { useState } from "react";
 
 import s from "./TransactionsList.module.scss";
 
-import ModalWindow from "../ModalWindow/ModalWindow";
-import EditTransactionForm from "../EditTransactionForm/EditTransactionForm";
-import TransactionsItem from "../TransactionsItem/TransactionsItem";
+import ModalWindow from "../ModalWindow/ModalWindow.jsx";
+import EditTransactionForm from "../EditTransactionForm/EditTransactionForm.jsx";
+import TransactionsItem from "../TransactionsItem/TransactionsItem.js";
 import Loader from "../Loader/Loader.jsx";
 
 import {
