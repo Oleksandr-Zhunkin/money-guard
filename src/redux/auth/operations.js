@@ -15,7 +15,7 @@ export const registerThunk = createAsyncThunk(
       setAuthHeader(data.token);
       return data;
     } catch (error) {
-      toast(error.message);
+      toast.error(error.message);
       return thunkApi.rejectWithValue(error.message);
     }
   }
@@ -29,7 +29,7 @@ export const loginThunk = createAsyncThunk(
       setAuthHeader(data.token);
       return data;
     } catch (error) {
-      toast(error.message);
+      toast.error(error.message);
       return thunkApi.rejectWithValue(error.message);
     }
   }
@@ -67,7 +67,6 @@ export const getBalanceThunk = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const { data } = await guardApi.get("/api/users/current");
-      console.log(data.balance);
       return data.balance;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
