@@ -82,11 +82,13 @@ textarea.inputs {
   .inputs {
     width: 394px;
   }
+  .inline-container > .inputs:first-child {
+    margin-right: 32px;
+  }
   .inline-objects {
     width: 180px;
   }
   .inline-container {
     flex-direction: row;
-    gap: 32px;
   }
 }

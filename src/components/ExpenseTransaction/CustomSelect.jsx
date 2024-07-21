@@ -6,9 +6,8 @@ const customStyles = {
     backdropFilter: "blur(100px)",
     outline: "none",
     border: "none",
-    borderBottom: "1px solid rgba(255, 255, 255, 0.4)",
     background: "transparent",
-    color: " #FFFFFF99",
+    color: "#FFFFFF99",
     minHeight: "35px",
   }),
   valueContainer: (provided) => ({

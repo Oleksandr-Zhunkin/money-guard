@@ -73,5 +73,13 @@ img {
 }
 .react-datepicker {
   background-color: #2c055f;
-  opacity: 0.7;
+  opacity: 0.9;
+}
+.react-datepicker__day,
+.react-datepicker__current-month,
+.react-datepicker__day-name {
+  color: #fff;
+}
+.react-datepicker__day--disabled {
+  color: #777;
 }

@@ -1,12 +1,10 @@
 .form {
   width: 100%;
-  backdrop-filter: blur(15px);
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 40px;
   padding: 28px 0;
-  background-color: transparent;
 }
 
 .tableContent {
